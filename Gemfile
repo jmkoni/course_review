@@ -19,6 +19,7 @@ gem 'bootstrap'
 gem 'execjs'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem "therubyracer"
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
@@ -61,7 +62,6 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'chromedriver-helper'
-  gem 'factory_bot_rails'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
