@@ -24,7 +24,7 @@ default: &default
 development:
   <<: *default
   database: course-review_development
-  username: course-review
+  username: course_review
   password:
 
   # The specified database role being used to connect to postgres.
@@ -60,7 +60,7 @@ development:
 test:
   <<: *default
   database: course-review_test
-  username: course-review
+  username: course_review
   password:
 
 # As with config/secrets.yml, you never want to store sensitive information,
@@ -85,5 +85,5 @@ test:
 production:
   <<: *default
   database: course-review_production
-  username: course-review
+  username: course_review
   password: <%= ENV['COURSE_REVIEW_DATABASE_PASSWORD'] %>

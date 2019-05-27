@@ -10,11 +10,11 @@ jobs: # a collection of steps
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           PGHOST: 127.0.0.1
-          PGUSER: course-review
+          PGUSER: course_review
           RAILS_ENV: test
       - image: circleci/postgres:9.5-alpine # database image
         environment: # environment variables for database
-          POSTGRES_USER: course-review
+          POSTGRES_USER: course_review
           POSTGRES_DB: course-review_test
           POSTGRES_PASSWORD: ""
     steps: # a collection of executable commands
