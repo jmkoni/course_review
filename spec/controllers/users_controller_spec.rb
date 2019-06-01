@@ -109,7 +109,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'renders the update template' do
         put :update, params: { id: 2, user: { email: 'pony@party.com' } }
-        expect(response).to redirect_to user_path(id: 2)
+        expect(response).to redirect_to users_path
       end
 
       it 'assigns the user to user' do

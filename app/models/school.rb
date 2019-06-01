@@ -1,10 +1,6 @@
-# frozen_string_literal: true
-
-FactoryBot.define do
-  factory :school do
-    name { Faker::University.name }
-    short_name { Faker::Alphanumeric.alpha 4 }
-  end
+class School < ApplicationRecord
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :short_name, presence: true, uniqueness: { case_sensitive: false }
 end
 
 # == Schema Information

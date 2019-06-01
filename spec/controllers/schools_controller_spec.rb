@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe SchoolsController, type: :controller do
   let(:current_user) { build_stubbed(:admin) }
+  let(:school) { create(:school) }
   let(:valid_attributes) { { name: 'Unicorn University', short_name: 'uniu'} }
   before do
     sign_in current_user
@@ -15,6 +16,7 @@ RSpec.describe SchoolsController, type: :controller do
     before do
       @schools = [build_stubbed(:school), build_stubbed(:school)]
       allow(School).to receive(:all).and_return(@schools)
+      allow(School).to receive(:where).and_return(@schools)
     end
 
     it 'calls all' do
@@ -50,8 +52,6 @@ RSpec.describe SchoolsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:school) { create(:school) }
-
     before do
       allow_any_instance_of(School).to receive(:id).and_return(2)
     end
@@ -92,17 +92,16 @@ RSpec.describe SchoolsController, type: :controller do
 
   describe 'GET #edit' do
     it 'returns a success response' do
-      get :edit
+      get :edit, params: { id: school.to_param }
       expect(response).to be_success
     end
     it 'renders the edit template' do
-      get :edit
+      get :edit, params: { id: school.to_param }
       expect(response).to render_template(:edit)
     end
   end
 
   describe 'PUT #update' do
-    let(:school) { create(:school) }
     before do
       allow(School).to receive(:find).and_return(school)
       allow_any_instance_of(School).to receive(:id).and_return(2)
@@ -119,7 +118,7 @@ RSpec.describe SchoolsController, type: :controller do
 
       it 'renders the update template' do
         put :update, params: { id: 2, school: valid_attributes }
-        expect(response).to redirect_to school_path(id: 2)
+        expect(response).to redirect_to schools_path
       end
 
       it 'assigns the school to school' do
@@ -147,7 +146,6 @@ RSpec.describe SchoolsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let(:school) { build_stubbed(:school) }
     before do
       allow(School).to receive(:find).and_return(school)
       allow(school).to receive(:destroy).and_return(true)
