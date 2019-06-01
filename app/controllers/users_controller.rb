@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[promote demote update destroy]
 
   # GET /users
   # GET /users.json
@@ -9,17 +9,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show; end
-
   # GET /users/new
   def new
     @user = User.new
   end
-
-  # GET /users/1/edit
-  def edit; end
 
   # POST /users
   # POST /users.json
@@ -28,7 +21,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to users_path, notice: "User #{@user.email} was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -59,6 +52,18 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # PUT /users/1/promote
+  def promote
+    @user.update(is_admin: true)
+    redirect_to users_url, notice: "#{@user.email} was successfully demoted from admin."
+  end
+
+  # PUT /users/1/demote
+  def demote
+    @user.update(is_admin: false)
+    redirect_to users_url, notice: "#{@user.email} was successfully demoted from admin."
   end
 
   private
