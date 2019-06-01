@@ -11,7 +11,7 @@
         null,
         null,
         1,
-        1,
+        19,
         null,
         null,
         null,
@@ -68,6 +68,8 @@
       "/Users/jenniferkonikowski/Dropbox/dev/course-review/app/controllers/users_controller.rb": [
         null,
         null,
+        1,
+        1,
         1,
         1,
         null,
@@ -143,7 +145,7 @@
         null,
         null,
         1,
-        10,
+        15,
         null,
         null
       ],
@@ -152,6 +154,47 @@
         null,
         1,
         1,
+        null
+      ],
+      "/Users/jenniferkonikowski/Dropbox/dev/course-review/app/models/ability.rb": [
+        null,
+        null,
+        1,
+        1,
+        null,
+        1,
+        22,
+        22,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/jenniferkonikowski/Dropbox/dev/course-review/app/mailers/application_mailer.rb": [
@@ -163,6 +206,6 @@
         0
       ]
     },
-    "timestamp": 1559426655
+    "timestamp": 1559427739
   }
 }
