@@ -2,25 +2,78 @@
 
 [![CircleCI](https://circleci.com/gh/jmkoni/course_review/tree/master.svg?style=svg)](https://circleci.com/gh/jmkoni/course_review/tree/master) [![coverage](https://raw.github.com/jmkoni/course_review/blob/master/coverage/coverage.svg)](https://github.com/jmkoni/course_review/blob/user-spec/coverage/index.html)[![Maintainability](https://api.codeclimate.com/v1/badges/9934c56b219099882c0f/maintainability)](https://codeclimate.com/github/jmkoni/course_review/maintainability)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development environment
 
-Things you may want to cover:
+### Installing Postgres tools locally
 
-* Ruby version
+Before installing gems, you'll need to ensure that you have PostgreSQL
+installed and its utilities on your `PATH`.
 
-* System dependencies
+This is the recommended way to install on macOS:
 
-* Configuration
+Install Postgres.app:
 
-* Database creation
+        brew install postgres
 
-* Database initialization
+Put this line at the bottom of your `.profile`, `.bashrc`, or `.zhshrc` file:
 
-* How to run the test suite
+        export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
-* Services (job queues, cache servers, search engines, etc.)
+If you aren't sure which one, add it to all of them!
 
-* Deployment instructions
+### Install Ruby
 
-* ...
+The recommended way to install ruby is to do it via rvm:
+
+        \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.6.3
+
+### Install Dependencies
+
+You'll also need to install the Rubygems that are necessary.
+
+    rvm use 2.6.3@course-review --create
+    gem install bundler
+    bundle install
+
+NOTE: if you installed ruby using something other than RVM, you want to create a gemset some way so that you don't get conflicts later on.
+
+### Preparing Postgres
+
+Start PostgreSQL using (or your preferred method):
+
+    brew services start postgresql
+
+You'll need to create a user `root` with password `root` and give that user
+privileges on two databases: `course-review_development` and `course-review_test`.
+
+Add users:
+
+    createuser course_review --createdb
+
+### Setup the Rails app
+
+Next, setup the database automatically using Rails:
+
+    rails db:setup
+
+Once that completes, you're ready to go!
+
+Note: this will only create a single user. If you want the full set of seeds, run this:
+
+    rails db:seed
+
+To start the server, run:
+
+    rails s
+
+You can leave this server running while you develop. You need only restart the
+server when you make changes to anything in the `config` or `db` directories. To view the application, go to `localhost:3000`.
+
+## Developing
+
+This application uses Rspec for tests and Rubocop to enforce style. Prior to pushing up any branch, ensure both are passing by running the following:
+
+    bundle exec rspec # runs specs, should get all green with a few pending
+    rubocop -a # should get all green, but if it corrects, it will return a W
+    # if rubocop corrects, then make sure to commit the updates!
+
