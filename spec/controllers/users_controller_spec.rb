@@ -4,10 +4,14 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   let(:current_user) { build_stubbed(:admin) }
+  before do
+    sign_in current_user
+    allow(request.env['warden']).to receive(:authenticate!).and_return(current_user)
+    allow(controller).to receive(:current_user).and_return(current_user)
+  end
 
   describe 'GET #index' do
     before do
-      # @ability.can :read, User
       @users = [build_stubbed(:user), build_stubbed(:user)]
       allow_any_instance_of(User).to receive(:admin?).and_return(true)
       allow(User).to receive(:all).and_return(@users)
@@ -36,7 +40,6 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET #new' do
-    # before { @ability.can :create, User }
     it 'returns a success response' do
       get :new
       expect(response).to be_success
@@ -51,7 +54,6 @@ RSpec.describe UsersController, type: :controller do
     let(:user) { create(:user) }
 
     before do
-      # @ability.can :create, User
       allow_any_instance_of(User).to receive(:id).and_return(2)
     end
 
@@ -93,7 +95,6 @@ RSpec.describe UsersController, type: :controller do
     let(:user) { create(:user) }
     before do
       allow(User).to receive(:find).and_return(user)
-      # @ability.can :update, User
       allow_any_instance_of(User).to receive(:id).and_return(2)
     end
 
@@ -138,7 +139,6 @@ RSpec.describe UsersController, type: :controller do
   describe 'PUT #promote' do
     let(:user) { build_stubbed(:user) }
     before do
-      # @ability.can :promote, User
       allow(User).to receive(:find).and_return(user)
       allow(user).to receive(:update).and_return(true)
     end
@@ -157,7 +157,6 @@ RSpec.describe UsersController, type: :controller do
   describe 'PUT #demote' do
     let(:user) { build_stubbed(:user) }
     before do
-      # @ability.can :demote, User
       allow(User).to receive(:find).and_return(user)
       allow(user).to receive(:update).and_return(true)
     end
@@ -176,7 +175,6 @@ RSpec.describe UsersController, type: :controller do
   describe 'DELETE #destroy' do
     let(:user) { build_stubbed(:user) }
     before do
-      # @ability.can :destroy, User
       allow(User).to receive(:find).and_return(user)
       allow(user).to receive(:destroy).and_return(true)
     end
