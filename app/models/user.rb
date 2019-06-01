@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
+
   def admin?
     is_admin
   end
