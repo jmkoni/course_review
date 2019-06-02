@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Courses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+      <th>Department</th>
+      <th>School</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= course.name %></td>
+        <td><%= course.number %></td>
+        <td><%= course.department %></td>
+        <td><%= link_to course.school.name, course.school %><td>
+        <td><%= link_to 'Show', school_course_path(id: course.id, school_id: course.school.id) %></td>
+        <td><%= link_to 'Edit', edit_school_course_path(id: course.id, school_id: course.school.id) %></td>
+        <td><%= link_to 'Destroy', school_course_path(id: course.id, school_id: course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if can? :create, Course %>
+  <% if @school %>
+    <%= link_to 'New Course', new_school_course_path(school_id: @school.id) %>
+  <% else %>
+    <%= link_to 'Select a school first to add a new course', schools_path %>
+  <% end %>
+<% end %>

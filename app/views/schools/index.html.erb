@@ -12,7 +12,7 @@
   <tbody>
     <% @schools.each do |school| %>
       <tr>
-        <td><%= school.name %></td>
+        <td><%= link_to school.name, school %></td>
         <td><%= school.short_name %></td>
         <% if can? :manage, School %>
           <td><%= link_to 'Edit', edit_school_path(school) %></td>

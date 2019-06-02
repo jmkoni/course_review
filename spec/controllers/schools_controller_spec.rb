@@ -5,7 +5,8 @@ require 'rails_helper'
 RSpec.describe SchoolsController, type: :controller do
   let(:current_user) { build_stubbed(:admin) }
   let(:school) { create(:school) }
-  let(:valid_attributes) { { name: 'Unicorn University', short_name: 'uniu'} }
+  let(:valid_attributes) { { name: 'Unicorn University', short_name: 'uniu' } }
+  let(:invalid_attributes) { { name: nil, short_name: nil } }
   before do
     sign_in current_user
     allow(request.env['warden']).to receive(:authenticate!).and_return(current_user)
@@ -26,7 +27,7 @@ RSpec.describe SchoolsController, type: :controller do
 
     it 'returns a success response' do
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'assigns schools to @schools' do
@@ -43,7 +44,7 @@ RSpec.describe SchoolsController, type: :controller do
   describe 'GET #new' do
     it 'returns a success response' do
       get :new
-      expect(response).to be_success
+      expect(response).to be_successful
     end
     it 'renders the new template' do
       get :new
@@ -79,21 +80,28 @@ RSpec.describe SchoolsController, type: :controller do
     context 'with invalid attributes' do
       it "doesn't save the new school in the database" do
         expect do
-          post :create, params: { school: { email: nil } }
+          post :create, params: { school: invalid_attributes }
         end.to_not change(School, :count)
       end
 
       it 'renders the create template' do
-        post :create, params: { school: { email: nil } }
+        post :create, params: { school: invalid_attributes }
         expect(response).to render_template :new
       end
+    end
+  end
+
+  describe 'GET #show' do
+    it 'renders the show template' do
+      get :show, params: { id: school.to_param }
+      expect(response).to redirect_to school_courses_path(school)
     end
   end
 
   describe 'GET #edit' do
     it 'returns a success response' do
       get :edit, params: { id: school.to_param }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
     it 'renders the edit template' do
       get :edit, params: { id: school.to_param }
@@ -134,12 +142,12 @@ RSpec.describe SchoolsController, type: :controller do
 
       it "doesn't save the new school in the database" do
         expect do
-          put :update, params: { id: 2, school: { email: nil } }
+          put :update, params: { id: 2, school: invalid_attributes }
         end.to_not change(School, :count)
       end
 
       it 'renders the update template' do
-        put :update, params: { id: 2, school: { email: nil } }
+        put :update, params: { id: 2, school: invalid_attributes }
         expect(response).to render_template :edit
       end
     end

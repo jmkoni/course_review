@@ -11,7 +11,7 @@ RSpec.describe School, type: :model do
   end
 
   context 'associations' do
-    # it { should have_many :courses }
+    it { should have_many :courses }
   end
 end
 

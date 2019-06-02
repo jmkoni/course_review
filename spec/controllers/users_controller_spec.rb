@@ -25,7 +25,7 @@ RSpec.describe UsersController, type: :controller do
 
     it 'returns a success response' do
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
     it 'assigns users to @users' do
@@ -42,7 +42,7 @@ RSpec.describe UsersController, type: :controller do
   describe 'GET #new' do
     it 'returns a success response' do
       get :new
-      expect(response).to be_success
+      expect(response).to be_successful
     end
     it 'renders the new template' do
       get :new

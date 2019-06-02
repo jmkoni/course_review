@@ -1,12 +1,19 @@
+# frozen_string_literal: true
+
 class SchoolsController < ApplicationController
-  before_action :set_school, only: [:edit, :update, :destroy]
-    load_and_authorize_resource
-  before_action :authenticate_user!
+  before_action :set_school, only: %i[edit show update destroy]
+  load_and_authorize_resource
+  before_action :authenticate_user!, only: %i[new edit create update destroy]
 
   # GET /schools
   # GET /schools.json
   def index
     @schools = School.all
+  end
+
+  # GET /schools/1
+  def show
+    redirect_to school_courses_path(@school)
   end
 
   # GET /schools/new
@@ -15,8 +22,7 @@ class SchoolsController < ApplicationController
   end
 
   # GET /schools/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /schools
   # POST /schools.json
@@ -57,13 +63,14 @@ class SchoolsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_school
-      @school = School.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def school_params
-      params.require(:school).permit(:name, :short_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_school
+    @school = School.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def school_params
+    params.require(:school).permit(:name, :short_name)
+  end
 end

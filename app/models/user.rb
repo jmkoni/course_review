@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
+  scope :admins, lambda {
+    where(is_admin: true)
+  }
+
   def admin?
     is_admin
   end
