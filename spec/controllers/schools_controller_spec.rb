@@ -2,10 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe CoursesController, type: :controller do
+RSpec.describe SchoolsController, type: :controller do
   let(:current_user) { build_stubbed(:admin) }
-  let(:course) { create(:course) }
-  let(:valid_attributes) { { name: 'Unicorn University', short_name: 'uniu'} }
+  let(:school) { create(:school) }
+  let(:valid_attributes) { { name: 'Unicorn University', short_name: 'uniu' } }
+  let(:invalid_attributes) { { name: nil, short_name: nil } }
   before do
     sign_in current_user
     allow(request.env['warden']).to receive(:authenticate!).and_return(current_user)
@@ -14,24 +15,24 @@ RSpec.describe CoursesController, type: :controller do
 
   describe 'GET #index' do
     before do
-      @courses = [build_stubbed(:course), build_stubbed(:course)]
-      allow(Course).to receive(:all).and_return(@courses)
-      allow(Course).to receive(:where).and_return(@courses)
+      @schools = [build_stubbed(:school), build_stubbed(:school)]
+      allow(School).to receive(:all).and_return(@schools)
+      allow(School).to receive(:where).and_return(@schools)
     end
 
     it 'calls all' do
-      expect(Course).to receive(:all)
+      expect(School).to receive(:all)
       get :index
     end
 
     it 'returns a success response' do
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
     end
 
-    it 'assigns courses to @courses' do
+    it 'assigns schools to @schools' do
       get :index
-      expect(assigns(:courses)).to eq(@courses)
+      expect(assigns(:schools)).to eq(@schools)
     end
 
     it 'renders the index template' do
@@ -43,7 +44,7 @@ RSpec.describe CoursesController, type: :controller do
   describe 'GET #new' do
     it 'returns a success response' do
       get :new
-      expect(response).to be_success
+      expect(response).to be_successful
     end
     it 'renders the new template' do
       get :new
@@ -53,104 +54,100 @@ RSpec.describe CoursesController, type: :controller do
 
   describe 'POST #create' do
     before do
-      allow_any_instance_of(Course).to receive(:id).and_return(2)
+      allow_any_instance_of(School).to receive(:id).and_return(2)
     end
 
     context 'with valid attributes' do
       before do
-        allow_any_instance_of(Course).to receive(:save).and_return(course)
+        allow_any_instance_of(School).to receive(:save).and_return(school)
       end
       it 'saves the new add on in the database' do
-        expect_any_instance_of(Course).to receive(:save)
-        post :create, params: { course: valid_attributes }
+        expect_any_instance_of(School).to receive(:save)
+        post :create, params: { school: valid_attributes }
       end
 
       it 'renders the create template' do
-        post :create, params: { course: valid_attributes }
-        expect(response).to redirect_to school_courses_path
+        post :create, params: { school: valid_attributes }
+        expect(response).to redirect_to schools_path
       end
 
-      it 'assigns the new course to course' do
-        post :create, params: { course: valid_attributes }
-        expect(assigns(:course)).to be_a_kind_of(Course)
+      it 'assigns the new school to school' do
+        post :create, params: { school: valid_attributes }
+        expect(assigns(:school)).to be_a_kind_of(School)
       end
     end
 
     context 'with invalid attributes' do
-      it "doesn't save the new course in the database" do
+      it "doesn't save the new school in the database" do
         expect do
-          post :create, params: { course: { email: nil } }
-        end.to_not change(Course, :count)
+          post :create, params: { school: invalid_attributes }
+        end.to_not change(School, :count)
       end
 
       it 'renders the create template' do
-        post :create, params: { course: { email: nil } }
+        post :create, params: { school: invalid_attributes }
         expect(response).to render_template :new
       end
     end
   end
 
   describe 'GET #show' do
-    it 'returns a success response' do
-      get :show, params: { id: course.to_param }
-      expect(response).to be_success
-    end
     it 'renders the show template' do
-      get :show, params: { id: course.to_param }
-      expect(response).to render_template(:show)
+      get :show, params: { id: school.to_param }
+      expect(response).to redirect_to school_courses_path(school)
     end
   end
 
   describe 'GET #edit' do
     it 'returns a success response' do
-      get :edit, params: { id: course.to_param }
-      expect(response).to be_success
+      get :edit, params: { id: school.to_param }
+      expect(response).to be_successful
     end
     it 'renders the edit template' do
-      get :edit, params: { id: course.to_param }
+      get :edit, params: { id: school.to_param }
       expect(response).to render_template(:edit)
     end
   end
 
   describe 'PUT #update' do
     before do
-      allow(Course).to receive(:find).and_return(course)
-      allow_any_instance_of(Course).to receive(:id).and_return(2)
+      allow(School).to receive(:find).and_return(school)
+      allow_any_instance_of(School).to receive(:id).and_return(2)
     end
 
     context 'with valid attributes' do
       before do
-        allow_any_instance_of(Course).to receive(:update).and_return(true)
+        allow_any_instance_of(School).to receive(:update).and_return(true)
       end
-      it 'updates course in the database' do
-        expect_any_instance_of(Course).to receive(:update)
-        put :update, params: { id: 2, course: valid_attributes }
+      it 'updates school in the database' do
+        expect_any_instance_of(School).to receive(:update)
+        put :update, params: { id: 2, school: valid_attributes }
       end
 
       it 'renders the update template' do
-        put :update, params: { id: 2, course: valid_attributes }
-        expect(response).to redirect_to school_courses_path
+        put :update, params: { id: 2, school: valid_attributes }
+        expect(response).to redirect_to schools_path
       end
 
-      it 'assigns the course to course' do
-        put :update, params: { id: 2, course: valid_attributes }
-        expect(assigns(:course)).to be_a_kind_of(Course)
+      it 'assigns the school to school' do
+        put :update, params: { id: 2, school: valid_attributes }
+        expect(assigns(:school)).to be_a_kind_of(School)
       end
     end
 
     context 'with invalid attributes' do
       before do
-        allow_any_instance_of(Course).to receive(:update).and_return(false)
+        allow_any_instance_of(School).to receive(:update).and_return(false)
       end
 
-      it "doesn't save the new course in the database" do
+      it "doesn't save the new school in the database" do
         expect do
-          put :update, params: { id: 2, course: { email: nil } }
-        end.to_not change(Course, :count)
+          put :update, params: { id: 2, school: invalid_attributes }
+        end.to_not change(School, :count)
       end
 
       it 'renders the update template' do
-        put :update, params: { id: 2, course: { email: nil } }
+        put :update, params: { id: 2, school: invalid_attributes }
         expect(response).to render_template :edit
       end
     end
@@ -158,18 +155,18 @@ RSpec.describe CoursesController, type: :controller do
 
   describe 'DELETE #destroy' do
     before do
-      allow(Course).to receive(:find).and_return(course)
-      allow(course).to receive(:destroy).and_return(true)
+      allow(School).to receive(:find).and_return(school)
+      allow(school).to receive(:destroy).and_return(true)
     end
 
-    it 'deletes the course' do
-      expect(course).to receive(:destroy)
+    it 'deletes the school' do
+      expect(school).to receive(:destroy)
       delete :destroy, params: { id: 1 }
     end
 
-    it 'redirects to the courses list' do
+    it 'redirects to the schools list' do
       delete :destroy, params: { id: 1 }
-      expect(response).to redirect_to(school_courses_path)
+      expect(response).to redirect_to(schools_path)
     end
   end
 end

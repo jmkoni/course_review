@@ -15,7 +15,6 @@ RSpec.describe User, type: :model do
   context 'scopes' do
     describe 'admins' do
       it 'gets all users that are admins' do
-        pending
         user1 = create(:user)
         user2 = create(:admin)
         user3 = create(:admin)
