@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class School < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :short_name, presence: true, uniqueness: { case_sensitive: false }
+  has_many :courses
 end
 
 # == Schema Information
