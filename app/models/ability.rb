@@ -6,18 +6,17 @@ class Ability
   def initialize(user)
     can :read, School
     can :read, Course
-    # can :index, School
-    # can :index, Course
+    can :read, Review
     if user.present?
       if user.admin?
         can :manage, :all
       else
         can :read, Course
         can :read, School
-        # can [:create, :read], Review
-        # can [:update, :delete], Review do |r|
-        #   r.user == user
-        # end
+        can :create, Review
+        can [:update, :delete], Review do |r|
+          r.user == user
+        end
         can [:read, :update, :delete], User do |u|
           u == user
         end

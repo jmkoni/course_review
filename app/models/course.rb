@@ -5,6 +5,7 @@ class Course < ApplicationRecord
   validates :department, presence: true
   validates :number, presence: true, uniqueness: { case_sensitive: false, scope: :department }
   belongs_to :school
+  has_many :reviews
 
   def full_number
     "#{department} #{number}"

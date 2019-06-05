@@ -16,11 +16,10 @@
   <tbody>
     <% @courses.each do |course| %>
       <tr>
-        <td><%= course.name %></td>
+        <td><%= link_to course.name, school_course_path(id: course.id, school_id: course.school.id) %></td>
         <td><%= course.number %></td>
         <td><%= course.department %></td>
         <td><%= link_to course.school.name, course.school %><td>
-        <td><%= link_to 'Show', school_course_path(id: course.id, school_id: course.school.id) %></td>
         <td><%= link_to 'Edit', edit_school_course_path(id: course.id, school_id: course.school.id) %></td>
         <td><%= link_to 'Destroy', school_course_path(id: course.id, school_id: course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Course:</strong>
+  <%= link_to @review.course.full_number, school_course_path(@review.course) %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @review.user.sha_email %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @review.notes %>
+</p>
+
+<p>
+  <strong>Work Required:</strong>
+  <%= @review.work_required %>
+</p>
+
+<p>
+  <strong>Difficulty:</strong>
+  <%= @review.difficulty %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @review.rating %>
+</p>
+
+<p>
+  <strong>Experience with Topic:</strong>
+  <%= @review.experience_with_topic %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @review.year %>
+</p>
+
+<p>
+  <strong>Term:</strong>
+  <%= @review.term %>
+</p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @review.display_grade %>
+</p>
+
+<% if can? :update, Course %>
+  <%= link_to 'Edit', edit_school_course_review_path(@review) %> | <% end %>
+<%= link_to 'Back', school_course_reviews_path(school_id: @school.id, course_id: @course.id) %>

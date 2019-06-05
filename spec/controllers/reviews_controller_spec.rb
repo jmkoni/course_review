@@ -26,21 +26,18 @@ RSpec.describe ReviewsController, type: :controller do
         allow(Review).to receive(:where).and_return(@reviews)
       end
 
-      it 'returns a success response' do
+      it 'returns the right information' do
         get :index, params: { school_id: 1, course_id: 1 }
-        expect(response).to be_successful
-      end
-
-      it 'renders the index template' do
-        get :index, params: { school_id: 1, course_id: 1 }
-        expect(response).to render_template(:index)
+        aggregate_failures 'specific course and school' do
+          expect(response).to be_successful
+          expect(response).to render_template(:index)
+        end
       end
     end
 
     describe 'GET #new' do
       it 'returns a success response' do
         expect { get :new, params: { school_id: 1, course_id: 1 } }.to raise_error(CanCan::AccessDenied)
-        # expect(response).to be_successful
       end
     end
   end
@@ -60,21 +57,18 @@ RSpec.describe ReviewsController, type: :controller do
         allow(Review).to receive(:where).and_return(@reviews)
       end
 
-      it 'returns a success response' do
+      it 'returns the right information' do
         get :index, params: { school_id: 1, course_id: 1 }
-        expect(response).to be_successful
-      end
-
-      it 'renders the index template' do
-        get :index, params: { school_id: 1, course_id: 1 }
-        expect(response).to render_template(:index)
+        aggregate_failures 'specific course and school' do
+          expect(response).to be_successful
+          expect(response).to render_template(:index)
+        end
       end
     end
 
-    describe 'GET #new' do
-      it 'returns a success response' do
-        expect { get :new, params: { school_id: 1, course_id: 1 } }.to raise_error(CanCan::AccessDenied)
-        expect(response).to be_successful
+    describe 'GET #edit' do
+      it 'returns an access denied message' do
+        expect { get :edit, params: { school_id: 1, course_id: 1, id: 1 } }.to raise_error(CanCan::AccessDenied)
       end
     end
   end
@@ -102,6 +96,11 @@ RSpec.describe ReviewsController, type: :controller do
       it 'calls all' do
         expect(Review).to receive(:all)
         get :index, params: { school_id: 'all', course_id: 'all' }
+      end
+
+      it 'calls where for all reviews for a given school' do
+        expect(Review).to receive(:where)
+        get :index, params: { school_id: 1, course_id: 'all' }
       end
 
       it 'returns a success response' do
@@ -147,7 +146,7 @@ RSpec.describe ReviewsController, type: :controller do
 
         it 'renders the create template' do
           post :create, params: { school_id: 1, course_id: 1, review: valid_attributes }
-          expect(response).to redirect_to school_review_url(school_id: 1, id: review.id)
+          expect(response).to redirect_to school_course_review_url(school_id: 1, id: review.id)
         end
 
         it 'assigns the new review to review' do
@@ -209,7 +208,7 @@ RSpec.describe ReviewsController, type: :controller do
 
         it 'renders the update template' do
           put :update, params: { id: 2, school_id: 1, course_id: 1, review: valid_attributes }
-          expect(response).to redirect_to school_review_url(school_id: 1, id: review.id)
+          expect(response).to redirect_to school_course_review_url(school_id: 1, id: review.id)
         end
 
         it 'assigns the review to review' do
@@ -244,12 +243,12 @@ RSpec.describe ReviewsController, type: :controller do
 
       it 'deletes the review' do
         expect(review).to receive(:destroy)
-        delete :destroy, params: { id: 1, school_id: 1 }
+        delete :destroy, params: { id: 1, school_id: 1, course_id: 1 }
       end
 
       it 'redirects to the reviews list' do
-        delete :destroy, params: { id: 1, school_id: 1 }
-        expect(response).to redirect_to(school_reviews_path)
+        delete :destroy, params: { id: 1, school_id: 1, course_id: 1 }
+        expect(response).to redirect_to(school_course_reviews_path)
       end
     end
   end

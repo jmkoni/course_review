@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<%= render 'review_index', reviews: @reviews %>
+
+<br>
+
+<% if can? :create, Course %>
+  <% if @course %>
+  <%= link_to 'New Review', new_school_course_review_path(school_id: @school.id, course_id: @course.id) %>
+  <% else %>
+    <% if @school %>
+      <%= link_to 'Select a course first to add a new review', school_courses_path(school_id: @school.id, course_id: 'all') %>
+    <% else %>
+      <%= link_to 'Select a course first to add a new review', school_courses_path(school_id: 'all', course_id: 'all') %>
+    <% end %>
+  <% end %>
+<% end %>
+
+

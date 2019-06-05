@@ -37,7 +37,6 @@ RSpec.describe CoursesController, type: :controller do
     describe 'GET #new' do
       it 'returns a success response' do
         expect { get :new, params: { school_id: 1 } }.to raise_error(CanCan::AccessDenied)
-        # expect(response).to be_successful
       end
     end
   end
@@ -71,7 +70,6 @@ RSpec.describe CoursesController, type: :controller do
     describe 'GET #new' do
       it 'returns a success response' do
         expect { get :new, params: { school_id: 1 } }.to raise_error(CanCan::AccessDenied)
-        expect(response).to be_successful
       end
     end
   end
