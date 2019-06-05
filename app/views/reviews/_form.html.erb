@@ -1,4 +1,4 @@
-<%= form_with(model: review, url: school_course_reviews_path, local: true) do |form| %>
+<%= form_with(model: review, url: @url, local: true) do |form| %>
   <% if review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
