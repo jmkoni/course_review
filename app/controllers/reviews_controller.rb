@@ -10,8 +10,8 @@ class ReviewsController < ApplicationController
   # GET /schools/1/courses/1/reviews
   # GET /schools/1/courses/1/reviews.json
   def index
-    if params[:course_id].to_i == 0
-      if params[:school_id].to_i == 0
+    if params[:course_id].to_i.zero?
+      if params[:school_id].to_i.zero?
         @reviews = Review.all
       else
         set_school
@@ -46,7 +46,12 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to school_course_review_url(school_id: @school.id, course_id: @course.id, id: @review.id), notice: 'Review was successfully created.' }
+        format.html do
+          redirect_to school_course_review_url(school_id: @school.id,
+                                               course_id: @course.id,
+                                               id: @review.id),
+                      notice: 'Review was successfully created.'
+        end
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new }
@@ -60,7 +65,12 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to school_course_review_url(school_id: @school.id, course_id: @course.id, id: @review.id), notice: 'Review was successfully updated.' }
+        format.html do
+          redirect_to school_course_review_url(school_id: @school.id,
+                                               course_id: @course.id,
+                                               id: @review.id),
+                      notice: 'Review was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -96,6 +106,15 @@ class ReviewsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def review_params
-    params.require(:review).permit(:course_id, :user_id, :notes, :work_required, :difficulty, :rating, :experience_with_topic, :year, :term, :grade)
+    params.require(:review).permit(:course_id,
+                                   :user_id,
+                                   :notes,
+                                   :work_required,
+                                   :difficulty,
+                                   :rating,
+                                   :experience_with_topic,
+                                   :year,
+                                   :term,
+                                   :grade)
   end
 end

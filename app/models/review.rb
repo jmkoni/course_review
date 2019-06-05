@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Review < ApplicationRecord
   validates :rating, presence: true
   validates :user_id, presence: true, uniqueness: { scope: :course_id }
@@ -14,19 +16,19 @@ class Review < ApplicationRecord
 
   def letter_grade
     case grade
-      when 90..100
-        "A"
-      when 80..90
-        "B"
-      when 70..80
-        "C"
-      when 60..70
-        "D"
-      when 0..60
-        "F"
-      else
-        "Error"
-      end
+    when 90..100
+      'A'
+    when 80..90
+      'B'
+    when 70..80
+      'C'
+    when 60..70
+      'D'
+    when 0..60
+      'F'
+    else
+      'Error'
+    end
   end
 
   def display_grade

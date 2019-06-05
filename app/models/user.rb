@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'digest'
 
 class User < ApplicationRecord
@@ -9,7 +10,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
-  scope :admins, lambda {
+  scope :admins, -> {
     where(is_admin: true)
   }
 

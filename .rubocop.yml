@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - bin/**/*
     - db/schema.rb
+    - db/seeds.rb
     - etc/**/*
     - vendor/cache/**/*
     - vendor/bundle/**/*
@@ -68,7 +69,3 @@ Naming/FileName:
 
 Style/Lambda:
   EnforcedStyle: literal
-
-# Disable because it conflicts with the copyright headers
-Style/FrozenStringLiteralComment:
-  Enabled: false

@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    if params[:school_id].to_i == 0
+    if params[:school_id].to_i.zero?
       @courses = Course.all
     else
       set_school
@@ -39,7 +39,10 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to school_course_url(school_id: @school.id, id: @course.id), notice: 'Course was successfully created.' }
+        format.html do
+          redirect_to school_course_url(school_id: @school.id, id: @course.id),
+                      notice: 'Course was successfully created.'
+        end
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }
@@ -53,7 +56,10 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to school_course_url(school_id: @school.id, id: @course.id), notice: 'Course was successfully updated.' }
+        format.html do
+          redirect_to school_course_url(school_id: @school.id, id: @course.id),
+                      notice: 'Course was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
