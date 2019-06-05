@@ -24,10 +24,13 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+    @url = school_courses_path
   end
 
   # GET /courses/1/edit
-  def edit; end
+  def edit
+    @url = school_course_path
+  end
 
   # POST /courses
   # POST /courses.json

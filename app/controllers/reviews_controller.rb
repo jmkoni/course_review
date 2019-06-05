@@ -31,10 +31,13 @@ class ReviewsController < ApplicationController
   # GET /schools/1/courses/1/reviews/new
   def new
     @review = Review.new
+    @url = school_course_reviews_path
   end
 
   # GET /schools/1/courses/1/reviews/1/edit
-  def edit; end
+  def edit
+    @url = school_course_review_path
+  end
 
   # POST /schools/1/courses/1/reviews
   # POST /schools/1/courses/1/reviews.json
