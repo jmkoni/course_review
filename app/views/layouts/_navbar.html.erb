@@ -4,7 +4,7 @@
       <%= link_to('Courses', school_courses_path(school_id: 'all'), class: 'nav-link') %>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Reviews</a>
+      <%= link_to('Reviews', school_course_reviews_path(school_id: 'all', course_id: 'all'), class: 'nav-link') %>
     </li>
     <li class="nav-item">
       <%= link_to('Schools', schools_path, class: 'nav-link') %>

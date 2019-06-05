@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'digest'
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -14,6 +15,11 @@ class User < ApplicationRecord
 
   def admin?
     is_admin
+  end
+
+  def sha_email
+    sha = Digest::SHA1.new
+    sha.hexdigest email
   end
 end
 

@@ -2,7 +2,9 @@
 
 Rails.application.routes.draw do
   resources :schools do
-    resources :courses
+    resources :courses do
+      resources :reviews
+    end
   end
 
   resources :users, only: %i[index new create update destroy] do

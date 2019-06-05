@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'digest'
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -33,6 +33,15 @@ RSpec.describe User, type: :model do
       it 'returns true if user is admin' do
         user = create(:admin)
         expect(user.admin?).to be true
+      end
+    end
+
+    describe 'sha_email' do
+      it 'returns an encrypted email address' do
+        user = create(:user, email: 'test@ponyparty.com')
+        sha = Digest::SHA1.new
+        encrypted_email = sha.hexdigest 'test@ponyparty.com'
+        expect(user.sha_email).to eq encrypted_email
       end
     end
   end

@@ -1,0 +1,65 @@
+<%= form_with(model: review, url: school_course_reviews_path, local: true) do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :course_id, value: params[:course_id] %>
+  <%= form.hidden_field :user_id, value: @current_user.id %>
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_field :notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :work_required %>
+    <small>(in hours)</small>
+    <%= form.number_field :work_required, in: 0..100 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :difficulty %>
+    <small>(0 being easiest, 10 being hardest)</small>
+    <%= form.number_field :difficulty, in: 0..10 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <small>(0 being easiest, 10 being hardest)</small>
+    <%= form.number_field :rating, in: 0..10 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :experience_with_topic %>
+    <%= form.check_box :experience_with_topic %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.number_field :year, in: 1990..Time.now.year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :term %>
+    <small>(number term in the year, ex: spring semester is 1)</small>
+    <%= form.number_field :term, in: 1..10 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :grade %>
+    <small>(between 0 and 100)</small>
+    <%= form.number_field :grade, in: 0..100 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
