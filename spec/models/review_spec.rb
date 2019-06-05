@@ -50,7 +50,7 @@ RSpec.describe Review, type: :model do
     describe '#display_grade' do
       it 'displays the percentage and letter grade' do
         review = create(:review, grade: 90)
-        expect(review.display_grade).to eq "90% (A)"
+        expect(review.display_grade).to eq '90% (A)'
       end
     end
   end

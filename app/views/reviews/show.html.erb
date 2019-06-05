@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Course:</strong>
   <%= link_to @review.course.full_number, school_course_path(school_id: @review.school.id, id: @review.course.id) %>

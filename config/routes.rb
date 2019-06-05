@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'application#home'
   resources :schools do
     resources :courses do
       resources :reviews
@@ -12,8 +14,6 @@ Rails.application.routes.draw do
     put '/demote', to: 'users#demote'
   end
   devise_for :users, path: ''
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'application#home'
 end
 
 # == Route Map
