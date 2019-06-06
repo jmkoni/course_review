@@ -30,6 +30,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'simplecov-formatter-badge', require: false
 gem 'yard'
 
+# Seeds
+gem 'faker'
+
 group :development, :test do
   # Debugging Gems
   gem 'binding_of_caller'
@@ -51,9 +54,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'foreman'
   gem 'launchy'
-
-  # Seeds
-  gem 'faker'
 end
 
 group :development do
