@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[promote demote update destroy]
+  before_action :set_user, only: %i[edit promote demote update destroy]
   load_and_authorize_resource
   before_action :authenticate_user!
 
@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+
+  def edit;end
 
   # POST /users
   # POST /users.json

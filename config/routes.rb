@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: %i[index new create update destroy] do
+  resources :users, only: %i[index new edit create update destroy] do
     put '/promote', to: 'users#promote'
     put '/demote', to: 'users#demote'
   end
