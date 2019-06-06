@@ -87,6 +87,10 @@ GEM
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    codecov (0.1.14)
+      json
+      simplecov
+      url
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
@@ -299,6 +303,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.6.0)
     uniform_notifier (1.12.1)
+    url (0.3.2)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -329,6 +334,7 @@ DEPENDENCIES
   cancancan
   capybara (>= 2.15)
   chromedriver-helper
+  codecov
   database_cleaner
   devise
   execjs
