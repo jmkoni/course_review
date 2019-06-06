@@ -11,7 +11,7 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.3'
 
 # Database and Authentication
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.13'
 gem 'cancancan'
 gem 'devise'
 gem 'pg', '>= 0.18', '< 2.0'
