@@ -7,7 +7,7 @@ class Ability
     can :read, School
     can :read, Course
     can :read, Review
-    return unless user.present?
+    return if user.blank?
 
     can :read, Course
     can :read, School

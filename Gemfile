@@ -41,6 +41,7 @@ group :development, :test do
   # Auditing Gems
   gem 'rubocop'
   gem 'rubocop-performance'
+  gem 'rubocop-rails'
 
   # Development Gems
   gem 'annotate'

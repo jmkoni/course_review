@@ -3,12 +3,12 @@
 class Review < ApplicationRecord
   validates :rating, presence: true
   validates :user_id, presence: true, uniqueness: { scope: :course_id }
-  validates_numericality_of :grade, in: 0..100
-  validates_numericality_of :rating, in: 0..10
-  validates_numericality_of :difficulty, in: 0..10
-  validates_numericality_of :year, in: 1990..Time.now.year
-  validates_numericality_of :term, in: 1..10
-  validates_numericality_of :work_required, in: 0..100
+  validates :grade, numericality: { in: 0..100 }
+  validates :rating, numericality: { in: 0..10 }
+  validates :difficulty, numericality: { in: 0..10 }
+  validates :year, numericality: { in: 1990..Time.zone.now.year }
+  validates :term, numericality: { in: 1..10 }
+  validates :work_required, numericality: { in: 0..100 }
 
   belongs_to :course
   belongs_to :user

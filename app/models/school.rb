@@ -3,7 +3,7 @@
 class School < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :short_name, presence: true, uniqueness: { case_sensitive: false }
-  has_many :courses
+  has_many :courses, dependent: :destroy
 end
 
 # == Schema Information
