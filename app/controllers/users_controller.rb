@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit;end
+  def edit; end
 
   # POST /users
   # POST /users.json
