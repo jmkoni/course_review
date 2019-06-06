@@ -1,5 +1,7 @@
 ---
-version: 2 # use CircleCI 2.0
+version: 2.1 # use CircleCI 2.1
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
     parallelism: 3 # run three instances of this job in parallel
@@ -61,4 +63,10 @@ jobs: # a collection of steps
       # Save test results for timing analysis
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test_results
+
+      - store_artifacts:
+          path: coverage
+
+      - codecov/upload:
+          file: coverage/*.json
       # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
