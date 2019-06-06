@@ -1,6 +1,6 @@
 # Course Review
 
-[![CircleCI](https://circleci.com/gh/jmkoni/course_review/tree/master.svg?style=svg)](https://circleci.com/gh/jmkoni/course_review/tree/master) [![coverage](https://raw.githubusercontent.com/jmkoni/course_review/master/coverage/coverage.svg)](https://github.com/jmkoni/course_review/blob/user-spec/coverage/index.html)[![Maintainability](https://api.codeclimate.com/v1/badges/9934c56b219099882c0f/maintainability)](https://codeclimate.com/github/jmkoni/course_review/maintainability)
+[![CircleCI](https://circleci.com/gh/jmkoni/course_review/tree/master.svg?style=svg)](https://circleci.com/gh/jmkoni/course_review/tree/master) [![codecov](https://codecov.io/gh/jmkoni/course_review/branch/master/graph/badge.svg)](https://codecov.io/gh/jmkoni/course_review)[![Maintainability](https://api.codeclimate.com/v1/badges/9934c56b219099882c0f/maintainability)](https://codeclimate.com/github/jmkoni/course_review/maintainability)
 
 ## Development environment
 
