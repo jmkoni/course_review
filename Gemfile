@@ -30,6 +30,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'simplecov-formatter-badge', require: false
 gem 'yard'
 
+# Monitoring
+gem 'scout_apm'
+
 # Seeds
 gem 'faker'
 

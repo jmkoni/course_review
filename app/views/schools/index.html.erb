@@ -1,4 +1,7 @@
 <h1>Schools</h1>
+<% if can? :create, School %>
+  <%= link_to 'New School', new_school_path %>
+<% end %>
 
 <table class="table table-hover table-sm table-responsive">
   <thead class="thead-light">
@@ -22,8 +25,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-<% if can? :create, School %>
-  <%= link_to 'New School', new_school_path %>
-<% end %>

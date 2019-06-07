@@ -1,7 +1,8 @@
 <p>
   <strong>Name:</strong>
   <%= @course.name %>
-</p>
+</p> <% if can? :edit, @course %>
+<%= link_to 'Edit', edit_school_course_path(@course) %>
 
 <p>
   <strong>Number:</strong>
@@ -14,6 +15,7 @@
 </p>
 
 <p>
+  <h3>Reviews</h3>
   <strong><%= link_to 'Reviews', school_course_reviews_path(school_id: @school, course_id: @course) %></strong>
 </p>
 
@@ -21,5 +23,3 @@
 <!-- <p>
 <%= render 'reviews/review_index', reviews: @course.reviews %>
 </p> -->
-<%= link_to 'Edit', edit_school_course_path(@course) %> |
-<%= link_to 'Back', school_courses_path %>

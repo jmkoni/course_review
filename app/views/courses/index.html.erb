@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Courses</h1>
+<% if can? :create, Course %>
+  <% if @school %>
+    <%= link_to 'New Course', new_school_course_path(school_id: @school.id) %>
+  <% else %>
+    <%= link_to 'Select a school first to add a new course', schools_path %>
+  <% end %>
+<% end %>
 
 <table class="table table-hover table-sm table-responsive">
   <thead class="thead-light">
@@ -19,19 +26,12 @@
         <td><%= link_to course.name, school_course_path(id: course.id, school_id: course.school.id) %></td>
         <td><%= course.number %></td>
         <td><%= course.department %></td>
-        <td><%= link_to course.school.name, course.school %><td>
-        <td><%= link_to 'Edit', edit_school_course_path(id: course.id, school_id: course.school.id) %></td>
-        <td><%= link_to 'Destroy', school_course_path(id: course.id, school_id: course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to course.school.name, school_path(id: course.school) %><td>
+        <% if can? :edit, course %>
+          <td><%= link_to 'Edit', edit_school_course_path(id: course.id, school_id: course.school.id) %></td>
+          <td><%= link_to 'Destroy', school_course_path(id: course.id, school_id: course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-<% if can? :create, Course %>
-  <% if @school %>
-    <%= link_to 'New Course', new_school_course_path(school_id: @school.id) %>
-  <% else %>
-    <%= link_to 'Select a school first to add a new course', schools_path %>
-  <% end %>
-<% end %>

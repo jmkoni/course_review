@@ -19,9 +19,9 @@
         <td><%= user.years_experience %></td>
         <td><%= user.is_admin %></td>
         <% if user.admin? %>
-          <td><%= link_to 'Demote', user_demote_path(user) %></td>
+          <td><%= link_to 'Demote', user_demote_path(user), method: :put %></td>
         <% else %>
-          <td><%= link_to 'Promote', user_promote_path(user) %></td>
+          <td><%= link_to 'Promote', user_promote_path(user), method: :put %></td>
         <% end %>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
