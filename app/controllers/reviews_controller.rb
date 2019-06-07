@@ -12,10 +12,10 @@ class ReviewsController < ApplicationController
   def index
     if params[:course_id].to_i.zero?
       if params[:school_id].to_i.zero?
-        @reviews = Review.all.preload(:user, course: [:school])
+        @reviews = Review.all
       else
         set_school
-        @reviews = Review.preload(:user, course: [:school]).where(school_id: @school.id)
+        @reviews = Review.preload(:user, course: [:school]).joins(:course).where('courses.school_id = (?)', @school.id)
       end
     else
       set_school
@@ -43,7 +43,6 @@ class ReviewsController < ApplicationController
   # POST /schools/1/courses/1/reviews.json
   def create
     @review = Review.new(review_params)
-
     respond_to do |format|
       if @review.save
         format.html do

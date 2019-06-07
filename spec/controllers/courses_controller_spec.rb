@@ -5,38 +5,31 @@ require 'rails_helper'
 RSpec.describe CoursesController, type: :controller do
   let(:school) { create(:school) }
   let(:course) { create(:course, school: school) }
-  let(:valid_attributes) { { name: 'Unicorn Studies 101', department: 'Unicorns', number: '101' } }
+  let(:valid_attributes) { { name: 'Unicorn Studies 101', department: 'Unicorns', number: '101', school_id: school.id } }
   let(:invalid_attributes) { { name: nil, department: nil, number: '101' } }
-
-  before do
-    allow(School).to receive(:find).and_return(school)
-    allow(Course).to receive(:find).and_return(course)
-    allow(course).to receive(:id).and_return(1)
-    allow(school).to receive(:id).and_return(1)
-  end
 
   context 'anonymous user' do
     describe 'GET #index' do
       before do
-        @courses = [build_stubbed(:course), build_stubbed(:course)]
-        allow(Course).to receive(:all).and_return(@courses)
-        allow(Course).to receive(:where).and_return(@courses)
+        3.times do
+          create(:course, school: school)
+        end
       end
 
       it 'returns a success response' do
-        get :index, params: { school_id: 1 }
+        get :index, params: { school_id: school.id }
         expect(response).to be_successful
       end
 
       it 'renders the index template' do
-        get :index, params: { school_id: 1 }
+        get :index, params: { school_id: school.id }
         expect(response).to render_template(:index)
       end
     end
 
     describe 'GET #new' do
       it 'returns a success response' do
-        expect { get :new, params: { school_id: 1 } }.to raise_error(CanCan::AccessDenied)
+        expect { get :new, params: { school_id: school.id } }.to raise_error(CanCan::AccessDenied)
       end
     end
   end
@@ -51,25 +44,25 @@ RSpec.describe CoursesController, type: :controller do
 
     describe 'GET #index' do
       before do
-        @courses = [build_stubbed(:course), build_stubbed(:course)]
-        allow(Course).to receive(:all).and_return(@courses)
-        allow(Course).to receive(:where).and_return(@courses)
+        3.times do
+          create(:course, school: school)
+        end
       end
 
       it 'returns a success response' do
-        get :index, params: { school_id: 1 }
+        get :index, params: { school_id: school.id }
         expect(response).to be_successful
       end
 
       it 'renders the index template' do
-        get :index, params: { school_id: 1 }
+        get :index, params: { school_id: school.id }
         expect(response).to render_template(:index)
       end
     end
 
     describe 'GET #new' do
       it 'returns a success response' do
-        expect { get :new, params: { school_id: 1 } }.to raise_error(CanCan::AccessDenied)
+        expect { get :new, params: { school_id: school.id } }.to raise_error(CanCan::AccessDenied)
       end
     end
   end
@@ -84,69 +77,61 @@ RSpec.describe CoursesController, type: :controller do
 
     describe 'GET #index' do
       before do
-        @courses = [build_stubbed(:course), build_stubbed(:course)]
-        allow(Course).to receive(:all).and_return(@courses)
-        allow(Course).to receive(:where).and_return(@courses)
+        3.times do
+          create(:course, school: school)
+        end
+        2.times do
+          create(:course)
+        end
       end
 
-      it 'calls where' do
-        expect(Course).to receive(:where)
-        get :index, params: { school_id: 1 }
+      it 'gets courses for school' do
+        get :index, params: { school_id: school.id }
+        expect(assigns(:courses).size).to eq(3)
       end
 
-      it 'calls all' do
-        expect(Course).to receive(:all)
+      it 'gets all courses' do
         get :index, params: { school_id: 'all' }
+        expect(assigns(:courses).size).to eq(5)
       end
 
       it 'returns a success response' do
-        get :index, params: { school_id: 1 }
+        get :index, params: { school_id: school.id }
         expect(response).to be_successful
       end
 
-      it 'assigns courses to @courses' do
-        get :index, params: { school_id: 1 }
-        expect(assigns(:courses)).to eq(@courses)
-      end
-
       it 'renders the index template' do
-        get :index, params: { school_id: 1 }
+        get :index, params: { school_id: school.id }
         expect(response).to render_template(:index)
       end
     end
 
     describe 'GET #new' do
       it 'returns a success response' do
-        get :new, params: { school_id: 1 }
+        get :new, params: { school_id: school.id }
         expect(response).to be_successful
       end
       it 'renders the new template' do
-        get :new, params: { school_id: 1 }
+        get :new, params: { school_id: school.id }
         expect(response).to render_template(:new)
       end
     end
 
     describe 'POST #create' do
-      before do
-        allow_any_instance_of(Course).to receive(:id).and_return(2)
-      end
 
       context 'with valid attributes' do
-        before do
-          allow_any_instance_of(Course).to receive(:save).and_return(course)
-        end
         it 'saves the new add on in the database' do
           expect_any_instance_of(Course).to receive(:save)
-          post :create, params: { school_id: 1, course: valid_attributes }
+          post :create, params: { school_id: school.id, course: valid_attributes }
         end
 
         it 'renders the create template' do
-          post :create, params: { school_id: 1, course: valid_attributes }
-          expect(response).to redirect_to school_course_url(school_id: 1, id: course.id)
+          post :create, params: { school_id: school.id, course: valid_attributes }
+          expect(response).to redirect_to school_course_url(school_id: school.id, id: Course.last.id)
         end
 
         it 'assigns the new course to course' do
-          post :create, params: { school_id: 1, course: valid_attributes }
+          post :create, params: { school_id: school.id, course: valid_attributes }
           expect(assigns(:course)).to be_a_kind_of(Course)
         end
       end
@@ -154,12 +139,12 @@ RSpec.describe CoursesController, type: :controller do
       context 'with invalid attributes' do
         it "doesn't save the new course in the database" do
           expect do
-            post :create, params: { school_id: 1, course: invalid_attributes }
+            post :create, params: { school_id: school.id, course: invalid_attributes }
           end.to_not change(Course, :count)
         end
 
         it 'renders the create template' do
-          post :create, params: { school_id: 1, course: invalid_attributes }
+          post :create, params: { school_id: school.id, course: invalid_attributes }
           expect(response).to render_template :new
         end
       end
@@ -188,10 +173,6 @@ RSpec.describe CoursesController, type: :controller do
     end
 
     describe 'PUT #update' do
-      before do
-        allow(Course).to receive(:find).and_return(course)
-        allow_any_instance_of(Course).to receive(:id).and_return(2)
-      end
 
       context 'with valid attributes' do
         before do
@@ -199,16 +180,16 @@ RSpec.describe CoursesController, type: :controller do
         end
         it 'updates course in the database' do
           expect_any_instance_of(Course).to receive(:update)
-          put :update, params: { id: 2, school_id: 1, course: valid_attributes }
+          put :update, params: { id: course.id, school_id: school.id, course: valid_attributes }
         end
 
         it 'renders the update template' do
-          put :update, params: { id: 2, school_id: 1, course: valid_attributes }
-          expect(response).to redirect_to school_course_url(school_id: 1, id: course.id)
+          put :update, params: { id: course.id, school_id: school.id, course: valid_attributes }
+          expect(response).to redirect_to school_course_url(school_id: school.id, id: course.id)
         end
 
         it 'assigns the course to course' do
-          put :update, params: { id: 2, school_id: 1, course: valid_attributes }
+          put :update, params: { id: course.id, school_id: school.id, course: valid_attributes }
           expect(assigns(:course)).to be_a_kind_of(Course)
         end
       end
@@ -218,14 +199,8 @@ RSpec.describe CoursesController, type: :controller do
           allow_any_instance_of(Course).to receive(:update).and_return(false)
         end
 
-        it "doesn't save the new course in the database" do
-          expect do
-            put :update, params: { id: 2, school_id: 1, course: invalid_attributes }
-          end.to_not change(Course, :count)
-        end
-
         it 'renders the update template' do
-          put :update, params: { id: 2, school_id: 1, course: invalid_attributes }
+          put :update, params: { id: course.id, school_id: school.id, course: invalid_attributes }
           expect(response).to render_template :edit
         end
       end
@@ -239,11 +214,11 @@ RSpec.describe CoursesController, type: :controller do
 
       it 'deletes the course' do
         expect(course).to receive(:destroy)
-        delete :destroy, params: { id: 1, school_id: 1 }
+        delete :destroy, params: { id: course.id, school_id: school.id }
       end
 
       it 'redirects to the courses list' do
-        delete :destroy, params: { id: 1, school_id: 1 }
+        delete :destroy, params: { id: course.id, school_id: school.id }
         expect(response).to redirect_to(school_courses_path)
       end
     end
