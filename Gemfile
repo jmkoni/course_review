@@ -65,6 +65,15 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+
+  # Profiling
+  gem 'rack-mini-profiler'
+  # For memory profiling
+  gem 'memory_profiler'
+
+  # For call-stack profiling flamegraphs
+  gem 'flamegraph'
+  gem 'stackprof'
 end
 
 group :test do
