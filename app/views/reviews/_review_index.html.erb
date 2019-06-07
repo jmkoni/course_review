@@ -21,9 +21,9 @@ No reviews at this time!
     <tbody>
       <% reviews.each do |review| %>
         <tr>
-          <td scope="row"><%= link_to review.course.full_number, school_course_path(school_id: review.school.id, id: review.course.id) %></td>
+          <td scope="row"><%= link_to review.course.full_number, school_course_path(school_id: review.course.school.id, id: review.course.id) %></td>
           <td><%= review.user.sha_email.truncate(10, omission: '...') %></td>
-          <td><%= link_to 'Notes', school_course_review_path(school_id: review.school.id, course_id: review.course_id, id: review.id) %></td>
+          <td><%= link_to 'Notes', school_course_review_path(school_id: review.course.school.id, course_id: review.course_id, id: review.id) %></td>
           <td><%= review.work_required %></td>
           <td><%= review.difficulty %></td>
           <td><%= review.rating %></td>
@@ -32,8 +32,8 @@ No reviews at this time!
           <td><%= review.term %></td>
           <td><%= review.display_grade %></td>
           <% if can? :edit, review %>
-            <td><%= link_to 'Edit', edit_school_course_review_path(school_id: review.school.id, course_id: review.course_id, id: review.id) %></td>
-            <td><%= link_to 'Destroy', school_course_review_path(id: review.id, course_id: review.course.id, school_id: review.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Edit', edit_school_course_review_path(school_id: review.course.school.id, course_id: review.course_id, id: review.id) %></td>
+            <td><%= link_to 'Destroy', school_course_review_path(id: review.id, course_id: review.course.id, school_id: review.course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         </tr>
       <% end %>

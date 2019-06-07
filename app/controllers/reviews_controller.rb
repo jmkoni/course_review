@@ -12,15 +12,15 @@ class ReviewsController < ApplicationController
   def index
     if params[:course_id].to_i.zero?
       if params[:school_id].to_i.zero?
-        @reviews = Review.all
+        @reviews = Review.all.preload(:user, course: [:school])
       else
         set_school
-        @reviews = Review.where(school_id: @school.id)
+        @reviews = Review.preload(:user, course: [:school]).where(school_id: @school.id)
       end
     else
       set_school
       set_course
-      @reviews = Review.where(course_id: @course.id)
+      @reviews = Review.preload(:user, course: [:school]).where(course_id: @course.id)
     end
   end
 

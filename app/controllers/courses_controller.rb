@@ -10,16 +10,18 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     if params[:school_id].to_i.zero?
-      @courses = Course.all
+      @courses = Course.all.preload(:school)
     else
       set_school
-      @courses = Course.where(school_id: @school.id)
+      @courses = Course.preload(:school).where(school_id: @school.id)
     end
   end
 
   # GET /courses/1
   # GET /courses/1.json
-  def show; end
+  def show
+    @reviews = @course.reviews.preload(:user, course: [:school])
+  end
 
   # GET /courses/new
   def new
