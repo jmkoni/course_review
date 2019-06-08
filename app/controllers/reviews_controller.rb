@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
   def index
     if params[:course_id].to_i.zero?
       if params[:school_id].to_i.zero?
-        @reviews = Review.all
+        @reviews = Review.preload(:user, course: [:school]).all
       else
         set_school
         @reviews = Review.preload(:user, course: [:school]).joins(:course).where('courses.school_id = (?)', @school.id)
@@ -42,6 +42,7 @@ class ReviewsController < ApplicationController
   # POST /schools/1/courses/1/reviews
   # POST /schools/1/courses/1/reviews.json
   def create
+    @url = school_course_reviews_path
     @review = Review.new(review_params)
     respond_to do |format|
       if @review.save
@@ -83,7 +84,11 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to school_course_reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html do
+        redirect_to school_course_reviews_url(school_id: @school,
+                                              course_id: @course),
+                    notice: 'Review was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end

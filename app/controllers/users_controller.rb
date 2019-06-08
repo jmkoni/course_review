@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   # PUT /users/1/promote
   def promote
     @user.update(is_admin: true)
-    redirect_to users_url, notice: "#{@user.email} was successfully demoted from admin."
+    redirect_to users_url, notice: "#{@user.email} was successfully promoted to admin."
   end
 
   # PUT /users/1/demote

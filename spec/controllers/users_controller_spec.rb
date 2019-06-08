@@ -220,8 +220,8 @@ RSpec.describe UsersController, type: :controller do
     end
 
     describe 'GET #index' do
-      it 'returns an access denied' do
-        expect { get :index }.to raise_error(CanCan::AccessDenied)
+      it 'returns no errors' do
+        expect { get :index }.not_to raise_error
       end
     end
 
