@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Courses</h1>
 <% if can? :create, Course %>
   <% if @school %>
@@ -8,30 +6,34 @@
     <%= link_to 'Select a school first to add a new course', schools_path %>
   <% end %>
 <% end %>
-
-<table class="table table-hover table-sm table-responsive">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Number</th>
-      <th scope="col">Department</th>
-      <th scope="col">School</th>
-      <th scope="col" colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @courses.each do |course| %>
+<br/>
+<% if @courses.load.empty? %>
+  No courses at this time!
+<% else %>
+  <table class="table table-hover table-sm table-responsive">
+    <thead class="thead-light">
       <tr>
-        <td><%= link_to course.name, school_course_path(id: course.id, school_id: course.school.id) %></td>
-        <td><%= course.number %></td>
-        <td><%= course.department %></td>
-        <td><%= link_to course.school.name, school_path(id: course.school) %><td>
-        <% if can? :edit, course %>
-          <td><%= link_to 'Edit', edit_school_course_path(id: course.id, school_id: course.school.id) %></td>
-          <td><%= link_to 'Destroy', school_course_path(id: course.id, school_id: course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <th scope="col">Name</th>
+        <th scope="col">Number</th>
+        <th scope="col">Department</th>
+        <th scope="col">School</th>
+        <th scope="col" colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @courses.each do |course| %>
+        <tr>
+          <td><%= link_to course.name, school_course_path(id: course.id, school_id: course.school.id) %></td>
+          <td><%= course.number %></td>
+          <td><%= course.department %></td>
+          <td><%= link_to course.school.name, school_path(id: course.school) %><td>
+          <% if can? :edit, course %>
+            <td><%= link_to 'Edit', edit_school_course_path(id: course.id, school_id: course.school.id) %></td>
+            <td><%= link_to 'Destroy', school_course_path(id: course.id, school_id: course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

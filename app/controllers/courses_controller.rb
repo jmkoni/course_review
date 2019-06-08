@@ -21,6 +21,7 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @reviews = @course.reviews.preload(:user, course: [:school])
+    @url = school_course_reviews_path(school_id: @school, course_id: @course)
   end
 
   # GET /courses/new
