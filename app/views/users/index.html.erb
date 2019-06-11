@@ -1,13 +1,16 @@
 <% if can? :manage, User %>
 <h1>Users</h1><!--
 <%= link_to 'New User', new_user_path %> -->
-<table class="table table-hover table-sm table-responsive">
+<!-- <table id="users_index" class="table table-hover table-sm"> -->
+<table id="users_index" class="table table-hover table-sm">
   <thead class="thead-light">
     <tr>
       <th scope="col">Email</th>
       <th scope="col">Years experience</th>
-      <th scope="col">Is admin</th>
-      <th scope="col" colspan="3"></th>
+      <th scope="col">Admin?</th>
+      <th scope="col">Promote/Demote</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
 
@@ -16,16 +19,25 @@
       <tr>
         <td><%= user.email %></td>
         <td><%= user.years_experience %></td>
-        <td><%= user.is_admin %></td>
+        <td><%= user.is_admin ? "X" : "" %></td>
         <% if user.admin? %>
           <td><%= link_to 'Demote', user_demote_path(user), method: :put %></td>
         <% else %>
           <td><%= link_to 'Promote', user_promote_path(user), method: :put %></td>
         <% end %>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
+
+  <tfoot>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Years experience</th>
+      <th scope="col">Admin?</th>
+      <th scope="col">Promote/Demote</th>
+    </tr>
+  </tfoot>
 </table>
 <% end %>

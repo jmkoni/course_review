@@ -1,7 +1,7 @@
 <% if reviews.load.empty? %>
 No reviews at this time!
 <% else %>
-  <table class="table table-hover table-sm table-responsive">
+  <table id="reviews_index" class="table table-hover table-sm">
     <thead class="thead-light">
       <tr>
         <th scope="col">Course</th>
@@ -14,7 +14,8 @@ No reviews at this time!
         <th scope="col">Year</th>
         <th scope="col">Term</th>
         <th scope="col">Grade</th>
-        <th scope="col" colspan="2"></th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
       </tr>
     </thead>
 
@@ -33,10 +34,25 @@ No reviews at this time!
           <td><%= review.display_grade %></td>
           <% if can? :edit, review %>
             <td><%= link_to 'Edit', edit_school_course_review_path(school_id: review.course.school.id, course_id: review.course_id, id: review.id) %></td>
-            <td><%= link_to 'Destroy', school_course_review_path(id: review.id, course_id: review.course.id, school_id: review.course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Delete', school_course_review_path(id: review.id, course_id: review.course.id, school_id: review.course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         </tr>
       <% end %>
     </tbody>
+
+    <tfoot>
+      <tr>
+        <th>Course</th>
+        <th>User</th>
+        <th>Notes</th>
+        <th>Work Required</th>
+        <th>Difficulty</th>
+        <th>Rating</th>
+        <th>Experience with Topic</th>
+        <th>Year</th>
+        <th>Term</th>
+        <th>Grade</th>
+      </tr>
+    </tfoot>
   </table>
 <% end %>

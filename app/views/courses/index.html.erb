@@ -10,14 +10,17 @@
 <% if @courses.load.empty? %>
   No courses at this time!
 <% else %>
-  <table class="table table-hover table-sm table-responsive">
+  <table id="courses_index" class="table table-hover table-sm">
     <thead class="thead-light">
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Number</th>
         <th scope="col">Department</th>
         <th scope="col">School</th>
-        <th scope="col" colspan="3"></th>
+        <% if can? :edit, Course %>
+          <th scope="col">Edit</th>
+          <th scope="col">Destroy</th>
+        <% end %>
       </tr>
     </thead>
 
@@ -27,7 +30,7 @@
           <td><%= link_to course.name, school_course_path(id: course.id, school_id: course.school.id) %></td>
           <td><%= course.number %></td>
           <td><%= course.department %></td>
-          <td><%= link_to course.school.name, school_path(id: course.school) %><td>
+          <td><%= link_to course.school.name, school_path(id: course.school) %></td>
           <% if can? :edit, course %>
             <td><%= link_to 'Edit', edit_school_course_path(id: course.id, school_id: course.school.id) %></td>
             <td><%= link_to 'Destroy', school_course_path(id: course.id, school_id: course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -35,5 +38,14 @@
         </tr>
       <% end %>
     </tbody>
+
+    <tfoot>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Number</th>
+        <th scope="col">Department</th>
+        <th scope="col">School</th>
+      </tr>
+    </tfoot>
   </table>
 <% end %>
