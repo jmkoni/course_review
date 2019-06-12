@@ -1,7 +1,8 @@
 # Course Review
 
 [![CircleCI](https://circleci.com/gh/jmkoni/course_review/tree/master.svg?style=svg)](https://circleci.com/gh/jmkoni/course_review/tree/master) [![codecov](https://codecov.io/gh/jmkoni/course_review/branch/master/graph/badge.svg)](https://codecov.io/gh/jmkoni/course_review)[![Maintainability](https://api.codeclimate.com/v1/badges/9934c56b219099882c0f/maintainability)](https://codeclimate.com/github/jmkoni/course_review/maintainability)
-[![View performance data on Skylight](https://badges.skylight.io/problem/tGkxmMrCXpOV.svg?token=jBiAepV-svm8nuKXXyaN5EVfX1u0fVXDGsTwmZZ9NjU)](https://www.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/typical/tGkxmMrCXpOV.svg?token=jBiAepV-svm8nuKXXyaN5EVfX1u0fVXDGsTwmZZ9NjU)](https://www.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/rpm/tGkxmMrCXpOV.svg?token=jBiAepV-svm8nuKXXyaN5EVfX1u0fVXDGsTwmZZ9NjU)](https://www.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/status/tGkxmMrCXpOV.svg?token=jBiAepV-svm8nuKXXyaN5EVfX1u0fVXDGsTwmZZ9NjU)](https://www.skylight.io/app/applications/tGkxmMrCXpOV)
+
+[![View performance data on Skylight](https://badges.skylight.io/problem/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/typical/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/rpm/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/status/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)
 
 ## Development environment
 
