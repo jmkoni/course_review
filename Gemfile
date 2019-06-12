@@ -32,6 +32,7 @@ gem 'yard'
 
 # Monitoring
 gem 'scout_apm'
+gem "skylight"
 
 # Seeds
 gem 'faker'
