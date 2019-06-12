@@ -4,33 +4,35 @@ No reviews at this time!
   <table id="reviews_index" class="table table-hover table-sm">
     <thead class="thead-light">
       <tr>
+        <th scope="col">School</th>
         <th scope="col">Course</th>
         <th scope="col">User</th>
         <th scope="col">Notes</th>
-        <th scope="col">Work Required</th>
-        <th scope="col">Difficulty</th>
-        <th scope="col">Rating</th>
-        <th scope="col">Experience with Topic</th>
-        <th scope="col">Year</th>
-        <th scope="col">Term</th>
-        <th scope="col">Grade</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Delete</th>
+        <th scope="col" class="short_column">Work Required</th>
+        <th scope="col" class="short_column">Difficulty</th>
+        <th scope="col" class="short_column">Rating</th>
+        <th scope="col" class="short_column">Experience with Topic</th>
+        <th scope="col" class="short_column">Year</th>
+        <th scope="col" class="short_column">Term</th>
+        <th scope="col" class="short_column">Grade</th>
+        <th scope="col" class="short_column">Edit</th>
+        <th scope="col" class="short_column">Delete</th>
       </tr>
     </thead>
 
     <tbody>
       <% reviews.each do |review| %>
         <tr>
-          <td scope="row"><%= link_to review.course.full_number, school_course_path(school_id: review.course.school.id, id: review.course.id) %></td>
-          <td><%= review.user.sha_email.truncate(10, omission: '...') %></td>
-          <td><%= link_to 'Notes', school_course_review_path(school_id: review.course.school.id, course_id: review.course_id, id: review.id) %></td>
-          <td><%= review.work_required %></td>
-          <td><%= review.difficulty %></td>
-          <td><%= review.rating %></td>
-          <td><%= review.experience_with_topic %></td>
-          <td><%= review.year %></td>
-          <td><%= review.term %></td>
+          <td scope="row"><%= link_to review.course.school.name, school_path(id: review.course.school.id) %></td>
+          <td><%= link_to review.course.full_number, school_course_path(school_id: review.course.school.id, id: review.course.id) %></td>
+          <td class="review-truncate"><div><%= review.user.sha_email %></div></td>
+          <td class="review-truncate"><div><%= link_to 'Full Notes', school_course_review_path(school_id: review.course.school.id, course_id: review.course_id, id: review.id) %><%= ": " + review.notes %></div></td>
+          <td class="short_column"><%= review.work_required %></td>
+          <td class="short_column"><%= review.difficulty %></td>
+          <td class="short_column"><%= review.rating %></td>
+          <td class="short_column"><%= review.experience_with_topic %></td>
+          <td class="short_column"><%= review.year %></td>
+          <td class="short_column"><%= review.term %></td>
           <td><%= review.display_grade %></td>
           <% if can? :edit, review %>
             <td><%= link_to 'Edit', edit_school_course_review_path(school_id: review.course.school.id, course_id: review.course_id, id: review.id) %></td>
@@ -42,6 +44,7 @@ No reviews at this time!
 
     <tfoot>
       <tr>
+        <th>School</th>
         <th>Course</th>
         <th>User</th>
         <th>Notes</th>

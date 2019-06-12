@@ -1,3 +1,22 @@
 // Place all the styles related to the Reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// table#reviews_index {
+//   table-layout: fixed;
+//   // width: 100px;
+// }
+
+table#reviews_index td.review-truncate div {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;         /* <- this does seem to be required */
+  text-overflow: ellipsis;
+}
+
+// this doesn't work yet but
+// I need a way to make some
+// of the columns less wide
+.short_column {
+  width: 100px
+}
