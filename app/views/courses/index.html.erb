@@ -7,33 +7,42 @@
   <% end %>
 <% end %>
 <br/>
-<% if @courses.load.empty? %>
-  No courses at this time!
-<% else %>
-  <table class="table table-hover table-sm table-responsive">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Number</th>
-        <th scope="col">Department</th>
-        <th scope="col">School</th>
-        <th scope="col" colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @courses.each do |course| %>
-        <tr>
-          <td><%= link_to course.name, school_course_path(id: course.id, school_id: course.school.id) %></td>
-          <td><%= course.number %></td>
-          <td><%= course.department %></td>
-          <td><%= link_to course.school.name, school_path(id: course.school) %><td>
-          <% if can? :edit, course %>
-            <td><%= link_to 'Edit', edit_school_course_path(id: course.id, school_id: course.school.id) %></td>
-            <td><%= link_to 'Destroy', school_course_path(id: course.id, school_id: course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-        </tr>
+<div class="card card-body bg-light">
+  <%= form_for_filterrific @filterrific do |f| %>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="font-weight-bold">Search</label>
+          <%= f.text_field(
+            :search_query,
+            class: 'filterrific-periodically-observed'
+          ) %>
+        </div>
+      </div>
+      <% unless @school %>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">School</label>
+            <%= f.select(
+              :with_school_id,
+              @filterrific.select_options[:with_school_id],
+              { include_blank: '- Any -' },
+              { class: 'form-control' }
+            ) %>
+          </div>
+        </div>
       <% end %>
-    </tbody>
-  </table>
-<% end %>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="font-weight-bold">Sorted by</label>
+          <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by],
+              {},
+              { class: 'form-control' }
+          ) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= render 'list', courses: @courses %>

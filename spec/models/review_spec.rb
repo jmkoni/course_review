@@ -16,7 +16,7 @@ RSpec.describe Review, type: :model do
 
   context 'scopes' do
     describe 'search_query' do
-      it 'gets all reviews with query in review' do
+      it 'gets all reviews with query' do
         review1 = create(:review, notes: 'unicorns')
         review2 = create(:review, notes: 'oh no')
         review3 = create(:review, notes: 'bye')
@@ -30,7 +30,7 @@ RSpec.describe Review, type: :model do
     end
 
     describe 'sorted_by' do
-      it 'gets all reviews with query in review' do
+      it 'gets all reviews sorted' do
         school1 = create(:school, name: 'abc')
         school2 = create(:school, name: 'xyz')
         course1 = create(:course, department: 'Alphabets', school: school2)
