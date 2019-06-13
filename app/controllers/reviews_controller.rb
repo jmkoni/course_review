@@ -9,20 +9,44 @@ class ReviewsController < ApplicationController
 
   # GET /schools/1/courses/1/reviews
   # GET /schools/1/courses/1/reviews.json
+  # rubocop:disable Metrics/PerceivedComplexity
   def index
     if params[:course_id].to_i.zero?
       if params[:school_id].to_i.zero?
-        @reviews = Review.preload(:user, course: [:school]).all
+        (@filterrific = initialize_filterrific(
+          Review.preload(:user, course: [:school]),
+          params[:filterrific],
+          select_options: {
+            sorted_by: Review.options_for_sorted_by,
+            with_course_id: Course.options_for_select,
+            with_school_id: School.options_for_select
+          }
+        )) || return
       else
         set_school
-        @reviews = Review.preload(:user, course: [:school]).joins(:course).where('courses.school_id = (?)', @school.id)
+        (@filterrific = initialize_filterrific(
+          Review.preload(:user, course: [:school]).joins(:course).where('courses.school_id = (?)', @school.id),
+          params[:filterrific],
+          select_options: {
+            sorted_by: Review.options_for_sorted_by,
+            with_course_id: Course.where(school_id: @school.id).options_for_select
+          }
+        )) || return
       end
     else
       set_school
       set_course
-      @reviews = Review.preload(:user, course: [:school]).where(course_id: @course.id)
+      (@filterrific = initialize_filterrific(
+        Review.preload(:user, course: [:school]).where(course_id: @course.id),
+        params[:filterrific],
+        select_options: {
+          sorted_by: Review.options_for_sorted_by
+        }
+      )) || return
     end
+    @reviews = @filterrific.find.page(params[:page])
   end
+  # rubocop:enable Metrics/PerceivedComplexity
 
   # GET /schools/1/courses/1/reviews/1
   # GET /schools/1/courses/1/reviews/1.json

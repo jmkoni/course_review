@@ -4,6 +4,12 @@ class School < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :short_name, presence: true, uniqueness: { case_sensitive: false }
   has_many :courses, dependent: :destroy
+
+  def self.options_for_select
+    schools = School.arel_table
+    # order('LOWER(name)').map { |e| [e.name, e.id] }
+    order(schools[:name].lower).pluck(:name, :id)
+  end
 end
 
 # == Schema Information
