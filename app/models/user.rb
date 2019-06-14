@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
+  has_many :reviews, dependent: :destroy
+
   filterrific(
     default_filter_params: { sorted_by: 'email_desc' },
     available_filters: %i[
@@ -53,10 +55,10 @@ class User < ApplicationRecord
     case sort_option.to_s
     when /^email_/
       order(Arel.sql("LOWER(users.email) #{direction}"))
-    when /^years_experience_/
-      order(Arel.sql("users.years_experience #{direction}"))
     when /^admin_/
       order(Arel.sql("users.is_admin #{direction}"))
+    when /^deactivated_/
+      order(Arel.sql("users.deactivated #{direction}"))
     else
       raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
     end
@@ -75,8 +77,6 @@ class User < ApplicationRecord
     [
       ['Email (a-z)', 'email_asc'],
       ['Email (z-a)', 'email_desc'],
-      ['Years Experience (lowest first)', 'years_experience_asc'],
-      ['Years Experience (highest first)', 'years_experience_desc'],
       ['Admin? (false first)', 'admin_asc'],
       ['Admin? (true first)', 'admin_desc']
     ]
@@ -93,9 +93,10 @@ end
 #  confirmed_at           :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :inet
+#  deactivated            :boolean          default(FALSE)
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  is_admin               :boolean
+#  is_admin               :boolean          default(FALSE)
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :inet
 #  remember_created_at    :datetime
@@ -103,7 +104,6 @@ end
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
 #  unconfirmed_email      :string
-#  years_experience       :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
