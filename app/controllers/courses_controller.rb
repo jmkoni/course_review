@@ -20,8 +20,16 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @reviews = @course.reviews.preload(:user, course: [:school])
+    # @reviews = @course.reviews.preload(:user, course: [:school])
     @url = school_course_reviews_path(school_id: @school, course_id: @course)
+    (@filterrific = initialize_filterrific(
+      Review.preload(:user, course: [:school]).where(course_id: @course.id),
+      params[:filterrific],
+      select_options: {
+        sorted_by: Review.options_for_sorted_by
+      }
+    )) || return
+    @reviews = @filterrific.find.page(params[:page])
   end
 
   # GET /courses/new

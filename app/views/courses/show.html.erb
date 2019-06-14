@@ -19,5 +19,50 @@
     <%= link_to 'New Review', new_school_course_review_path(school_id: @school.id, course_id: @course.id) %>
   <% end %>
   <br/>
-  <%= render 'reviews/review_index', reviews: @reviews %>
+  <div class="card card-body bg-light">
+    <%= form_for_filterrific @filterrific do |f| %>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">Search</label>
+            <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+            <%= f.text_field(
+              :search_query,
+              class: 'filterrific-periodically-observed'
+            ) %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">Sorted by</label>
+            <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by],
+                {},
+                { class: 'form-control' }
+            ) %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">Rated higher than</label>
+            <%= f.number_field(:with_rating_gte) %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">Difficulty lower than</label>
+            <%= f.number_field(:with_difficulty_lte) %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">Work required lower than</label>
+            <%= f.number_field(:with_work_required_lte) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= render 'reviews/list', reviews: @reviews %>
 </p>

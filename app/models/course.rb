@@ -10,6 +10,11 @@ class Course < ApplicationRecord
   def full_number
     "#{department} #{number}"
   end
+
+  def self.options_for_select
+    courses = Course.arel_table
+    order(courses[:name].lower).pluck(:name, :id)
+  end
 end
 
 # == Schema Information

@@ -14,6 +14,7 @@
 //= require activestorage
 //= require jquery
 //= require bootstrap-sprockets
+//= require filterrific/filterrific-jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .

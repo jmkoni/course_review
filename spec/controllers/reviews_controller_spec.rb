@@ -99,12 +99,23 @@ RSpec.describe ReviewsController, type: :controller do
 
       it 'calls all' do
         get :index, params: { school_id: 'all', course_id: 'all' }
-        expect(assigns(:reviews)).to eq(@all_reviews)
+        aggregate_failures 'validate includes correct reviews' do
+          @all_reviews.each do |course_review|
+            expect(assigns(:reviews)).to include(course_review)
+          end
+        end
       end
 
       it 'calls where for all reviews for a given school' do
         get :index, params: { school_id: school.id, course_id: 'all' }
-        expect(assigns(:reviews)).to eq(@school_reviews)
+        aggregate_failures 'validate includes correct reviews' do
+          @school_reviews.each do |course_review|
+            expect(assigns(:reviews)).to include(course_review)
+          end
+          (@all_reviews - @school_reviews).each do |course_review|
+            expect(assigns(:reviews)).not_to include(course_review)
+          end
+        end
       end
 
       it 'returns a success response' do
@@ -114,7 +125,14 @@ RSpec.describe ReviewsController, type: :controller do
 
       it 'assigns reviews to @reviews' do
         get :index, params: { school_id: school.id, course_id: course.id }
-        expect(assigns(:reviews)).to eq(@course_reviews)
+        aggregate_failures 'validate includes correct reviews' do
+          @course_reviews.each do |course_review|
+            expect(assigns(:reviews)).to include(course_review)
+          end
+          (@all_reviews - @course_reviews).each do |course_review|
+            expect(assigns(:reviews)).not_to include(course_review)
+          end
+        end
       end
 
       it 'renders the index template' do
