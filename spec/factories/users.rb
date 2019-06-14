@@ -3,8 +3,8 @@
 FactoryBot.define do
   factory :user do
     sequence(:email) { |i| Faker::Internet.email("test#{i}") }
-    years_experience { rand(10) }
     is_admin { false }
+    deactivated { false }
     password { Faker::Internet.password(10, 20) }
 
     factory :admin do
@@ -23,9 +23,10 @@ end
 #  confirmed_at           :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :inet
+#  deactivated            :boolean          default(FALSE)
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  is_admin               :boolean
+#  is_admin               :boolean          default(FALSE)
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :inet
 #  remember_created_at    :datetime
@@ -33,7 +34,6 @@ end
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
 #  unconfirmed_email      :string
-#  years_experience       :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

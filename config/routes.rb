@@ -9,9 +9,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: %i[index new edit create update destroy] do
+  resources :users, only: %i[index] do
     put '/promote', to: 'users#promote'
     put '/demote', to: 'users#demote'
+    put '/deactivate', to: 'users#deactivate'
+    put '/reactivate', to: 'users#reactivate'
   end
   devise_for :users, path: ''
 end
