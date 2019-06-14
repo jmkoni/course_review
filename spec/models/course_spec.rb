@@ -72,6 +72,20 @@ RSpec.describe Course, type: :model do
       course = Course.new(name: 'Capstone', department: 'SWENG', number: '123')
       expect(course.full_number).to eq 'SWENG 123'
     end
+
+    it 'returns options for sorted by' do
+      expected_options = [
+        ['Name (a-z)', 'name_asc'],
+        ['Name (z-a)', 'name_desc'],
+        ['Number (lowest first)', 'number_asc'],
+        ['Number (highest first)', 'number_desc'],
+        ['Department (a-z)', 'department_asc'],
+        ['Department (z-a)', 'department_desc'],
+        ['School (a-z)', 'school_name_asc'],
+        ['School (z-a)', 'school_name_desc']
+      ]
+      expect(Course.options_for_sorted_by).to eq expected_options
+    end
   end
 end
 

@@ -15,14 +15,7 @@ RSpec.describe SchoolsController, type: :controller do
 
   describe 'GET #index' do
     before do
-      @schools = [build_stubbed(:school), build_stubbed(:school)]
-      allow(School).to receive(:all).and_return(@schools)
-      allow(School).to receive(:where).and_return(@schools)
-    end
-
-    it 'calls all' do
-      expect(School).to receive(:all)
-      get :index
+      @schools = [create(:school), create(:school), school]
     end
 
     it 'returns a success response' do
@@ -32,7 +25,7 @@ RSpec.describe SchoolsController, type: :controller do
 
     it 'assigns schools to @schools' do
       get :index
-      expect(assigns(:schools)).to eq(@schools)
+      expect(assigns(:schools).size).to eq(3)
     end
 
     it 'renders the index template' do

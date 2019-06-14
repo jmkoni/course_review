@@ -8,7 +8,14 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.all
+    (@filterrific = initialize_filterrific(
+      School.all,
+      params[:filterrific],
+      select_options: {
+        sorted_by: School.options_for_sorted_by
+      }
+    )) || return
+    @schools = @filterrific.find.page(params[:page])
   end
 
   # GET /schools/1
