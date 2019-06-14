@@ -2,26 +2,30 @@
 <% if can? :create, School %>
   <%= link_to 'New School', new_school_path %>
 <% end %>
+<br/>
+<div class="card card-body bg-light">
+  <%= form_for_filterrific @filterrific do |f| %>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="font-weight-bold">Search</label>
+          <%= f.text_field(
+            :search_query,
+            class: 'filterrific-periodically-observed'
+          ) %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="font-weight-bold">Sorted by</label>
+          <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by],
+              {},
+              { class: 'form-control' }
+          ) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<table class="table table-hover table-sm table-responsive">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Short name</th>
-      <th scope="col" colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @schools.each do |school| %>
-      <tr>
-        <td><%= link_to school.name, school %></td>
-        <td><%= school.short_name %></td>
-        <% if can? :manage, School %>
-          <td><%= link_to 'Edit', edit_school_path(school) %></td>
-          <td><%= link_to 'Delete', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'list', schools: @schools %>

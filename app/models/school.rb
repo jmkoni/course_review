@@ -5,9 +5,65 @@ class School < ApplicationRecord
   validates :short_name, presence: true, uniqueness: { case_sensitive: false }
   has_many :courses, dependent: :destroy
 
+  filterrific(
+    default_filter_params: { sorted_by: 'name_desc' },
+    available_filters: %i[
+      sorted_by
+      search_query
+    ]
+  )
+
+  scope :search_query, ->(query) {
+    return nil if query.blank?
+
+    # condition query, parse into individual keywords
+    terms = query.downcase.split(/\s+/)
+    # replace "*" with "%" for wildcard searches,
+    # append '%', remove duplicate '%'s
+    terms = terms.map do |e|
+      ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
+    end
+    # configure number of OR conditions for provision
+    # of interpolation arguments. Adjust this if you
+    # change the number of OR conditions.
+    num_or_conditions = 2
+    where(
+      terms.map do
+        or_clauses = [
+          'LOWER(schools.short_name) LIKE ?',
+          'LOWER(schools.name) LIKE ?'
+        ].join(' OR ')
+        "(#{or_clauses})"
+      end.join(' AND '),
+      *terms.map { |e| [e] * num_or_conditions }.flatten
+    )
+  }
+
+  scope :sorted_by, ->(sort_option) {
+    # extract the sort direction from the param value.
+    direction = /desc$/.match?(sort_option) ? 'desc' : 'asc'
+    case sort_option.to_s
+    when /^short_/
+      order(Arel.sql("LOWER(schools.short_name) #{direction}"))
+    when /^name_/
+      order(Arel.sql("LOWER(schools.name) #{direction}"))
+    else
+      raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
+    end
+  }
+
   def self.options_for_select
     schools = School.arel_table
     order(schools[:name].lower).pluck(:name, :id)
+  end
+
+  def self.options_for_sorted_by
+    [
+      ['Name (a-z)', 'name_asc'],
+      ['Name (z-a)', 'name_desc'],
+      ['Short Name (a-z)', 'short_name_asc'],
+      ['Short Name (z-a)', 'short_name_desc']
+    ]
   end
 end
 

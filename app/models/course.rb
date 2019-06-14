@@ -49,11 +49,11 @@ class Course < ApplicationRecord
     direction = /desc$/.match?(sort_option) ? 'desc' : 'asc'
     case sort_option.to_s
     when /^department_/
-      order(Arel.sql("courses.department #{direction}"))
+      order(Arel.sql("LOWER(courses.department) #{direction}"))
     when /^name_/
-      order(Arel.sql("courses.name #{direction}"))
+      order(Arel.sql("LOWER(courses.name) #{direction}"))
     when /^number_/
-      order(Arel.sql("courses.number #{direction}"))
+      order(Arel.sql("LOWER(courses.number) #{direction}"))
     when /^school_/
       order(Arel.sql("LOWER(schools.name) #{direction}")).includes(:school).references(:school)
     else
