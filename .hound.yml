@@ -1,0 +1,8 @@
+erblint:
+  enabled: true
+rubocop:
+  config_file: .rubocop.yml
+reek:
+  enabled: true
+flog:
+  enabled: true
