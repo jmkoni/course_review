@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   context 'admin' do
-    let(:current_user) { build_stubbed(:admin) }
+    let(:current_user) { create(:admin) }
     before do
       sign_in current_user
       allow(request.env['warden']).to receive(:authenticate!).and_return(current_user)
@@ -13,15 +13,7 @@ RSpec.describe UsersController, type: :controller do
 
     describe 'GET #index' do
       before do
-        @users = [build_stubbed(:user), build_stubbed(:user)]
-        allow_any_instance_of(User).to receive(:admin?).and_return(true)
-        allow(User).to receive(:all).and_return(@users)
-        allow(User).to receive(:where).and_return(@users)
-      end
-
-      it 'calls all' do
-        expect(User).to receive(:all)
-        get :index
+        @users = [create(:user), create(:user), current_user]
       end
 
       it 'returns a success response' do
@@ -31,7 +23,7 @@ RSpec.describe UsersController, type: :controller do
 
       it 'assigns users to @users' do
         get :index
-        expect(assigns(:users)).to eq(@users)
+        expect(assigns(:users).size).to eq(3)
       end
 
       it 'renders the index template' do

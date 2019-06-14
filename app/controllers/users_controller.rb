@@ -8,7 +8,14 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    (@filterrific = initialize_filterrific(
+      User.all,
+      params[:filterrific],
+      select_options: {
+        sorted_by: User.options_for_sorted_by
+      }
+    )) || return
+    @users = @filterrific.find.page(params[:page])
   end
 
   # GET /users/new

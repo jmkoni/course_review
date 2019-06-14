@@ -1,0 +1,45 @@
+<% if users.load.empty? %>
+  No users at this time!
+<% else %>
+  <div id="filterrific_results">
+    <div class="card card-body bg-light d-block p-3 my-3">
+      <div class="row">
+        <div class="col-md-10">
+          <%= page_entries_info users, model: 'user', class: 'align-middle' %>
+        </div>
+        <div class="col-md-2">
+          <%= link_to "Reset filters", reset_filterrific_url, class: 'btn btn-secondary align-middle' %>
+        </div>
+      </div>
+      <%= render_filterrific_spinner %>
+    </div>
+    <table class="table table-hover table-sm table-responsive">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :email) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :years_experience) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :admin) %></th>
+          <th scope="col" colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.email %></td>
+            <td><%= user.years_experience %></td>
+            <td><%= user.is_admin %></td>
+            <% if user.admin? %>
+              <td><%= link_to 'Demote', user_demote_path(user), method: :put %></td>
+            <% else %>
+              <td><%= link_to 'Promote', user_promote_path(user), method: :put %></td>
+            <% end %>
+            <td><%= link_to 'Edit', edit_user_path(user) %></td>
+            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= will_paginate users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer  %>
+<% end %>
