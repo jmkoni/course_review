@@ -27,6 +27,36 @@ RSpec.describe User, type: :model do
         end
       end
     end
+
+    describe 'search_query' do
+      it 'gets all users with query' do
+        user1 = create(:user, email: 'unicorns@gmail.com')
+        user2 = create(:user, email: 'oh_no@test.com')
+        user3 = create(:user, email: 'bye@test.com')
+        aggregate_failures do
+          expect(User.search_query('unicorns').length).to eq 1
+          expect(User.search_query('unicorns')).to include user1
+          expect(User.search_query('unicorns')).not_to include user2
+          expect(User.search_query('unicorns')).not_to include user3
+        end
+      end
+    end
+
+    describe 'sorted_by' do
+      it 'gets all users sorted' do
+        user1 = create(:user, email: 'Alphabets@test.com', is_admin: true, years_experience: 3)
+        user2 = create(:user, email: 'Zebra@test.com', is_admin: false, years_experience: 4)
+        user3 = create(:user, email: 'Cows@test.com', is_admin: false, years_experience: 5)
+        aggregate_failures do
+          expect(User.sorted_by('email_asc').first).to eq user1
+          expect(User.sorted_by('email_desc').first).to eq user2
+          expect(User.sorted_by('years_experience_asc').first).to eq user1
+          expect(User.sorted_by('years_experience_desc').first).to eq user3
+          expect(User.sorted_by('admin_desc').first).to eq user1
+          expect { User.sorted_by('oh_no') }.to raise_error(ArgumentError, 'Invalid sort option: "oh_no"')
+        end
+      end
+    end
   end
 
   context 'methods' do
