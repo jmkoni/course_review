@@ -8,15 +8,13 @@ class Ability
     can :read, Course
     can :read, Review
     return if user.blank?
+    return if user.deactivated
 
     can :read, Course
     can :read, School
     can :create, Review
     can [:update, :delete], Review do |r|
       r.user == user
-    end
-    can [:read, :update, :delete], User do |u|
-      u == user
     end
     return unless user.admin?
 

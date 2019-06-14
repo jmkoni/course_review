@@ -17,8 +17,8 @@
       <thead class="thead-light">
         <tr>
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :email) %></th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :years_experience) %></th>
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :admin) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :deactivated) %></th>
           <th scope="col" colspan="3"></th>
         </tr>
       </thead>
@@ -27,15 +27,18 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= user.email %></td>
-            <td><%= user.years_experience %></td>
-            <td><%= user.is_admin %></td>
+            <td><%= user.is_admin ? "👍" : "" %></td>
+            <td><%= user.deactivated ? "👍" : ""  %></td>
             <% if user.admin? %>
               <td><%= link_to 'Demote', user_demote_path(user), method: :put %></td>
             <% else %>
               <td><%= link_to 'Promote', user_promote_path(user), method: :put %></td>
             <% end %>
-            <td><%= link_to 'Edit', edit_user_path(user) %></td>
-            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if user.deactivated %>
+              <td><%= link_to 'Reactivate', user_reactivate_path(user), method: :put, data: { confirm: 'Are you sure?' } %></td>
+            <% else %>
+              <td><%= link_to 'Deactivate', user_deactivate_path(user), method: :put, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

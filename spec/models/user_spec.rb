@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
   end
 
   context 'associations' do
-    # it { should have_many :reviews }
+    it { should have_many :reviews }
   end
 
   context 'scopes' do
@@ -44,15 +44,14 @@ RSpec.describe User, type: :model do
 
     describe 'sorted_by' do
       it 'gets all users sorted' do
-        user1 = create(:user, email: 'Alphabets@test.com', is_admin: true, years_experience: 3)
-        user2 = create(:user, email: 'Zebra@test.com', is_admin: false, years_experience: 4)
-        user3 = create(:user, email: 'Cows@test.com', is_admin: false, years_experience: 5)
+        user1 = create(:user, email: 'Alphabets@test.com', is_admin: true)
+        user2 = create(:user, email: 'Zebra@test.com', is_admin: false)
+        user3 = create(:user, email: 'Cows@test.com', is_admin: false, deactivated: true)
         aggregate_failures do
           expect(User.sorted_by('email_asc').first).to eq user1
           expect(User.sorted_by('email_desc').first).to eq user2
-          expect(User.sorted_by('years_experience_asc').first).to eq user1
-          expect(User.sorted_by('years_experience_desc').first).to eq user3
           expect(User.sorted_by('admin_desc').first).to eq user1
+          expect(User.sorted_by('deactivated_desc').first).to eq user3
           expect { User.sorted_by('oh_no') }.to raise_error(ArgumentError, 'Invalid sort option: "oh_no"')
         end
       end
@@ -88,9 +87,10 @@ end
 #  confirmed_at           :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :inet
+#  deactivated            :boolean          default(FALSE)
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  is_admin               :boolean
+#  is_admin               :boolean          default(FALSE)
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :inet
 #  remember_created_at    :datetime
@@ -98,7 +98,6 @@ end
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
 #  unconfirmed_email      :string
-#  years_experience       :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
