@@ -10,17 +10,30 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     if params[:school_id].to_i.zero?
-      @courses = Course.all.preload(:school)
+      (@filterrific = initialize_filterrific(
+        Course.all.preload(:school),
+        params[:filterrific],
+        select_options: {
+          sorted_by: Course.options_for_sorted_by,
+          with_school_id: School.options_for_select
+        }
+      )) || return
     else
       set_school
-      @courses = Course.preload(:school).where(school_id: @school.id)
+      (@filterrific = initialize_filterrific(
+        Course.preload(:school).where(school_id: @school.id),
+        params[:filterrific],
+        select_options: {
+          sorted_by: Course.options_for_sorted_by
+        }
+      )) || return
     end
+    @courses = @filterrific.find.page(params[:page])
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
-    # @reviews = @course.reviews.preload(:user, course: [:school])
     @url = school_course_reviews_path(school_id: @school, course_id: @course)
     (@filterrific = initialize_filterrific(
       Review.preload(:user, course: [:school]).where(course_id: @course.id),

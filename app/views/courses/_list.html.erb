@@ -1,0 +1,44 @@
+<% if courses.load.empty? %>
+  No courses at this time!
+<% else %>
+  <div id="filterrific_results">
+    <div class="card card-body bg-light d-block p-3 my-3">
+      <div class="row">
+        <div class="col-md-10">
+          <%= page_entries_info courses, model: 'course', class: 'align-middle' %>
+        </div>
+        <div class="col-md-2">
+          <%= link_to "Reset filters", reset_filterrific_url, class: 'btn btn-secondary align-middle' %>
+        </div>
+      </div>
+      <%= render_filterrific_spinner %>
+    </div>
+    <table class="table table-hover table-sm table-responsive">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :name) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :number) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :department) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :school) %></th>
+          <th scope="col" colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% courses.each do |course| %>
+          <tr>
+            <td><%= link_to course.name, school_course_path(id: course.id, school_id: course.school.id) %></td>
+            <td><%= course.number %></td>
+            <td><%= course.department %></td>
+            <td><%= link_to course.school.name, school_path(id: course.school) %><td>
+            <% if can? :edit, course %>
+              <td><%= link_to 'Edit', edit_school_course_path(id: course.id, school_id: course.school.id) %></td>
+              <td><%= link_to 'Destroy', school_course_path(id: course.id, school_id: course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= will_paginate courses, renderer: WillPaginate::ActionView::BootstrapLinkRenderer  %>
+<% end %>

@@ -7,7 +7,6 @@ class School < ApplicationRecord
 
   def self.options_for_select
     schools = School.arel_table
-    # order('LOWER(name)').map { |e| [e.name, e.id] }
     order(schools[:name].lower).pluck(:name, :id)
   end
 end
