@@ -13,7 +13,8 @@ class Ability
     can :read, Course
     can :read, School
     can :create, Review
-    can [:update, :delete], Review do |r|
+    can :read, Review
+    can [:update, :destroy], Review do |r|
       r.user == user
     end
     return unless user.admin?
