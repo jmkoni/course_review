@@ -9,9 +9,10 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
+    courses = Course.all.with_averages
     if params[:school_id].to_i.zero?
       (@filterrific = initialize_filterrific(
-        Course.all.preload(:school),
+        courses,
         params[:filterrific],
         select_options: {
           sorted_by: Course.options_for_sorted_by,
@@ -21,14 +22,14 @@ class CoursesController < ApplicationController
     else
       set_school
       (@filterrific = initialize_filterrific(
-        Course.preload(:school).where(school_id: @school.id),
+        courses.where(school_id: @school.id),
         params[:filterrific],
         select_options: {
           sorted_by: Course.options_for_sorted_by
         }
       )) || return
     end
-    @courses = @filterrific.find.page(params[:page])
+    @courses = @filterrific.find
   end
 
   # GET /courses/1
