@@ -29,7 +29,7 @@
         <tr>
           <td><%= user.email %></td>
           <td><%= user.is_admin ? "👍" : "" %></td>
-          <td><%= user.deactivated ? "👍" : ""  %></td>
+          <td><%= user.deactivated ? "👍" : "" %></td>
           <% if user.admin? %>
             <td><%= link_to 'Demote', user_demote_path(user), method: :put %></td>
           <% else %>
@@ -44,5 +44,5 @@
       <% end %>
     </tbody>
   </table>
-  <%= paginate users  %>
+  <%= paginate users %>
 </div>

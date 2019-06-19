@@ -91,8 +91,8 @@ class Course < ApplicationRecord
             avg(reviews.rating) as avg_rating,
             avg(reviews.difficulty) as avg_difficulty,
             avg(reviews.work_required) as avg_work')
-        .left_joins(:reviews, :school)
-        .group('courses.id, schools.id')
+      .left_joins(:reviews, :school)
+      .group('courses.id, schools.id')
   }
   def full_number
     "#{department} #{number}"

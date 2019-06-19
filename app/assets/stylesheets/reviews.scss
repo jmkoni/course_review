@@ -2,16 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table#reviews_index td.notes-truncate div {
+td.notes div {
   width: 200px;
-  white-space: nowrap;
-  overflow: hidden;         /* <- this does seem to be required */
-  text-overflow: ellipsis;
 }
 
-table#reviews_index td.user-truncate div {
+td.user div {
   width: 100px;
-  white-space: nowrap;
-  overflow: hidden;         /* <- this does seem to be required */
+}
+
+td.truncate div {
+  overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
