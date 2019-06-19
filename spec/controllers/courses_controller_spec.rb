@@ -87,12 +87,12 @@ RSpec.describe CoursesController, type: :controller do
 
       it 'gets courses for school' do
         get :index, params: { school_id: school.id }
-        expect(assigns(:courses).size).to eq(3)
+        expect(assigns(:courses).length).to eq(3)
       end
 
       it 'gets all courses' do
         get :index, params: { school_id: 'all' }
-        expect(assigns(:courses).size).to eq(5)
+        expect(assigns(:courses).length).to eq(5)
       end
 
       it 'returns a success response' do
