@@ -10,6 +10,9 @@ class School < ApplicationRecord
     available_filters: %i[
       sorted_by
       search_query
+      with_avg_rating_gte
+      with_avg_difficulty_lte
+      with_avg_work_lte
     ]
   )
 
@@ -47,9 +50,36 @@ class School < ApplicationRecord
       order(Arel.sql("LOWER(schools.short_name) #{direction}"))
     when /^name_/
       order(Arel.sql("LOWER(schools.name) #{direction}"))
+    when /^avg_rating_/
+      order(Arel.sql("avg_rating #{direction}"))
+    when /^avg_difficulty_/
+      order(Arel.sql("avg_difficulty #{direction}"))
+    when /^avg_work_/
+      order(Arel.sql("avg_work #{direction}"))
     else
       raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
     end
+  }
+
+  scope :with_avg_rating_gte, ->(ref_num) {
+    having('avg(reviews.rating) >= ?', ref_num)
+  }
+
+  scope :with_avg_difficulty_lte, ->(ref_num) {
+    having('avg(reviews.difficulty) <= ?', ref_num)
+  }
+
+  scope :with_avg_work_lte, ->(ref_num) {
+    having('avg(reviews.work_required) <= ?', ref_num)
+  }
+
+  scope :with_averages, -> {
+    select('schools.*,
+            avg(reviews.rating) as avg_rating,
+            avg(reviews.difficulty) as avg_difficulty,
+            avg(reviews.work_required) as avg_work')
+      .left_joins(courses: [:reviews])
+      .group('schools.id')
   }
 
   def self.options_for_select
@@ -62,7 +92,10 @@ class School < ApplicationRecord
       ['Name (a-z)', 'name_asc'],
       ['Name (z-a)', 'name_desc'],
       ['Short Name (a-z)', 'short_name_asc'],
-      ['Short Name (z-a)', 'short_name_desc']
+      ['Short Name (z-a)', 'short_name_desc'],
+      ['Average Rating (highest first)', 'avg_rating_desc'],
+      ['Average Work Required (lowest first)', 'avg_work_asc'],
+      ['Average Difficulty (lowest first)', 'avg_difficulty_asc']
     ]
   end
 end

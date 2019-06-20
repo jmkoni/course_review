@@ -25,6 +25,26 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="font-weight-bold">Average rated higher than</label>
+          <%= f.number_field(:with_avg_rating_gte) %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="font-weight-bold">Average difficulty lower than</label>
+          <%= f.number_field(:with_avg_difficulty_lte) %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="font-weight-bold">Average work required lower than</label>
+          <%= f.number_field(:with_avg_work_lte) %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
 

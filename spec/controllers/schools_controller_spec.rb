@@ -25,7 +25,7 @@ RSpec.describe SchoolsController, type: :controller do
 
     it 'assigns schools to @schools' do
       get :index
-      expect(assigns(:schools).size).to eq(3)
+      expect(assigns(:schools).length).to eq(3)
     end
 
     it 'renders the index template' do

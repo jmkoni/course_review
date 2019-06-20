@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    courses = Course.all.with_averages
+    courses = Course.with_averages
     if params[:school_id].to_i.zero?
       (@filterrific = initialize_filterrific(
         courses,
