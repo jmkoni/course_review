@@ -94,6 +94,7 @@ class Course < ApplicationRecord
       .left_joins(:reviews, :school)
       .group('courses.id, schools.id')
   }
+
   def full_number
     "#{department} #{number}"
   end

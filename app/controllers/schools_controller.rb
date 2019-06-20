@@ -9,13 +9,13 @@ class SchoolsController < ApplicationController
   # GET /schools.json
   def index
     (@filterrific = initialize_filterrific(
-      School.all,
+      School.with_averages,
       params[:filterrific],
       select_options: {
         sorted_by: School.options_for_sorted_by
       }
     )) || return
-    @schools = @filterrific.find.page(params[:page])
+    @schools = @filterrific.find
   end
 
   # GET /schools/1
