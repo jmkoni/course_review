@@ -34,7 +34,6 @@ gem 'simplecov-formatter-badge', require: false
 gem 'yard'
 
 # Monitoring
-gem 'scout_apm'
 gem 'skylight'
 
 # Seeds
