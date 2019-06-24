@@ -22,6 +22,7 @@
         <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_rating) %></th>
         <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_difficulty) %></th>
         <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_work) %></th>
+        <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_grade) %></th>
         <th scope="col" colspan="2"></th>
       </tr>
     </thead>
@@ -34,6 +35,7 @@
           <td><%= school.avg_rating.round(1) %></td>
           <td><%= school.avg_difficulty.round(1) %></td>
           <td><%= school.avg_work.round(1) %></td>
+          <td><%= school.avg_grade.round(1) %></td>
           <% if can? :manage, School %>
             <td><%= link_to 'Edit', edit_school_path(school) %></td>
             <td><%= link_to 'Delete', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>

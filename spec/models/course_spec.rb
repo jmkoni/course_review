@@ -37,9 +37,9 @@ RSpec.describe Course, type: :model do
         course1 = create(:course, department: 'Alphabets', name: 'ABC', number: '3000', school: school2)
         course2 = create(:course, department: 'Zebra', name: 'Zebras', number: '2000', school: school1)
         course3 = create(:course, department: 'Cows', name: 'Bovine', number: '1001')
-        review1 = create(:review, course: course1, work_required: 1, difficulty: 5, rating: 10)
-        review2 = create(:review, course: course2, work_required: 5, difficulty: 10, rating: 1)
-        review3 = create(:review, course: course3, work_required: 10, difficulty: 1, rating: 5)
+        review1 = create(:review, course: course1, work_required: 1, difficulty: 5, rating: 10, grade: 100)
+        review2 = create(:review, course: course2, work_required: 5, difficulty: 10, rating: 1, grade: 46)
+        review3 = create(:review, course: course3, work_required: 10, difficulty: 1, rating: 5, grade: 72)
         aggregate_failures do
           expect(Course.with_averages.sorted_by('department_asc').first).to eq course1
           expect(Course.with_averages.sorted_by('department_desc').first).to eq course2
@@ -53,6 +53,8 @@ RSpec.describe Course, type: :model do
           expect(Course.with_averages.sorted_by('avg_work_asc').first).to eq course1
           expect(Course.with_averages.sorted_by('avg_rating_desc').first).to eq course1
           expect(Course.with_averages.sorted_by('avg_rating_asc').first).to eq course2
+          expect(Course.with_averages.sorted_by('avg_grade_desc').first).to eq course1
+          expect(Course.with_averages.sorted_by('avg_grade_asc').first).to eq course2
           expect(Course.with_averages.sorted_by('avg_difficulty_desc').first).to eq course2
           expect(Course.with_averages.sorted_by('avg_difficulty_asc').first).to eq course3
           expect { Course.with_averages.sorted_by('oh_no') }.to raise_error(ArgumentError, 'Invalid sort option: "oh_no"')
@@ -88,6 +90,23 @@ RSpec.describe Course, type: :model do
           expect(Course.with_averages.with_avg_rating_gte(3)).not_to include course2
           expect(Course.with_averages.with_avg_rating_gte(3)).to include course1
           expect(Course.with_averages.with_avg_rating_gte(3)).to include course3
+        end
+      end
+    end
+
+    describe 'with_avg_grade_gte' do
+      it 'gets all reviews with query in review' do
+        course1 = create(:course)
+        course2 = create(:course)
+        course3 = create(:course)
+        review1 = create(:review, grade: 100, course: course1)
+        review2 = create(:review, grade: 23, course: course2)
+        review3 = create(:review, grade: 78, course: course3)
+        aggregate_failures do
+          expect(Course.with_averages.with_avg_grade_gte(30).length).to eq 2
+          expect(Course.with_averages.with_avg_grade_gte(30)).not_to include course2
+          expect(Course.with_averages.with_avg_grade_gte(30)).to include course1
+          expect(Course.with_averages.with_avg_grade_gte(30)).to include course3
         end
       end
     end
@@ -145,7 +164,8 @@ RSpec.describe Course, type: :model do
         ['School (z-a)', 'school_name_desc'],
         ['Average Rating (highest first)', 'avg_rating_desc'],
         ['Average Work Required (lowest first)', 'avg_work_asc'],
-        ['Average Difficulty (lowest first)', 'avg_difficulty_asc']
+        ['Average Difficulty (lowest first)', 'avg_difficulty_asc'],
+        ['Average Grade (highest first)', 'avg_grade_desc']
       ]
       expect(Course.options_for_sorted_by).to eq expected_options
     end

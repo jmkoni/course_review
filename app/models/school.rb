@@ -13,6 +13,7 @@ class School < ApplicationRecord
       with_avg_rating_gte
       with_avg_difficulty_lte
       with_avg_work_lte
+      with_avg_grade_gte
     ]
   )
 
@@ -56,6 +57,8 @@ class School < ApplicationRecord
       order(Arel.sql("avg_difficulty #{direction}"))
     when /^avg_work_/
       order(Arel.sql("avg_work #{direction}"))
+    when /^avg_grade_/
+      order(Arel.sql("avg_grade #{direction}"))
     else
       raise(ArgumentError, "Invalid sort option: #{sort_option.inspect}")
     end
@@ -73,11 +76,16 @@ class School < ApplicationRecord
     having('avg(reviews.work_required) <= ?', ref_num)
   }
 
+  scope :with_avg_grade_gte, ->(ref_num) {
+    having('avg(reviews.grade) >= ?', ref_num)
+  }
+
   scope :with_averages, -> {
     select('schools.*,
             avg(reviews.rating) as avg_rating,
             avg(reviews.difficulty) as avg_difficulty,
-            avg(reviews.work_required) as avg_work')
+            avg(reviews.work_required) as avg_work,
+            avg(reviews.grade) as avg_grade')
       .left_joins(courses: [:reviews])
       .group('schools.id')
   }
@@ -95,7 +103,8 @@ class School < ApplicationRecord
       ['Short Name (z-a)', 'short_name_desc'],
       ['Average Rating (highest first)', 'avg_rating_desc'],
       ['Average Work Required (lowest first)', 'avg_work_asc'],
-      ['Average Difficulty (lowest first)', 'avg_difficulty_asc']
+      ['Average Difficulty (lowest first)', 'avg_difficulty_asc'],
+      ['Average Grade (highest first)', 'avg_grade_desc']
     ]
   end
 end
