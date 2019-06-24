@@ -65,15 +65,6 @@ RSpec.describe User, type: :model do
         expect(user.admin?).to be true
       end
     end
-
-    describe 'sha_email' do
-      it 'returns an encrypted email address' do
-        user = create(:user, email: 'test@ponyparty.com')
-        sha = Digest::SHA1.new
-        encrypted_email = sha.hexdigest 'test@ponyparty.com'
-        expect(user.sha_email).to eq encrypted_email
-      end
-    end
   end
 end
 
@@ -98,6 +89,7 @@ end
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
 #  unconfirmed_email      :string
+#  uuid                   :string           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

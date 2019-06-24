@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
-require 'digest'
+require 'securerandom'
 
 class User < ApplicationRecord
+  before_create :generate_uuid
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -68,11 +70,6 @@ class User < ApplicationRecord
     is_admin
   end
 
-  def sha_email
-    sha = Digest::SHA1.new
-    sha.hexdigest email
-  end
-
   def self.options_for_sorted_by
     [
       ['Email (a-z)', 'email_asc'],
@@ -80,6 +77,12 @@ class User < ApplicationRecord
       ['Admin? (false first)', 'admin_asc'],
       ['Admin? (true first)', 'admin_desc']
     ]
+  end
+
+  private
+
+  def generate_uuid
+    self.uuid = SecureRandom.uuid
   end
 end
 
@@ -104,6 +107,7 @@ end
 #  reset_password_token   :string
 #  sign_in_count          :integer          default(0), not null
 #  unconfirmed_email      :string
+#  uuid                   :string           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
