@@ -19,46 +19,48 @@
     <%= form.text_area :notes, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :work_required %>
-    <%= form.number_field :work_required, in: 0..100, class: "form-control" %>
-    <small class='form-text text-muted'>(in hours per week)</small>
-  </div>
+  <div class="form-row">
+    <div class="col-md-1"></div>
+    <div class="form-check col-md-2">
+      <%= form.check_box :experience_with_topic, class: "form-check-input" %>
+      <%= form.label :experience_with_topic, class: "form-check-label" %>
+    </div>
+    <div class="form-group col-md-2">
+      <%= form.label :rating %>
+      <%= form.number_field :rating, in: 0..10, class: "form-control", required: true %>
+      <small class='form-text text-muted'>(0 being the worst, 10 being the best)</small>
+    </div>
+    <div class="form-group col-md-2">
+      <%= form.label :work_required %>
+      <%= form.number_field :work_required, in: 0..100, class: "form-control" %>
+      <small class='form-text text-muted'>(in hours per week)</small>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :difficulty %>
-    <%= form.number_field :difficulty, in: 0..10, class: "form-control" %>
-    <small class='form-text text-muted'>(0 being easiest, 10 being hardest)</small>
+    <div class="form-group col-md-2">
+      <%= form.label :difficulty %>
+      <%= form.number_field :difficulty, in: 0..10, class: "form-control" %>
+      <small class='form-text text-muted'>(0 being easiest, 10 being hardest)</small>
+    </div>
   </div>
+  <div class="form-row">
+    <div class="col-md-1"></div>
+    <div class="form-group col-md-2">
+      <%= form.label :year %>
+      <%= form.number_field :year, in: 1990..Time.now.year, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :rating %>
-    <%= form.number_field :rating, in: 0..10, class: "form-control" %>
-    <small class='form-text text-muted'>(0 being the worst, 10 being the best)</small>
+    <div class="form-group col-md-2">
+      <%= form.label :term %>
+      <%= form.number_field :term, in: 1..10, class: "form-control" %>
+      <small class='form-text text-muted'>(number term in the year, ex: spring semester is 1)</small>
+    </div>
+
+    <div class="form-group col-md-2">
+      <%= form.label :grade %>
+      <%= form.number_field :grade, in: 0..100, class: "form-control" %>
+      <small class='form-text text-muted'>(between 0 and 100)</small>
+    </div>
   </div>
-
-  <div class="form-group">
-    <%= form.label :experience_with_topic %>
-    <%= form.check_box :experience_with_topic, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :year %>
-    <%= form.number_field :year, in: 1990..Time.now.year, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :term %>
-    <%= form.number_field :term, in: 1..10, class: "form-control" %>
-    <small class='form-text text-muted'>(number term in the year, ex: spring semester is 1)</small>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :grade %>
-    <%= form.number_field :grade, in: 0..100, class: "form-control" %>
-    <small class='form-text text-muted'>(between 0 and 100)</small>
-  </div>
-
   <div class="actions">
     <%= form.submit 'Submit', class: 'btn btn-primary' %>
   </div>

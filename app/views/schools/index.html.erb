@@ -24,11 +24,17 @@
           ) %>
         </div>
       </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="font-weight-bold">Average grade higher than</label>
+          <%= f.number_field(:with_avg_grade_gte) %>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-3">
         <div class="form-group">
-          <label class="font-weight-bold">Average rated higher than</label>
+          <label class="font-weight-bold">Average rating higher than</label>
           <%= f.number_field(:with_avg_rating_gte) %>
         </div>
       </div>
