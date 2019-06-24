@@ -11,6 +11,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
+  validates :password, password_strength: { use_dictionary: true }
 
   has_many :reviews, dependent: :destroy
 

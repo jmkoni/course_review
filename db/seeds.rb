@@ -9,7 +9,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 if User.count.zero?
-  user = User.create(email: 'jmkoni@icloud.com', password: 'pass123', password_confirmation: 'pass123', is_admin: true)
+  user = User.create(email: 'jmkoni@icloud.com', password: '867-jenny-5309', password_confirmation: '867-jenny-5309', is_admin: true)
 end
 if User.count < 25
   domains = ['course_review.org', 'ponyparty.us', 'unico.rn', 'thecloud.cloud',
@@ -30,8 +30,8 @@ if User.count < 25
   end
   emails.each do |email|
     User.create(email: email,
-                password: 'password',
-                password_confirmation: 'password',
+                password: '867-jenny-5309',
+                password_confirmation: '867-jenny-5309',
                 is_admin: false,
                 confirmed_at: Time.now,
                 current_sign_in_ip: "127.0.0.1",

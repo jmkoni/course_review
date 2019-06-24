@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+en:
+  errors:
+    messages:
+      password:
+        password_strength: "is weak. Please use a combination of letter, numbers, and special characters."
