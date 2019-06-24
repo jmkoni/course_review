@@ -37,7 +37,7 @@
         <tr>
           <td scope="row"><%= link_to review.course.school.name, school_path(id: review.course.school.id) %></td>
           <td scope="row"><%= link_to review.course.name, school_course_path(school_id: review.course.school.id, id: review.course.id) %></td>
-          <td class="user truncate"><div><%= review.user.sha_email %></div></td>
+          <td class="user truncate"><div><%= review.user.uuid %></div></td>
           <td class="notes truncate"><div><%= link_to 'Full Notes', school_course_review_path(school_id: review.course.school.id, course_id: review.course_id, id: review.id) %><%= ": " + review.notes %></div></td>
           <td><%= review.work_required %></td>
           <td><%= review.difficulty %></td>
