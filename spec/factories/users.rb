@@ -5,7 +5,7 @@ FactoryBot.define do
     sequence(:email) { |i| Faker::Internet.email("test#{i}") }
     is_admin { false }
     deactivated { false }
-    password { Faker::Internet.password(10, 20) }
+    password { Faker::Internet.password(15, 20) }
 
     factory :admin do
       is_admin { true }

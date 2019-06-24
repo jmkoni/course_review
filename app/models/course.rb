@@ -125,7 +125,7 @@ class Course < ApplicationRecord
       ['Average Rating (highest first)', 'avg_rating_desc'],
       ['Average Work Required (lowest first)', 'avg_work_asc'],
       ['Average Difficulty (lowest first)', 'avg_difficulty_asc'],
-      ['Average Grade (highest first)', 'avg_grade_desc'],
+      ['Average Grade (highest first)', 'avg_grade_desc']
     ]
   end
 end
