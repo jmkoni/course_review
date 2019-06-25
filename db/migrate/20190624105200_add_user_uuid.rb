@@ -1,3 +1,4 @@
+# typed: false
 require 'securerandom'
 class AddUserUuid < ActiveRecord::Migration[5.2]
   def change
