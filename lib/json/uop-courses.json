@@ -1,0 +1,161 @@
+{
+  "UNIV": {
+    "name": "General Education",
+    "courses": {
+      "1001": "Online Education Strategies"
+    }
+  },
+  "ENGL": {
+    "name": "English",
+    "courses": {
+      "1102": "English Composition 2",
+      "1103": "Business English",
+      "0101": "English Composition 1"
+    }
+  },
+  "MATH": {
+    "name": "Mathematics",
+    "courses": {
+      "1201": "College Algebra",
+      "1211": "Calculus",
+      "1280": "Introduction to Statistics",
+      "1281": "Statistical Inference",
+      "1302": "Discrete Mathematics"
+    }
+  },
+  "ECON": {
+    "name": "Economics",
+    "courses": {
+      "1580": "Introduction to Economics"
+    }
+  },
+  "ENVS": {
+    "name": "Environmental Sciences",
+    "courses": {
+      "1301": "Introduction to Environmental Sciences"
+    }
+  },
+  "AHIST": {
+    "name": "Art History",
+    "courses": {
+      "1401": "Art History"
+    }
+  },
+  "PHIL": {
+    "name": "Philosophy",
+    "courses": {
+      "1402": "Introduction to Philosophy",
+      "1404": "Ethics and Social Responsibility"
+    }
+  },
+  "SOC": {
+    "name": "Sociology",
+    "courses": {
+      "1502": "Introduction to Sociology"
+    }
+  },
+  "PSYC": {
+    "name": "Psychology",
+    "courses": {
+      "1504": "Introduction to Psychology"
+    }
+  },
+  "POLS": {
+    "name": "Political Science",
+    "courses": {
+      "1503": "Globalization"
+    }
+  },
+  "HIST": {
+    "name": "History",
+    "courses": {
+      "1421": "Greek and Roman Civilization"
+    }
+  },
+  "CS": {
+    "name": "Computer Science",
+    "courses": {
+      "1101": "Programming 1",
+      "1103": "Programming 2",
+      "1104": "Computer Systems",
+      "2203": "Databases 1",
+      "2204": "Communications and Networking",
+      "2205": "Web Programming 1",
+      "2301": "Operating Systems 1",
+      "2401": "Software Engineering 1",
+      "3303": "Data Structures",
+      "3304": "Analysis of Algorithms",
+      "3305": "Web Programming 2",
+      "3306": "Databases 2",
+      "3307": "Operating Systems 2",
+      "3308": "Information Retrieval",
+      "4402": "Comparative Programming Languages",
+      "4403": "Software Engineering 2",
+      "4404": "Advanced Networking and Data Security",
+      "4405": "Mobile Applications",
+      "4406": "Computer Graphics",
+      "4407": "Data Mining and Machine Learning",
+      "4408": "Artificial Intelligence"
+    }
+  },
+  "BIOL": {
+    "name": "Health Science",
+    "courses": {
+      "1122": "Biology 2 for Health Studies Majors"
+    }
+  },
+  "CPH": {
+    "name": "Health Science",
+    "courses": {
+      "2211": "Human Anatomy & Physiology",
+      "2212": "Infectious Diseases",
+      "2611": "Nutrition",
+      "2711": "Community and Public Health 1: Health Education and Behavior",
+      "2712": "Community and Public Health 2: Preventive Medicine & Social Determinants of Health",
+      "3210": "Human Diseases",
+      "3311": "Epidemiology",
+      "3610": "Human Development in a Global Perspective",
+      "3810": "Health Systems and Structures",
+      "3814": "Community Health",
+      "3995": "Internship",
+      "4212": "Genetics",
+      "4241": "Psychopathology and Mental Health",
+      "4510": "Biostatistics",
+      "4810": "Health Policy Management",
+      "4812": "Bioethics"
+    }
+  },
+  "BUS": {
+    "name": "Business Administration",
+    "courses": {
+      "1101": "Principles of Business Management",
+      "1102": "Basic Accounting",
+      "1103": "Microeconomics",
+      "1104": "Macroeconomics",
+      "1105": "Business Communications",
+      "2201": "Principles of Marketing",
+      "2202": "E-Commerce",
+      "2203": "Principles of Finance 1",
+      "2204": "Personal Finance",
+      "2207": "Multinational Management",
+      "3301": "Financial Accounting",
+      "3302": "Consumer Behavior",
+      "3303": "Entrepreneurship 1",
+      "3304": "Managerial Accounting",
+      "3305": "Business Law and Ethics",
+      "3306": "Business & Society",
+      "4401": "Entrepreneurship 2",
+      "4402": "Organizational Behavior",
+      "4403": "Business Policy and Strategy",
+      "4404": "Principles of Finance 2",
+      "4405": "Leadership",
+      "4407": "Strategic Management"
+    }
+  },
+  "ISO": {
+    "name": "Business Administration",
+    "courses": {
+      "9000": "Quality Management"
+    }
+  }
+}
