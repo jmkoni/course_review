@@ -77,6 +77,9 @@ group :development do
   # For call-stack profiling flamegraphs
   gem 'flamegraph'
   gem 'stackprof'
+
+  # Scrapers
+  gem 'nokogiri'
 end
 
 group :test do
