@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-task :get_penn_state_classes, [:level] do |task, args|
+task :get_penn_state_classes, [:level] do |_task, args|
   level = args.fetch(:level) || 'graduate'
   url = 'https://bulletins.psu.edu/university-course-descriptions/' + level + '/'
   graduate = Nokogiri::HTML(HTTParty.get(url))

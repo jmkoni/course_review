@@ -1,3 +1,4 @@
+# typed: false
 class RemoveYearsExperience < ActiveRecord::Migration[5.2]
   def change
     remove_column :users, :years_experience
