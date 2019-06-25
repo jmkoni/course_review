@@ -79,6 +79,7 @@ group :development do
   gem 'stackprof'
 
   # Scrapers
+  gem 'httparty'
   gem 'nokogiri'
 end
 
