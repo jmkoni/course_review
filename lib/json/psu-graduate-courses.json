@@ -25,7 +25,7 @@
     }
   },
   "ACCT": {
-    "name": "Accounting - CA",
+    "name": "Accounting",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/acct/",
     "courses": {
       "501": "Financial Statement Analysis",
@@ -695,7 +695,7 @@
     }
   },
   "BUS": {
-    "name": "Business - CA",
+    "name": "Business",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/bus/",
     "courses": {
       "500": "Negotiation, Communication, Teamwork",
@@ -1088,7 +1088,7 @@
     }
   },
   "COMMS": {
-    "name": "Communications - CA",
+    "name": "Communications",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comms/",
     "courses": {
       "500": "Communications and Cultural Theory",
@@ -1196,7 +1196,7 @@
     }
   },
   "COMP": {
-    "name": "Computer Science - CA",
+    "name": "Computer Science",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/comp/",
     "courses": {
       "505": "Theory of Computation",
@@ -1957,7 +1957,7 @@
     }
   },
   "FINAN": {
-    "name": "Financial Analysis - CA",
+    "name": "Financial Analysis",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/finan/",
     "courses": {
       "518": "Financial Markets and the Economy",
@@ -2504,7 +2504,7 @@
     }
   },
   "HUM": {
-    "name": "Humanities - CA",
+    "name": "Humanities",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/hum/",
     "courses": {
       "500": "Research Methods and Scholarly Inquiry in the Humanities",
@@ -2621,7 +2621,7 @@
     }
   },
   "INFSY": {
-    "name": "Information Systems - CA",
+    "name": "Information Systems",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/infsy/",
     "courses": {
       "535": "Object-Oriented Design and Programming in Business",
@@ -2946,7 +2946,7 @@
     }
   },
   "MNGMT": {
-    "name": "Management - CA",
+    "name": "Management",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/mngmt/",
     "courses": {
       "505": "Managing Human Resources",
@@ -2996,7 +2996,7 @@
     }
   },
   "MRKT": {
-    "name": "Marketing - CA",
+    "name": "Marketing",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/mrkt/",
     "courses": {
       "513": "Marketing Management",
@@ -3850,7 +3850,7 @@
     }
   },
   "PSYC": {
-    "name": "Psychology - CA",
+    "name": "Psychology",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/psyc/",
     "courses": {
       "500": "Ethics and Professional Practice in Psychology and Counseling",
@@ -3879,7 +3879,7 @@
     }
   },
   "PADM": {
-    "name": "Public Administration - CA",
+    "name": "Public Administration",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/padm/",
     "courses": {
       "500": "Public Organization and Management",
@@ -4494,7 +4494,7 @@
     }
   },
   "TRDEV": {
-    "name": "Training and Development - CA",
+    "name": "Training and Development",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/trdev/",
     "courses": {
       "503": "Performance Consulting",

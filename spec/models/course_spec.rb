@@ -6,14 +6,12 @@ require 'rails_helper'
 RSpec.describe Course, type: :model do
   context 'validations' do
     it { should validate_presence_of(:name) }
-    it { should validate_uniqueness_of(:name).case_insensitive.scoped_to(:school_id) }
-    it { should validate_presence_of(:department) }
     it { should validate_presence_of(:number) }
-    it { should validate_uniqueness_of(:number).case_insensitive.scoped_to(:department) }
+    it { should validate_uniqueness_of(:number).case_insensitive.scoped_to(:department_id) }
   end
 
   context 'associations' do
-    it { should belong_to :school }
+    it { should belong_to :department }
   end
 
   context 'scopes' do
@@ -35,15 +33,17 @@ RSpec.describe Course, type: :model do
       it 'gets all courses sorted' do
         school1 = create(:school, name: 'abc')
         school2 = create(:school, name: 'xyz')
-        course1 = create(:course, department: 'Alphabets', name: 'ABC', number: '3000', school: school2)
-        course2 = create(:course, department: 'Zebra', name: 'Zebras', number: '2000', school: school1)
-        course3 = create(:course, department: 'Cows', name: 'Bovine', number: '1001')
+        department1 = create(:department, name: 'Alphabets', short_name: 'ABC', school: school1)
+        department2 = create(:department, name: 'Zebra', short_name: 'ZEB', school: school2)
+        course1 = create(:course, name: 'ABC', number: '3000', department: department2)
+        course2 = create(:course, name: 'Zebras', number: '2000', department: department1)
+        course3 = create(:course, name: 'Bovine', number: '1001')
         review1 = create(:review, course: course1, work_required: 1, difficulty: 5, rating: 10, grade: 100)
         review2 = create(:review, course: course2, work_required: 5, difficulty: 10, rating: 1, grade: 46)
         review3 = create(:review, course: course3, work_required: 10, difficulty: 1, rating: 5, grade: 72)
         aggregate_failures do
-          expect(Course.with_averages.sorted_by('department_asc').first).to eq course1
-          expect(Course.with_averages.sorted_by('department_desc').first).to eq course2
+          expect(Course.with_averages.sorted_by('department_asc').first).to eq course2
+          expect(Course.with_averages.sorted_by('department_desc').first).to eq course1
           expect(Course.with_averages.sorted_by('school_asc').first).to eq course2
           expect(Course.with_averages.sorted_by('school_desc').first).to eq course1
           expect(Course.with_averages.sorted_by('name_asc').first).to eq course1
@@ -63,17 +63,17 @@ RSpec.describe Course, type: :model do
       end
     end
 
-    describe 'with_school_id' do
+    describe 'with_department_id' do
       it 'gets all reviews with query in review' do
-        school = create(:school)
-        course1 = create(:course, school: school)
+        department = create(:department)
+        course1 = create(:course, department: department)
         course2 = create(:course)
         course3 = create(:course)
         aggregate_failures do
-          expect(Course.with_school_id(school.id).length).to eq 1
-          expect(Course.with_school_id(school.id)).to include course1
-          expect(Course.with_school_id(school.id)).not_to include course2
-          expect(Course.with_school_id(school.id)).not_to include course3
+          expect(Course.with_department_id(department.id).length).to eq 1
+          expect(Course.with_department_id(department.id)).to include course1
+          expect(Course.with_department_id(department.id)).not_to include course2
+          expect(Course.with_department_id(department.id)).not_to include course3
         end
       end
     end

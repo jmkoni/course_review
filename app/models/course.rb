@@ -2,10 +2,9 @@
 # frozen_string_literal: true
 
 class Course < ApplicationRecord
-  validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :school_id }
-  validates :department, presence: true
-  validates :number, presence: true, uniqueness: { case_sensitive: false, scope: :department }
-  belongs_to :school
+  validates :name, presence: true
+  validates :number, presence: true, uniqueness: { case_sensitive: false, scope: :department_id }
+  belongs_to :department
   has_many :reviews, dependent: :destroy
 
   filterrific(
