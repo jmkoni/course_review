@@ -15,7 +15,7 @@ gem 'bcrypt', '~> 3.1.13'
 gem 'cancancan'
 gem 'devise'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'strong_password', '~> 0.0.6'
+gem 'strong_password', '~> 0.0.7'
 
 # Assets
 gem 'bootstrap'
