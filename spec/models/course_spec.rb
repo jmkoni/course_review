@@ -78,6 +78,22 @@ RSpec.describe Course, type: :model do
       end
     end
 
+    describe 'with_department_id' do
+      it 'gets all reviews with query in review' do
+        school = create(:school)
+        department = create(:department, school: school)
+        course1 = create(:course, department: department)
+        course2 = create(:course)
+        course3 = create(:course)
+        aggregate_failures do
+          expect(Course.with_averages.with_school_id(school.id).length).to eq 1
+          expect(Course.with_averages.with_school_id(school.id)).to include course1
+          expect(Course.with_averages.with_school_id(school.id)).not_to include course2
+          expect(Course.with_averages.with_school_id(school.id)).not_to include course3
+        end
+      end
+    end
+
     describe 'with_avg_rating_gte' do
       it 'gets all reviews with query in review' do
         course1 = create(:course)
@@ -149,7 +165,8 @@ RSpec.describe Course, type: :model do
 
   context 'methods' do
     it 'returns the full course number' do
-      course = Course.new(name: 'Capstone', department: 'SWENG', number: '123')
+      department = build(:department, short_name: 'SWENG')
+      course = Course.new(name: 'Capstone', department: department, number: '123')
       expect(course.full_number).to eq 'SWENG 123'
     end
 
@@ -177,15 +194,10 @@ end
 #
 # Table name: courses
 #
-#  id         :bigint           not null, primary key
-#  department :string
-#  name       :string
-#  number     :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  school_id  :bigint
-#
-# Indexes
-#
-#  index_courses_on_school_id  (school_id)
+#  id            :bigint           not null, primary key
+#  name          :string
+#  number        :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  department_id :integer
 #

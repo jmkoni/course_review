@@ -12,51 +12,51 @@ class ActionController::Base
 
   # Sigs for route /schools/:school_id/courses/:course_id/reviews(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def school_course_reviews_path(*args, **kwargs); end
+  def school_department_course_reviews_path(*args, **kwargs); end
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def school_course_reviews_url(*args, **kwargs); end
+  def school_department_course_reviews_url(*args, **kwargs); end
 
   # Sigs for route /schools/:school_id/courses/:course_id/reviews/new(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_school_course_review_path(*args, **kwargs); end
+  def new_school_department_course_review_path(*args, **kwargs); end
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_school_course_review_url(*args, **kwargs); end
+  def new_school_department_course_review_url(*args, **kwargs); end
 
   # Sigs for route /schools/:school_id/courses/:course_id/reviews/:id/edit(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_school_course_review_path(*args, **kwargs); end
+  def edit_school_department_course_review_path(*args, **kwargs); end
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_school_course_review_url(*args, **kwargs); end
+  def edit_school_department_course_review_url(*args, **kwargs); end
 
   # Sigs for route /schools/:school_id/courses/:course_id/reviews/:id(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def school_course_review_path(*args, **kwargs); end
+  def school_department_course_review_path(*args, **kwargs); end
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def school_course_review_url(*args, **kwargs); end
+  def school_department_course_review_url(*args, **kwargs); end
 
   # Sigs for route /schools/:school_id/courses(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def school_courses_path(*args, **kwargs); end
+  def school_department_courses_path(*args, **kwargs); end
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def school_courses_url(*args, **kwargs); end
+  def school_department_courses_url(*args, **kwargs); end
 
   # Sigs for route /schools/:school_id/courses/new(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_school_course_path(*args, **kwargs); end
+  def new_school_department_course_path(*args, **kwargs); end
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def new_school_course_url(*args, **kwargs); end
+  def new_school_department_course_url(*args, **kwargs); end
 
   # Sigs for route /schools/:school_id/courses/:id/edit(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_school_course_path(*args, **kwargs); end
+  def edit_school_department_course_path(*args, **kwargs); end
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def edit_school_course_url(*args, **kwargs); end
+  def edit_school_department_course_url(*args, **kwargs); end
 
   # Sigs for route /schools/:school_id/courses/:id(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def school_course_path(*args, **kwargs); end
+  def school_department_course_path(*args, **kwargs); end
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }
-  def school_course_url(*args, **kwargs); end
+  def school_department_course_url(*args, **kwargs); end
 
   # Sigs for route /schools(.:format)
   sig { params(args: T.untyped, kwargs: T.untyped).returns(String) }

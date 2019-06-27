@@ -44,20 +44,20 @@ RSpec.describe Department, type: :model do
         review2 = create(:review, course: course2, work_required: 5, difficulty: 10, rating: 1, grade: 46)
         review3 = create(:review, course: course3, work_required: 10, difficulty: 1, rating: 5, grade: 72)
         aggregate_failures do
-          expect(Department.with_averages.sorted_by('short_name_asc').first).to eq deparmtnet1
-          expect(Department.with_averages.sorted_by('short_name_desc').first).to eq deparmtnet2
-          expect(Department.with_averages.sorted_by('school_asc').first).to eq deparmtnet2
-          expect(Department.with_averages.sorted_by('school_desc').first).to eq deparmtnet1
-          expect(Department.with_averages.sorted_by('name_asc').first).to eq deparmtnet1
-          expect(Department.with_averages.sorted_by('name_desc').first).to eq deparmtnet2
-          expect(Department.with_averages.sorted_by('avg_work_desc').first).to eq deparmtnet3
-          expect(Department.with_averages.sorted_by('avg_work_asc').first).to eq deparmtnet1
-          expect(Department.with_averages.sorted_by('avg_rating_desc').first).to eq deparmtnet1
-          expect(Department.with_averages.sorted_by('avg_rating_asc').first).to eq deparmtnet2
-          expect(Department.with_averages.sorted_by('avg_grade_desc').first).to eq deparmtnet1
-          expect(Department.with_averages.sorted_by('avg_grade_asc').first).to eq deparmtnet2
-          expect(Department.with_averages.sorted_by('avg_difficulty_desc').first).to eq deparmtnet2
-          expect(Department.with_averages.sorted_by('avg_difficulty_asc').first).to eq deparmtnet3
+          expect(Department.with_averages.sorted_by('short_name_asc').first).to eq department1
+          expect(Department.with_averages.sorted_by('short_name_desc').first).to eq department2
+          expect(Department.with_averages.sorted_by('school_asc').first).to eq department2
+          expect(Department.with_averages.sorted_by('school_desc').first).to eq department1
+          expect(Department.with_averages.sorted_by('name_asc').first).to eq department1
+          expect(Department.with_averages.sorted_by('name_desc').first).to eq department2
+          expect(Department.with_averages.sorted_by('avg_work_desc').first).to eq department3
+          expect(Department.with_averages.sorted_by('avg_work_asc').first).to eq department1
+          expect(Department.with_averages.sorted_by('avg_rating_desc').first).to eq department1
+          expect(Department.with_averages.sorted_by('avg_rating_asc').first).to eq department2
+          expect(Department.with_averages.sorted_by('avg_grade_desc').first).to eq department1
+          expect(Department.with_averages.sorted_by('avg_grade_asc').first).to eq department2
+          expect(Department.with_averages.sorted_by('avg_difficulty_desc').first).to eq department2
+          expect(Department.with_averages.sorted_by('avg_difficulty_asc').first).to eq department3
           expect { Department.with_averages.sorted_by('oh_no') }.to raise_error(ArgumentError, 'Invalid sort option: "oh_no"')
         end
       end
@@ -91,9 +91,9 @@ RSpec.describe Department, type: :model do
         review3 = create(:review, rating: 5, course: course3)
         aggregate_failures do
           expect(Department.with_averages.with_avg_rating_gte(3).length).to eq 2
-          expect(Department.with_averages.with_avg_rating_gte(3)).not_to include deaprtment2
-          expect(Department.with_averages.with_avg_rating_gte(3)).to include deaprtment1
-          expect(Department.with_averages.with_avg_rating_gte(3)).to include deaprtment3
+          expect(Department.with_averages.with_avg_rating_gte(3)).not_to include department2
+          expect(Department.with_averages.with_avg_rating_gte(3)).to include department1
+          expect(Department.with_averages.with_avg_rating_gte(3)).to include department3
         end
       end
     end
@@ -180,17 +180,16 @@ end
 
 # == Schema Information
 #
-# Table name: courses
+# Table name: departments
 #
 #  id         :bigint           not null, primary key
-#  department :string
 #  name       :string
-#  number     :string
+#  short_name :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  school_id  :bigint
 #
 # Indexes
 #
-#  index_courses_on_school_id  (school_id)
+#  index_departments_on_school_id  (school_id)
 #

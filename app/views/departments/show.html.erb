@@ -1,0 +1,103 @@
+<h2>
+    <%= @department.name %> at <%= link_to @department.school.name, @department.school %>
+</h2>
+<% if can? :edit, @department %>
+  <%= link_to 'Edit', edit_school_department_path(school_id: @school.id, id: @department.id) %><br/><br/>
+<% end %>
+<p>
+  <strong>short_name:</strong>
+  <%= @department.short_name %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= link_to @school.name, school_path(id: @school.id) %>
+</p>
+
+<p>
+  <h4>Courses</h4>
+  <% if can? :create, Course %>
+    <%= link_to 'New Course', new_school_department_course_path(school_id: @school.id, department_id: @department.id) %>
+  <% end %>
+  <br/>
+  <div class="card card-body bg-light">
+    <%= form_for_filterrific @filterrific do |f| %>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">Search</label>
+            <%= f.text_field(
+              :search_query,
+              class: 'filterrific-periodically-observed'
+            ) %>
+          </div>
+        </div>
+        <% unless @department %>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="font-weight-bold">Department</label>
+              <%= f.select(
+                :with_department_id,
+                @filterrific.select_options[:with_department_id],
+                { include_blank: '- Any -' },
+                { class: 'form-control' }
+              ) %>
+            </div>
+          </div>
+        <% end %>
+        <% unless @school %>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label class="font-weight-bold">School</label>
+              <%= f.select(
+                :with_school_id,
+                @filterrific.select_options[:with_school_id],
+                { include_blank: '- Any -' },
+                { class: 'form-control' }
+              ) %>
+            </div>
+          </div>
+        <% end %>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">Sorted by</label>
+            <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by],
+                {},
+                { class: 'form-control' }
+            ) %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">Average rating higher than</label>
+            <%= f.number_field(:with_avg_rating_gte) %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">Average grade higher than</label>
+            <%= f.number_field(:with_avg_grade_gte) %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">Average difficulty lower than</label>
+            <%= f.number_field(:with_avg_difficulty_lte) %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="font-weight-bold">Average work required lower than</label>
+            <%= f.number_field(:with_avg_work_lte) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= render 'courses/list', courses: @courses %>
+</p>

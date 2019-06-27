@@ -1,11 +1,9 @@
-<h1>Courses</h1>
-<% if can? :create, Course %>
-  <% if @department %>
-    <%= link_to 'New Course', new_school_department_course_path(school_id: @school.id, department_id: @department.id) %>
-  <% elsif @school %>
-    <%= link_to 'Select a department first to add a new course', school_departments_path(school_id: @school.id, department_id: 'all') %>
+<h1>Departments</h1>
+<% if can? :create, Department %>
+  <% if @school %>
+    <%= link_to 'New Department', new_school_department_path(school_id: @school.id) %>
   <% else %>
-    <%= link_to 'Select a department first to add a new course', school_departments_path(school_id: 'all', department_id: 'all') %>
+    <%= link_to 'Select a school first to add a new department', schools_path %>
   <% end %>
 <% end %>
 <br/>
@@ -21,19 +19,6 @@
           ) %>
         </div>
       </div>
-      <% unless @department %>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label class="font-weight-bold">Department</label>
-            <%= f.select(
-              :with_department_id,
-              @filterrific.select_options[:with_department_id],
-              { include_blank: '- Any -' },
-              { class: 'form-control' }
-            ) %>
-          </div>
-        </div>
-      <% end %>
       <% unless @school %>
         <div class="col-md-3">
           <div class="form-group">
@@ -88,4 +73,4 @@
   <% end %>
 </div>
 
-<%= render 'list', courses: @courses %>
+<%= render 'list', departments: @departments %>

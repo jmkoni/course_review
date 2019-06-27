@@ -9,7 +9,7 @@ task :get_uop_classes do
   ]
 
   departments = {}
-  urls.each do | dep_name, url |
+  urls.each do |dep_name, url|
     departments = parse_html(url, dep_name, departments)
   end
 
@@ -20,9 +20,9 @@ end
 
 def parse_html(url, department, departments)
   results = Nokogiri::HTML(HTTParty.get(url))
-  results.css('div.faq_questions').css('div.faq_qa').each do | faq |
+  results.css('div.faq_questions').css('div.faq_qa').each do |faq|
     course_name = faq.css('div.faq_question').text.gsub('(Proctored course)', '').strip
-    parsed_text = faq.css('div.faq_answer').text[/[A-Z]{2,5}( )\d{4}/].split(" ")
+    parsed_text = faq.css('div.faq_answer').text[/[A-Z]{2,5}( )\d{4}/].split(' ')
     dep_short = parsed_text[0].strip
     course_num = parsed_text[1].strip
     if departments[dep_short]

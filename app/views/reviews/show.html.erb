@@ -1,6 +1,6 @@
 <p>
   <strong>Course:</strong>
-  <%= link_to @review.course.full_number, school_course_path(school_id: @review.school.id, id: @review.course.id) %>
+  <%= link_to @review.course.full_number, school_department_course_path(school_id: @school.id, department_id: @department.id, id: @course.id) %>
 </p>
 
 <p>
@@ -49,5 +49,5 @@
 </p>
 
 <% if can? :update, Course %>
-  <%= link_to 'Edit', edit_school_course_review_path(@review) %>
+  <%= link_to 'Edit', edit_school_department_course_review_path(@review) %>
 <% end %>

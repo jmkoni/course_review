@@ -88,7 +88,7 @@ class School < ApplicationRecord
             avg(reviews.difficulty) as avg_difficulty,
             avg(reviews.work_required) as avg_work,
             avg(reviews.grade) as avg_grade')
-      .left_joins(courses: [:reviews])
+      .left_joins(departments: { courses: [:reviews] })
       .group('schools.id')
   }
 

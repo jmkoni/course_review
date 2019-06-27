@@ -13,7 +13,7 @@ class Review < ApplicationRecord
 
   belongs_to :course
   belongs_to :user
-  has_one :school, through: :course
+  has_one :department, through: :course
 
   filterrific(
     default_filter_params: { sorted_by: 'rating_desc' },
@@ -42,11 +42,11 @@ class Review < ApplicationRecord
     # of interpolation arguments. Adjust this if you
     # change the number of OR conditions.
     num_or_conditions = 3
-    joins(:course).where(
+    joins(course: :department).where(
       terms.map do
         or_clauses = [
           'LOWER(reviews.notes) LIKE ?',
-          'LOWER(courses.department) LIKE ?',
+          'LOWER(departments.name) LIKE ?',
           'LOWER(courses.name) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
@@ -62,9 +62,11 @@ class Review < ApplicationRecord
     when /^user_/
       order(Arel.sql("reviews.user_id #{direction}"))
     when /^course_/
-      order(Arel.sql("LOWER(courses.department) #{direction}")).includes(:course).references(:course)
+      order(Arel.sql("LOWER(courses.name) #{direction}")).includes(:course).references(:course)
+    when /^department_/
+      order(Arel.sql("LOWER(departments.name) #{direction}")).includes(course: [:department]).references(:course)
     when /^school_/
-      order(Arel.sql("LOWER(schools.name) #{direction}")).includes(course: [:school]).references(:course)
+      order(Arel.sql("LOWER(schools.name) #{direction}")).includes(course: { department: :school }).references(:course)
     when /^difficulty_/
       order(Arel.sql("reviews.difficulty #{direction}"))
     when /^rating_/
@@ -85,7 +87,7 @@ class Review < ApplicationRecord
   }
 
   scope :with_school_id, ->(school_ids) {
-    joins(:course).where('courses.school_id = ?', [*school_ids])
+    joins(course: :department).where('departments.school_id = ?', [*school_ids])
   }
 
   scope :with_rating_gte, ->(ref_num) {

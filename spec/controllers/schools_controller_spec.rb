@@ -88,7 +88,7 @@ RSpec.describe SchoolsController, type: :controller do
   describe 'GET #show' do
     it 'renders the show template' do
       get :show, params: { id: school.to_param }
-      expect(response).to redirect_to school_courses_path(school)
+      expect(response).to redirect_to school_departments_path(school_id: school.id)
     end
   end
 

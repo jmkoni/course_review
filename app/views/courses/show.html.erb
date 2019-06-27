@@ -1,22 +1,22 @@
 <h2>
-    <%= @course.name %> at <%= link_to @course.school.name, @course.school %>
+    <%= @course.name %> at <%= link_to @course.department.school.name, @course.department.school %>
 </h2> <% if can? :edit, @course %>
-<%= link_to 'Edit', edit_school_course_path(school_id: @school.id, course_id: @course.id) %>
+  <%= link_to 'Edit', edit_school_department_course_path(school_id: @school.id, course_id: @course.id) %>
 <% end %>
 <p>
   <strong>Number:</strong>
-  <%= @course.number %>
+  <%= @course.full_number %>
 </p>
 
 <p>
   <strong>Department:</strong>
-  <%= @course.department %>
+  <%= link_to @department.name, school_department_path(school_id: @school.id, department_id: @department.id) %>
 </p>
 
 <p>
   <h4>Reviews</h4>
   <% if can? :create, Review %>
-    <%= link_to 'New Review', new_school_course_review_path(school_id: @school.id, course_id: @course.id) %>
+    <%= link_to 'New Review', new_school_department_course_review_path(school_id: @school.id, department_id: @department.id, course_id: @course.id) %>
   <% end %>
   <br/>
   <div class="card card-body bg-light">

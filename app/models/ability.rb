@@ -6,12 +6,14 @@ class Ability
 
   def initialize(user)
     can :read, School
+    can :read, Department
     can :read, Course
     can :read, Review
     return if user.blank?
     return if user.deactivated
 
     can :read, Course
+    can :read, Department
     can :read, School
     can :create, Review
     can :read, Review
