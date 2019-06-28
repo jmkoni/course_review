@@ -391,7 +391,7 @@
       "868": "Commercial Solar Electric Systems",
       "878": "Solar Project Development and Finance",
       "880": "Facility Energy Management",
-      "881": "Effective Facility Management and Planning",
+      "881": "Effective Facility Management and Planning"
     }
   },
   "ARCH": {
@@ -599,7 +599,7 @@
       "552": "Mechanics of the Musculoskeletal System",
       "553": "Engineering of Human Work",
       "576": "Bioengineering of the Cardiovascular System",
-      "591": "Bioengineering Ethics and Professional Development",
+      "591": "Bioengineering Ethics and Professional Development"
     }
   },
   "BIOET": {
@@ -611,7 +611,7 @@
       "504": "Research Integrity in Science and Engineering",
       "533": "Ethical Dimensions of Renewable Energy and Sustainability Systems",
       "540": "Bioethics, Biopower, Biopolitics",
-      "590": "Bioethics Colloquium",
+      "590": "Bioethics Colloquium"
     }
   },
   "BCHEM": {
@@ -642,7 +642,7 @@
       "572": "Integrative and Cellular Mammalian Physiology II Endocrine Physiology",
       "591": "Molecular Evolutionary Biology Seminar",
       "592": "Critical Evaluation of Literature in Biology",
-      "893": "Experiential Teaching in Biology",
+      "893": "Experiential Teaching in Biology"
     }
   },
   "BME": {
@@ -650,7 +650,7 @@
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/bme/",
     "courses": {
       "504": "Numerical Methods in Bioengineering",
-      "591": "Bioengineering Ethics and Professional Development",
+      "591": "Bioengineering Ethics and Professional Development"
     }
   },
   "BMS": {
@@ -691,7 +691,7 @@
       "511": "Structural BioComposites",
       "550": "Applied Bioproducts Marketing",
       "551": "Sustainable Business Strategies",
-      "602": "Supervised Experiences in College Teaching",
+      "602": "Supervised Experiences in College Teaching"
     }
   },
   "BUS": {
@@ -706,7 +706,7 @@
       "580": "Business and Sustainability",
       "588": "Strategic Management",
       "589": "Strategic Venture Planning and Innovation",
-      "890": "Colloquium",
+      "890": "Colloquium"
     }
   },
   "BA": {
@@ -769,7 +769,7 @@
       "828": "Negotiations",
       "834": "Portfolio Management",
       "841": "Principles of Applied Project Management",
-      "871": "Business Analytics",
+      "871": "Business Analytics"
     }
   },
   "BUSAD": {
@@ -833,7 +833,7 @@
     "name": "Business Law",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/blaw/",
     "courses": {
-      "525": "Business Law for Innovation and Competition",
+      "525": "Business Law for Innovation and Competition"
     }
   },
   "CMBIO": {
@@ -856,7 +856,7 @@
       "536": "Heterogeneous Catalysis",
       "544": "General Transport Phenomena",
       "546": "Transport Phenomena II",
-      "576": "Environmental Transport Processes",
+      "576": "Environmental Transport Processes"
     }
   },
   "CHEM": {
@@ -967,7 +967,7 @@
       "521": "Advanced Akkadian",
       "522": "Comparative Semitics",
       "592": "Proseminar",
-      "593": "Research Seminar",
+      "593": "Research Seminar"
     }
   },
   "CTS": {
@@ -1179,7 +1179,7 @@
       "570": "Forces in Contemporary Literature",
       "577": "Critical Perspectives on Modern Chinese Literature",
       "580": "Contemporary Literary Theory",
-      "589": "Technology in Foreign Language Education",
+      "589": "Technology in Foreign Language Education"
     }
   },
   "CMED": {
@@ -1401,7 +1401,7 @@
       "862": "Analytics Programming in Python",
       "871": "Data Visualization",
       "881": "Data-Driven Decision Making",
-      "888": "Design and Implementation of Analytics Systems",
+      "888": "Design and Implementation of Analytics Systems"
     }
   },
   "EBIZ": {
@@ -1438,7 +1438,7 @@
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/eclgy/",
     "courses": {
       "510": "Classical Ecology",
-      "515": "Advances in Ecology",
+      "515": "Advances in Ecology"
     }
   },
   "ECON": {
@@ -1747,7 +1747,7 @@
       "562": "Design for Additive Manufacturing",
       "581": "Engineering Design Studio I",
       "582": "Engineering Design Studio II",
-      "585": "Engineering Design Portfolio",
+      "585": "Engineering Design Portfolio"
     }
   },
   "ENGMT": {
@@ -1759,7 +1759,7 @@
       "511": "Engineering for Energy and the Environment",
       "530": "Engineering Law",
       "539": "Engineering Management Strategy",
-      "841": "Application of Statistics in Quality and Continuous Improvement in Engineering",
+      "841": "Application of Statistics in Quality and Continuous Improvement in Engineering"
     }
   },
   "EMCH": {
@@ -1793,7 +1793,7 @@
       "581": "Micromechanics of Composites",
       "524A": "Mathematical Methods in Engineering",
       "524B": "Mathematical Methods in Engineering",
-      "524C": "Mathematical Methods in Engineering",
+      "524C": "Mathematical Methods in Engineering"
     }
   },
   "ESC": {
@@ -1930,7 +1930,7 @@
       "540": "Biodegradation and Bioremediation",
       "550": "Chemical Fate and Transport",
       "569": "Environmental Risk Assessment",
-      "591": "Research Methods in Environmental Engineering",
+      "591": "Research Methods in Environmental Engineering"
     }
   },
   "FIN": {
@@ -2057,7 +2057,7 @@
     "courses": {
       "503": "Analytical Methods in Fuel Science",
       "504": "Problems in Fuels Engineering",
-      "506": "Carbon Reactions",
+      "506": "Carbon Reactions"
     }
   },
   "GENET": {
@@ -2182,14 +2182,14 @@
       "589": "Technology in Foreign Language Education",
       "591": "German Literary Theory and Criticism",
       "592": "Seminar in German Literature",
-      "593": "Seminar in German Philology and German Linguistics",
+      "593": "Seminar in German Philology and German Linguistics"
     }
   },
   "GREEK": {
     "name": "Greek",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/greek/",
     "courses": {
-      "520": "Greek Mythography",
+      "520": "Greek Mythography"
     }
   },
   "HADM": {
@@ -2208,7 +2208,7 @@
       "546": "Health Planning for Public Administration",
       "548": "Health Care Quality Assurance",
       "551": "Health Care Law",
-      "552": "Health Delivery Systems",
+      "552": "Health Delivery Systems"
     }
   },
   "HHD": {
@@ -2233,7 +2233,7 @@
       "552": "Current Health Education Issues",
       "553": "Multicultural Health Issues",
       "582": "Spirituality and Culture in Health and Education Professions",
-      "591": "Capstone Seminar in Health Education",
+      "591": "Capstone Seminar in Health Education"
     }
   },
   "HPA": {
@@ -2270,7 +2270,7 @@
       "850": "Health Care Marketing",
       "853": "Leadership Ethics in Health Services Organizations",
       "854": "Population Health and Quality Management in Health Services Organizations",
-      "855": "Information Systems in Health Services Administration",
+      "855": "Information Systems in Health Services Administration"
     }
   },
   "HEBR": {
@@ -2406,7 +2406,7 @@
       "503": "Research Methods in Hospitality Management",
       "511": "Services Marketing Hospitality Management Seminar",
       "585": "Seminar in Hospitality Management",
-      "586": "Data Analysis in Hospitality Management",
+      "586": "Data Analysis in Hospitality Management"
     }
   },
   "HDFS": {
@@ -2456,7 +2456,7 @@
       "578": "Contemporary Issues in Interdisciplinary Educational Intervention Sciences",
       "579": "Seminar in Adult Development and Aging",
       "595": "Field Projects in Individual and Family Studies",
-      "596B": "**SPECIAL TOPICS**",
+      "596B": "**SPECIAL TOPICS**"
     }
   },
   "HDNRE": {
@@ -2513,7 +2513,7 @@
       "530": "Seminar in Comparative Arts",
       "535": "Topics in Cultural and Intellectual History",
       "560": "Interrelations in the Humanities",
-      "580": "Master's Production",
+      "580": "Master's Production"
     }
   },
   "IE": {
@@ -2580,7 +2580,7 @@
       "531": "Information Technology Law",
       "539": "IT Systems Seminar",
       "561": "Web Security and Privacy",
-      "846": "Network and Predictive Analytics for Socio-Technical Systems",
+      "846": "Network and Predictive Analytics for Socio-Technical Systems"
     }
   },
   "IST": {
@@ -2653,7 +2653,7 @@
     "name": "Insurance",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/ins/",
     "courses": {
-      "575": "Risk Management",
+      "575": "Risk Management"
     }
   },
   "IBIOS": {
@@ -2755,7 +2755,7 @@
     "name": "Jewish Studies",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/jst/",
     "courses": {
-      "535": "Studies in Jewish American Literature",
+      "535": "Studies in Jewish American Literature"
     }
   },
   "KINES": {
@@ -2822,14 +2822,14 @@
       "568": "Doing Research in Children's Literature",
       "580": "Media Literacy, Language, and Literacy in Schools",
       "594": "Research in Language and Literacy Education",
-      "870": "Teaching Reading & Writing to K-12 English Learners",
+      "870": "Teaching Reading & Writing to K-12 English Learners"
     }
   },
   "LATIN": {
     "name": "Latin",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/latin/",
     "courses": {
-      "510": "Latin Seminar",
+      "510": "Latin Seminar"
     }
   },
   "LTNST": {
@@ -2942,7 +2942,7 @@
       "535": "Interpersonal and Group Behavior",
       "540": "Strategy",
       "545": "Project Team Leadership",
-      "575": "Management of Projects",
+      "575": "Management of Projects"
     }
   },
   "MNGMT": {
@@ -3016,7 +3016,7 @@
       "527": "Derivative Securities",
       "801": "Econometric Analysis",
       "821": "Numerical Optimization for Finance",
-      "822": "Stochastic Calculus in Finance",
+      "822": "Stochastic Calculus in Finance"
     }
   },
   "MBADM": {
@@ -3140,7 +3140,7 @@
       "583": "Introduction to K-Theory",
       "584": "Introduction to von Neumann Algebras",
       "585": "Topics in Mathematical Modeling",
-      "588": "Complexity in Computer Algebra",
+      "588": "Complexity in Computer Algebra"
     }
   },
   "MTHED": {
@@ -3242,7 +3242,7 @@
       "820": "Time Series Analytics for Meteorological Data",
       "825": "Predictive Analytic Techniques for Meteorological Data",
       "830": "Weather and Climate Analytics Applications",
-      "880": "Communication of Research in Atmospheric Science",
+      "880": "Communication of Research in Atmospheric Science"
     }
   },
   "MICRO": {
@@ -3263,7 +3263,7 @@
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/mnpr/",
     "courses": {
       "505": "Particle Separation",
-      "507": "Hydrometallurgical Processing",
+      "507": "Hydrometallurgical Processing"
     }
   },
   "MNG": {
@@ -3272,7 +3272,7 @@
     "courses": {
       "512": "Valuation of Mineral Properties and Mining Projects",
       "541": "Surface Mine Equipment Selection Analysis",
-      "554": "Rock Mechanics Design",
+      "554": "Rock Mechanics Design"
     }
   },
   "MCIBS": {
@@ -3292,7 +3292,7 @@
       "589": "Colloquium in Bioinformatics and Genomics",
       "591": "Ethics in the Life Sciences",
       "592": "Current Research Seminar",
-      "593": "Molecular Biology Laboratory",
+      "593": "Molecular Biology Laboratory"
     }
   },
   "MUSIC": {
@@ -3496,7 +3496,7 @@
       "540": "Theory of Plasma Waves",
       "542": "Source and Detector Technologies for Nuclear Security",
       "543": "Nuclear Security Education Laboratory",
-      "544": "Global Nuclear Security Policies",
+      "544": "Global Nuclear Security Policies"
     }
   },
   "NURS": {
@@ -3629,7 +3629,7 @@
       "553": "Gastrointestinal and Immunomodulatory Therapeutics",
       "554": "Anticancer Therapeutics",
       "561": "Neuropharmacology",
-      "562": "Endocrine Pharmacology",
+      "562": "Endocrine Pharmacology"
     }
   },
   "PHIL": {
@@ -3693,7 +3693,7 @@
       "570": "Particle Astrophysics",
       "571": "Modern Atomic Physics",
       "572": "Laser Physics and Quantum Optics",
-      "580": "Elements of Network Science and Its Applications",
+      "580": "Elements of Network Science and Its Applications"
     }
   },
   "PHSIO": {
@@ -3704,7 +3704,7 @@
       "567": "Advanced Exercise Physiology",
       "571": "Integrative and Cellular Mammalian Physiology I",
       "572": "Integrative and Cellular Mammalian Physiology II Endocrine Physiology",
-      "577": "Cardiovascular Physiology",
+      "577": "Cardiovascular Physiology"
     }
   },
   "PSIO": {
@@ -3714,7 +3714,7 @@
       "501": "Scientific Analysis and Presentation",
       "503": "Cellular Physiology",
       "504": "Cellular and Integrative Physiology",
-      "505": "Cellular and Integrative Physiology II",
+      "505": "Cellular and Integrative Physiology II"
     }
   },
   "PLBIO": {
@@ -4592,7 +4592,7 @@
     "name": "Wood Products",
     "url": "https://bulletins.psu.edu/university-course-descriptions/graduate/wp/",
     "courses": {
-      "537": "International Wood Products Marketing and Trade",
+      "537": "International Wood Products Marketing and Trade"
     }
   },
   "WFED": {

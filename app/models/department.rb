@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Department < ApplicationRecord
-  validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :school_id }
+  validates :name, presence: true
   validates :short_name, presence: true, uniqueness: { case_sensitive: false, scope: :school_id }
   belongs_to :school
   has_many :courses, dependent: :destroy
