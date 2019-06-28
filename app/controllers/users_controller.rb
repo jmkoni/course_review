@@ -21,25 +21,25 @@ class UsersController < ApplicationController
 
   # PUT /users/1/deactivate
   def deactivate
-    @user.update(deactivated: true)
+    @user.update_without_password(deactivated: true)
     redirect_to users_url, notice: "#{@user.email} was successfully deactivated."
   end
 
   # PUT /users/1/reactivate
   def reactivate
-    @user.update(deactivated: false)
+    @user.update_without_password(deactivated: false)
     redirect_to users_url, notice: "#{@user.email} was successfully reactivated."
   end
 
   # PUT /users/1/promote
   def promote
-    @user.update(is_admin: true)
+    @user.update_without_password(is_admin: true)
     redirect_to users_url, notice: "#{@user.email} was successfully promoted to admin."
   end
 
   # PUT /users/1/demote
   def demote
-    @user.update(is_admin: false)
+    @user.update_without_password(is_admin: false)
     redirect_to users_url, notice: "#{@user.email} was successfully demoted from admin."
   end
 

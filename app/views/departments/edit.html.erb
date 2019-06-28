@@ -1,0 +1,5 @@
+<h1>Editing Department</h1>
+
+<%= render 'form', department: @department %>
+
+<%= link_to 'Show', school_department_path(school_id: @school.id, id: @department.id) %>

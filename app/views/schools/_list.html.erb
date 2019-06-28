@@ -14,34 +14,35 @@
     </div>
     <%= render_filterrific_spinner %>
   </div>
-  <table class="table table-hover table-sm table-responsive">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :name) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :short_name) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_rating) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_difficulty) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_work) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_grade) %></th>
-        <th scope="col" colspan="2"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% schools.each do |school| %>
+  <% unless schools.load.empty? %>
+    <table class="table table-hover table-sm table-responsive">
+      <thead class="thead-light">
         <tr>
-          <td><%= link_to school.name, school %></td>
-          <td><%= school.short_name %></td>
-          <td><%= school.avg_rating.round(1) %></td>
-          <td><%= school.avg_difficulty.round(1) %></td>
-          <td><%= school.avg_work.round(1) %></td>
-          <td><%= school.avg_grade.round(1) %></td>
-          <% if can? :manage, School %>
-            <td><%= link_to 'Edit', edit_school_path(school) %></td>
-            <td><%= link_to 'Delete', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :name) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :short_name) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_rating) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_difficulty) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_work) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_grade) %></th>
+          <th scope="col" colspan="2"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% schools.each do |school| %>
+          <tr>
+            <td><%= link_to school.name, school %></td>
+            <td><%= school.short_name %></td>
+            <td><%= school.avg_rating ? school.avg_rating.round(1) : "" %></td>
+            <td><%= school.avg_difficulty ? school.avg_difficulty.round(1) : ""  %></td>
+            <td><%= school.avg_work ? school.avg_work.round(1) : "" %></td>
+            <td><%= school.avg_grade ? school.avg_grade.round(1) : "" %></td>
+            <% if can? :manage, School %>
+              <td><%= link_to 'Edit', edit_school_path(school) %></td>
+              <td><%= link_to 'Delete', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>

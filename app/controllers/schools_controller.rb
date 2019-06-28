@@ -21,7 +21,7 @@ class SchoolsController < ApplicationController
 
   # GET /schools/1
   def show
-    redirect_to school_courses_path(@school)
+    redirect_to school_departments_path(school_id: @school.id)
   end
 
   # GET /schools/new

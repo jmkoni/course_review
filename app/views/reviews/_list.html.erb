@@ -14,45 +14,47 @@
     </div>
     <%= render_filterrific_spinner %>
   </div>
-  <table id="reviews_index" class="table table-hover table-sm table-responsive">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :school) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :course) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :user) %></th>
-        <th scope="col">Notes</th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :work_required) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :difficulty) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :rating) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :experience_with_topic) %></th>
-        <th scope="col">Year</th>
-        <th scope="col">Term</th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :grade) %></th>
-        <th scope="col" colspan="2"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% reviews.each do |review| %>
+  <% unless reviews.load.empty? %>
+    <table id="reviews_index" class="table table-hover table-sm table-responsive">
+      <thead class="thead-light">
         <tr>
-          <td scope="row"><%= link_to review.course.school.name, school_path(id: review.course.school.id) %></td>
-          <td scope="row"><%= link_to review.course.name, school_course_path(school_id: review.course.school.id, id: review.course.id) %></td>
-          <td class="user truncate"><div><%= review.user.uuid %></div></td>
-          <td class="notes truncate"><div><%= link_to 'Full Notes', school_course_review_path(school_id: review.course.school.id, course_id: review.course_id, id: review.id) %><%= ": " + review.notes %></div></td>
-          <td><%= review.work_required %></td>
-          <td><%= review.difficulty %></td>
-          <td><%= review.rating %></td>
-          <td><%= review.experience_with_topic %></td>
-          <td><%= review.year %></td>
-          <td><%= review.term %></td>
-          <td><%= review.display_grade %></td>
-          <% if can? :edit, review %>
-            <td><%= link_to 'Edit', edit_school_course_review_path(school_id: review.course.school.id, course_id: review.course_id, id: review.id) %></td>
-            <td><%= link_to 'Destroy', school_course_review_path(id: review.id, course_id: review.course.id, school_id: review.course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :school) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :course) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :user) %></th>
+          <th scope="col">Notes</th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :work_required) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :difficulty) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :rating) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :experience_with_topic) %></th>
+          <th scope="col">Year</th>
+          <th scope="col">Term</th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :grade) %></th>
+          <th scope="col" colspan="2"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= paginate reviews %>
+      </thead>
+
+      <tbody>
+        <% reviews.each do |review| %>
+          <tr>
+            <td scope="row"><%= link_to review.course.department.school.name, school_path(id: review.course.department.school.id) %></td>
+            <td scope="row"><%= link_to review.course.name, school_department_course_path(school_id: review.course.department.school.id, department_id: review.course.department.id, id: review.course.id) %></td>
+            <td class="user truncate"><div><%= review.user.uuid %></div></td>
+            <td class="notes truncate"><div><%= link_to 'Full Notes', school_department_course_review_path(school_id: review.course.department.school.id, department_id: review.course.department.id, course_id: review.course_id, id: review.id) %><%= ": " + review.notes %></div></td>
+            <td><%= review.work_required %></td>
+            <td><%= review.difficulty %></td>
+            <td><%= review.rating %></td>
+            <td><%= review.experience_with_topic %></td>
+            <td><%= review.year %></td>
+            <td><%= review.term %></td>
+            <td><%= review.display_grade %></td>
+            <% if can? :edit, review %>
+              <td><%= link_to 'Edit', edit_school_department_course_review_path(school_id: review.course.department.school.id, department_id: review.course.department.id, course_id: review.course_id, id: review.id) %></td>
+              <td><%= link_to 'Destroy', school_department_course_review_path(id: review.id, course_id: review.course.id, school_id: review.course.department.school.id, department_id: review.course.department.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate reviews %>
+  <% end %>
 </div>

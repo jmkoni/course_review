@@ -2,4 +2,4 @@
 
 <%= render 'form', review: @review %>
 
-<%= link_to 'Show', school_course_review_path(@review) %> |
+<%= link_to 'Show', school_department_course_review_path(school_id: @school.id, department_id: @department.id, course_id: @course.id, id: @review.id) %> |

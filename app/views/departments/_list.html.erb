@@ -1,0 +1,51 @@
+<div id="filterrific_results">
+  <div class="card card-body bg-light d-block p-3 my-3">
+    <div class="row">
+      <div class="col-md-10">
+        <% if departments.load.empty? %>
+          No departments at this time!
+        <% else %>
+          Displaying <strong><%= pluralize(departments.size, 'department') %></strong>
+        <% end %>
+      </div>
+      <div class="col-md-2">
+        <%= link_to "Reset filters", reset_filterrific_url, class: 'btn btn-secondary align-middle' %>
+      </div>
+    </div>
+    <%= render_filterrific_spinner %>
+  </div>
+  <% unless departments.load.empty? %>
+    <table class="table table-hover table-sm table-responsive">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :name) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :short_name) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :school) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_rating) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_difficulty) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_work) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_grade) %></th>
+          <th scope="col" colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% departments.each do |department| %>
+          <tr>
+            <td><%= link_to department.name, school_department_path(id: department.id, school_id: department.school.id) %></td>
+            <td><%= department.short_name %></td>
+            <td><%= link_to department.school.name, school_path(id: department.school.id) %>
+            <td><%= department.avg_rating ? department.avg_rating.round(1) : "" %></td>
+            <td><%= department.avg_difficulty ? department.avg_difficulty.round(1) : ""  %></td>
+            <td><%= department.avg_work ? department.avg_work.round(1) : "" %></td>
+            <td><%= department.avg_grade ? department.avg_grade.round(1) : "" %></td>
+            <% if can? :edit, department %>
+              <td><%= link_to 'Edit', edit_school_department_path(id: department.id, school_id: department.school.id) %></td>
+              <td><%= link_to 'Destroy', school_department_path(id: department.id, school_id: department.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

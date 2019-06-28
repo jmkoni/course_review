@@ -1,18 +1,16 @@
-# typed: false
 # frozen_string_literal: true
 
-class Course < ApplicationRecord
-  validates :name, presence: true
-  validates :number, presence: true, uniqueness: { case_sensitive: false, scope: :department_id }
-  belongs_to :department
-  has_many :reviews, dependent: :destroy
+class Department < ApplicationRecord
+  validates :name, presence: true, uniqueness: { case_sensitive: false, scope: :school_id }
+  validates :short_name, presence: true, uniqueness: { case_sensitive: false, scope: :school_id }
+  belongs_to :school
+  has_many :courses, dependent: :destroy
 
   filterrific(
     default_filter_params: { sorted_by: 'name_desc' },
     available_filters: %i[
       sorted_by
       search_query
-      with_department_id
       with_school_id
       with_avg_rating_gte
       with_avg_difficulty_lte
@@ -34,13 +32,12 @@ class Course < ApplicationRecord
     # configure number of OR conditions for provision
     # of interpolation arguments. Adjust this if you
     # change the number of OR conditions.
-    num_or_conditions = 4
-    joins(department: :school).where(
+    num_or_conditions = 3
+    joins(:school).where(
       terms.map do
         or_clauses = [
-          'LOWER(courses.name) LIKE ?',
           'LOWER(departments.name) LIKE ?',
-          'LOWER(courses.number) LIKE ?',
+          'LOWER(departments.short_name) LIKE ?',
           'LOWER(schools.name) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
@@ -53,14 +50,12 @@ class Course < ApplicationRecord
     # extract the sort direction from the param value.
     direction = /desc$/.match?(sort_option) ? 'desc' : 'asc'
     case sort_option.to_s
-    when /^department_/
-      order(Arel.sql("LOWER(departments.name) #{direction}"))
+    when /^short_name_/
+      order(Arel.sql("LOWER(departments.short_name) #{direction}"))
     when /^name_/
-      order(Arel.sql("LOWER(courses.name) #{direction}"))
-    when /^number_/
-      order(Arel.sql("LOWER(courses.number) #{direction}"))
+      order(Arel.sql("LOWER(departments.name) #{direction}"))
     when /^school_/
-      order(Arel.sql("LOWER(schools.name) #{direction}")).includes(department: :school).references(:school)
+      order(Arel.sql("LOWER(schools.name) #{direction}")).includes(:school).references(:school)
     when /^avg_rating_/
       order(Arel.sql("avg_rating #{direction}"))
     when /^avg_difficulty_/
@@ -74,12 +69,8 @@ class Course < ApplicationRecord
     end
   }
 
-  scope :with_department_id, ->(department_ids) {
-    where(department_id: [*department_ids])
-  }
-
   scope :with_school_id, ->(school_ids) {
-    where('schools.id in (?)', [*school_ids])
+    where('school_id in (?)', [*school_ids])
   }
 
   scope :with_avg_rating_gte, ->(ref_num) {
@@ -99,32 +90,26 @@ class Course < ApplicationRecord
   }
 
   scope :with_averages, -> {
-    select('courses.*,
+    select('departments.*,
             avg(reviews.rating) as avg_rating,
             avg(reviews.difficulty) as avg_difficulty,
             avg(reviews.work_required) as avg_work,
             avg(reviews.grade) as avg_grade')
-      .left_joins(:reviews, department: :school)
-      .group('courses.id, departments.id, schools.id')
+      .left_joins(:school, courses: :reviews)
+      .group('departments.id, schools.id')
   }
 
-  def full_number
-    "#{department.short_name} #{number}"
-  end
-
   def self.options_for_select
-    courses = Course.arel_table
-    order(courses[:name].lower).pluck(:name, :id)
+    departments = Department.arel_table
+    order(departments[:name].lower).pluck(:name, :id)
   end
 
   def self.options_for_sorted_by
     [
       ['Name (a-z)', 'name_asc'],
       ['Name (z-a)', 'name_desc'],
-      ['Number (lowest first)', 'number_asc'],
-      ['Number (highest first)', 'number_desc'],
-      ['Department (a-z)', 'department_asc'],
-      ['Department (z-a)', 'department_desc'],
+      ['Short Name (a-z)', 'short_name_asc'],
+      ['Short Name (z-a)', 'short_name_desc'],
       ['School (a-z)', 'school_name_asc'],
       ['School (z-a)', 'school_name_desc'],
       ['Average Rating (highest first)', 'avg_rating_desc'],
@@ -137,12 +122,16 @@ end
 
 # == Schema Information
 #
-# Table name: courses
+# Table name: departments
 #
-#  id            :bigint           not null, primary key
-#  name          :string
-#  number        :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  department_id :integer
+#  id         :bigint           not null, primary key
+#  name       :string
+#  short_name :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  school_id  :bigint
+#
+# Indexes
+#
+#  index_departments_on_school_id  (school_id)
 #

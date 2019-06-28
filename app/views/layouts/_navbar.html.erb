@@ -1,10 +1,13 @@
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-      <%= link_to('Courses', school_courses_path(school_id: 'all'), class: 'nav-link') %>
+      <%= link_to('Reviews', school_department_course_reviews_path(school_id: 'all', department_id: 'all', course_id: 'all'), class: 'nav-link') %>
     </li>
     <li class="nav-item">
-      <%= link_to('Reviews', school_course_reviews_path(school_id: 'all', course_id: 'all'), class: 'nav-link') %>
+      <%= link_to('Courses', school_department_courses_path(school_id: 'all', department_id: 'all'), class: 'nav-link') %>
+    </li>
+    <li class="nav-item">
+      <%= link_to('Departments', school_departments_path(school_id: 'all'), class: 'nav-link') %>
     </li>
     <li class="nav-item">
       <%= link_to('Schools', schools_path, class: 'nav-link') %>

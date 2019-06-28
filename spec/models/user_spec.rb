@@ -8,6 +8,17 @@ RSpec.describe User, type: :model do
   context 'validations' do
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email).case_insensitive }
+
+    it 'validates complexity of password' do
+      user1 = build(:user)
+      user2 = build(:user, password: 'abc')
+      aggregate_failures do
+        expect(user1.valid?).to eq true
+        expect(user2.valid?).to eq false
+        expect(user2.errors.full_messages).to include 'Password Complexity requirement not met. Please use: 1 uppercase, 1 lowercase, 1 digit and 1 special character'
+        expect(user2.errors.full_messages).to include 'Password is too short (minimum is 10 characters)'
+      end
+    end
   end
 
   context 'associations' do

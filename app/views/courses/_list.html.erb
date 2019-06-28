@@ -14,38 +14,40 @@
     </div>
     <%= render_filterrific_spinner %>
   </div>
-  <table class="table table-hover table-sm table-responsive">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :name) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :number) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :department) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :school) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_rating) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_difficulty) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_work) %></th>
-        <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_grade) %></th>
-        <th scope="col" colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% courses.each do |course| %>
+  <% unless courses.load.empty? %>
+    <table class="table table-hover table-sm table-responsive">
+      <thead class="thead-light">
         <tr>
-          <td><%= link_to course.name, school_course_path(id: course.id, school_id: course.school.id) %></td>
-          <td><%= course.number %></td>
-          <td><%= course.department %></td>
-          <td><%= link_to course.school.name, school_path(id: course.school) %></td>
-          <td><%= course.avg_rating.round(1) %></td>
-          <td><%= course.avg_difficulty.round(1) %></td>
-          <td><%= course.avg_work.round(1) %></td>
-          <td><%= course.avg_grade.round(1) %></td>
-          <% if can? :edit, course %>
-            <td><%= link_to 'Edit', edit_school_course_path(id: course.id, school_id: course.school.id) %></td>
-            <td><%= link_to 'Destroy', school_course_path(id: course.id, school_id: course.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :name) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :number) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :department) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :school) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_rating) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_difficulty) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_work) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_grade) %></th>
+          <th scope="col" colspan="3"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% courses.each do |course| %>
+          <tr>
+            <td><%= link_to course.name, school_department_course_path(id: course.id, department_id: course.department.id, school_id: course.department.school.id) %></td>
+            <td><%= course.number %></td>
+            <td><%= link_to course.department.name, school_department_path(id: course.department.id, school_id: course.department.school.id) %></td>
+            <td><%= link_to course.department.school.name, school_path(id: course.department.school) %></td>
+            <td><%= course.avg_rating ? course.avg_rating.round(1) : "" %></td>
+            <td><%= course.avg_difficulty ? course.avg_difficulty.round(1) : ""  %></td>
+            <td><%= course.avg_work ? course.avg_work.round(1) : "" %></td>
+            <td><%= course.avg_grade ? course.avg_grade.round(1) : "" %></td>
+            <% if can? :edit, course %>
+              <td><%= link_to 'Edit', edit_school_department_course_path(id: course.id, school_id: course.department.school.id, department_id: course.department.id) %></td>
+              <td><%= link_to 'Destroy', school_department_course_path(id: course.id, school_id: course.department.school.id, department_id: course.department.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>

@@ -12,7 +12,7 @@ RSpec.describe Review, type: :model do
   context 'associations' do
     it { should belong_to :course }
     it { should belong_to :user }
-    it { should have_one(:school).through(:course) }
+    it { should have_one(:department).through(:course) }
   end
 
   context 'scopes' do
@@ -34,8 +34,10 @@ RSpec.describe Review, type: :model do
       it 'gets all reviews sorted' do
         school1 = create(:school, name: 'abc')
         school2 = create(:school, name: 'xyz')
-        course1 = create(:course, department: 'Alphabets', school: school2)
-        course2 = create(:course, department: 'Zebra', school: school1)
+        department1 = create(:department, name: 'abc', school: school1)
+        department2 = create(:department, name: 'xyz', school: school2)
+        course1 = create(:course, name: 'Alphabets', department: department2)
+        course2 = create(:course, name: 'Zebra', department: department1)
         review1 = create(:review,
                          notes: 'unicorns',
                          course: course2,
@@ -64,6 +66,8 @@ RSpec.describe Review, type: :model do
           expect(Review.sorted_by('user_desc').first).to eq review3
           expect(Review.sorted_by('school_asc').first).to eq review1
           expect(Review.sorted_by('school_desc').first).to eq review2
+          expect(Review.sorted_by('department_asc').first).to eq review1
+          expect(Review.sorted_by('department_desc').first).to eq review2
           expect(Review.sorted_by('course_asc').first).to eq review2
           expect(Review.sorted_by('course_desc').first).to eq review1
           expect(Review.sorted_by('rating_asc').first).to eq review2
@@ -98,7 +102,8 @@ RSpec.describe Review, type: :model do
     describe 'with_school_id' do
       it 'gets all reviews with query in review' do
         school = create(:school)
-        course = create(:course, school: school)
+        department = create(:department, school: school)
+        course = create(:course, department: department)
         review1 = create(:review, course: course)
         review2 = create(:review)
         review3 = create(:review, course: course)

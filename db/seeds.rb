@@ -9,9 +9,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# default dev admin
 if User.count.zero?
-  user = User.create(email: 'jmkoni@icloud.com', password: '867-jenny-5309', password_confirmation: '867-jenny-5309', is_admin: true)
+  User.create(email: 'jmkoni@icloud.com', password: '867-J3nny-5309!', password_confirmation: '867-J3nny-5309!', is_admin: true)
 end
+
+#default dev regular user
+User.create(email: 'heather@koni.com', password: '867-J3nny-5309!', password_confirmation: '867-J3nny-5309!', is_admin: false)
+
 if User.count < 25
   domains = ['course_review.org', 'ponyparty.us', 'unico.rn', 'thecloud.cloud',
              'fat.cats', 'huskyhuskys.dog', 'utumno.lotr', 'taur-im-duinath.org',
@@ -23,47 +28,49 @@ if User.count < 25
              tom_bombadil elrond sauron gandalf_the_grey shelob
              samwise_gamgee quickbeam arwen_evenstar gimli gollum
              glorfindel galadriel]
-  emails = []
+
   i = 0
-  while emails.length < 50
-    emails << names.sample + "#{i}@" + domains.sample
-    i += 1
-  end
-  emails.each do |email|
-    User.create(email: email,
-                password: '867-jenny-5309',
-                password_confirmation: '867-jenny-5309',
-                is_admin: false,
+  while i < 25
+    if i < 10
+      is_admin = [true, false].sample
+    else
+      is_admin = false
+    end
+
+    User.create(email: names.sample + "#{i}@" + domains.sample,
+                password: '867-J3nny-5309!',
+                password_confirmation: '867-J3nny-5309!',
+                is_admin: is_admin,
                 confirmed_at: Time.now,
                 current_sign_in_ip: "127.0.0.1",
                 last_sign_in_ip: "127.0.0.1")
-  end
-end
-if User.admins.count < 5
-  5.times do |i|
-    User.find(i + 1).update_attributes(is_admin: true)
+    i += 1
   end
 end
 
-9.times do |i|
-  school = School.create(name: Faker::University.name, short_name: Faker::Alphanumeric.alpha(4))
-  20.times do |j|
-    course = Course.create(name: Faker::Educator.course_name,
-                           number: rand(1000).to_s,
-                           department: Faker::Educator.subject,
-                           school: school)
-    10.times do |k|
-      num = rand(40)
-      Review.create(course: course,
-                    user: User.find(num + 1),
-                    notes: Faker::Lorem.paragraph,
-                    work_required: rand(10),
-                    difficulty: rand(10),
-                    rating: rand(10),
-                    experience_with_topic: [true, false].sample,
-                    year: rand(2000..2019),
-                    term: rand(4),
-                    grade: rand(100))
+9.times do
+  school = School.create(name: Faker::University.name, short_name: Faker::Alphanumeric.alpha(3).upcase)
+  10.times do
+    department = Department.create(name: Faker::Educator.subject,
+                                   short_name: Faker::Alphanumeric.alpha(3).upcase,
+                                   school: school)
+    5.times do
+      course = Course.create(name: Faker::Educator.course_name,
+                             number: rand(1000).to_s,
+                             department: department)
+      10.times do
+        num = rand(25)
+        Review.create(course: course,
+                      user: User.find(num + 1),
+                      notes: Faker::Lorem.paragraph,
+                      work_required: rand(10),
+                      difficulty: rand(10),
+                      rating: rand(10),
+                      experience_with_topic: [true, false].sample,
+                      year: rand(2000..2019),
+                      term: rand(4),
+                      grade: rand(100))
+      end
     end
   end
 end

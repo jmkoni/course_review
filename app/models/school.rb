@@ -4,7 +4,8 @@
 class School < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :short_name, presence: true, uniqueness: { case_sensitive: false }
-  has_many :courses, dependent: :destroy
+  has_many :departments, dependent: :destroy
+  has_many :courses, through: :departments
 
   filterrific(
     default_filter_params: { sorted_by: 'name_desc' },
@@ -87,7 +88,7 @@ class School < ApplicationRecord
             avg(reviews.difficulty) as avg_difficulty,
             avg(reviews.work_required) as avg_work,
             avg(reviews.grade) as avg_grade')
-      .left_joins(courses: [:reviews])
+      .left_joins(departments: { courses: [:reviews] })
       .group('schools.id')
   }
 
