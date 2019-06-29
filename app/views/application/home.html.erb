@@ -1,1 +1,30 @@
-Welcome to the Course Review App!
+<h1>Welcome to Course Review!</h1>
+
+<div class="container-fluid">
+  <h4>What is this app?</h4>
+  <p>
+    This application was originally created as a capstone project for the <a href="https://www.worldcampus.psu.edu/degrees-and-certificates/software-engineering-masters/overview">Pennsylvania State University Master of Software Engineering</a>. The purpose is to allow students to review classes and evaluate programs. Existing course review applications allow you to see the reviews for a course, but do not allow you to see the average reviews for a school or department. If you would like classes from your university to be added, please <a href="mailto:contact@jmkoni.com">contact me</a> with a link to the course catalog.
+  </p>
+</div>
+
+<div class="container-fluid">
+  <h4>Who maintains this application?</h4>
+  <p>
+    Primary maintainer is <a href="http://jmkoni.com">Jennifer Konikowski</a>. You can also view the <a href="https://github.com/jmkoni/course_review/graphs/contributors">full list of contributers</a>.
+  </p>
+</div>
+
+<div class="container-fluid">
+<h4>I am concerned about privacy. How is my information kept secure?</h4>
+<p>
+  The app records only your email. View our full <%= link_to "privacy policy", privacy_path %>. Currently, all the reviews are shown anonymously using a randomly generated UUID. If this changes in the future, the default will be anonymous with the option to toggle to public.
+</p>
+<p>
+  For security infrastructure, this application uses <a href="https://github.com/plataformatec/devise">Devise</a> for authentication and <a href="https://github.com/CanCanCommunity/cancancan">CanCanCan</a> for authorization.
+</p>
+</div>
+
+<div class="container-fluid">
+  <h4>Need to report an issue or an enhancement request?</h4>
+  <p>Please submit an issue on <a href="https://github.com/jmkoni/course_review/issues">GitHub</a>.
+</div>
