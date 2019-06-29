@@ -4,5 +4,5 @@
 class ApplicationController < ActionController::Base
   def home; end
 
-  def privacy;end
+  def privacy; end
 end

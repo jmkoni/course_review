@@ -1,6 +1,7 @@
 # frozen_string_literal: true
+
 namespace :scrape_classes do
-  desc "scrape classes from the penn state website"
+  desc 'scrape classes from the penn state website'
   task :penn_state, [:level] do |_task, args|
     level = args.fetch(:level) || 'graduate'
     url = 'https://bulletins.psu.edu/university-course-descriptions/' + level + '/'
@@ -29,7 +30,7 @@ namespace :scrape_classes do
     end
   end
 
-  desc "scrape classes from the UOP website"
+  desc 'scrape classes from the UOP website'
   task :uop do
     urls = [
       ['FILL THIS OUT LATER', 'https://www.uopeople.edu/programs/general-education-requirements-course-catalog/'],
@@ -65,18 +66,16 @@ namespace :scrape_classes do
   end
 
   desc 'parse scraped files and add to the system'
-  task :parse_json_courses, [:file_name, :school_short_name] => :environment do |_task, args|
+  task :parse_json_courses, %i[file_name school_short_name] => :environment do |_task, args|
     file_name = args.fetch(:file_name)
     school_short_name = args.fetch(:school_short_name)
-    school = School.find_by_short_name(school_short_name)
-    departments = JSON.parse(File.read("#{Rails.root}/lib/" + file_name))
+    school = School.find_by(short_name: school_short_name)
+    departments = JSON.parse(File.read(Rails.root.join('lib', file_name)))
     departments.each do |k, v|
-      department = Department.find_or_create_by(short_name: k, name: v["name"], school: school)
-      v["courses"].each do |course_num, course_name|
+      department = Department.find_or_create_by(short_name: k, name: v['name'], school: school)
+      v['courses'].each do |course_num, course_name|
         Course.find_or_create_by(department: department, number: course_num, name: course_name)
       end
     end
   end
 end
-
-# be rails "scrape_classes:parse_json_courses[json/uop-courses.json, UOP]"
