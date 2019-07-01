@@ -90,7 +90,8 @@ class Department < ApplicationRecord
   }
 
   scope :with_averages, -> {
-    select('departments.*,
+    preload(:school, courses: :reviews)
+      .select('departments.*,
             avg(reviews.rating) as avg_rating,
             avg(reviews.difficulty) as avg_difficulty,
             avg(reviews.work_required) as avg_work,
