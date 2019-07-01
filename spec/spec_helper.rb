@@ -4,6 +4,7 @@
 require 'simplecov'
 require 'simplecov-formatter-badge'
 require 'codecov'
+require 'capybara'
 
 SimpleCov.start 'rails'
 
