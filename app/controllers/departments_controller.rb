@@ -69,7 +69,10 @@ class DepartmentsController < ApplicationController
         end
         format.json { render :show, status: :created, location: @department }
       else
-        format.html { render :new }
+        format.html do
+          @url = school_departments_path
+          render :new
+        end
         format.json { render json: @department.errors, status: :unprocessable_entity }
       end
     end
@@ -86,7 +89,10 @@ class DepartmentsController < ApplicationController
         end
         format.json { render :show, status: :ok, location: @department }
       else
-        format.html { render :edit }
+        format.html do
+          @url = school_departments_path
+          render :edit
+        end
         format.json { render json: @department.errors, status: :unprocessable_entity }
       end
     end
