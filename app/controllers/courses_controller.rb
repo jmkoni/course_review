@@ -67,12 +67,12 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
-    @url = school_department_courses_path
+    @url = school_department_courses_path(school_id: @school.id, department_id: @department.id)
   end
 
   # GET /courses/1/edit
   def edit
-    @url = school_department_course_path
+    @url = school_department_course_path(school_id: @school.id, department_id: @department.id, id: @course.id)
   end
 
   # POST /courses
@@ -88,7 +88,10 @@ class CoursesController < ApplicationController
         end
         format.json { render :show, status: :created, location: @course }
       else
-        format.html { render :new }
+        format.html do
+          @url = school_department_courses_path(school_id: @school.id, department_id: @department.id)
+          render :new
+        end
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
     end
@@ -105,7 +108,10 @@ class CoursesController < ApplicationController
         end
         format.json { render :show, status: :ok, location: @course }
       else
-        format.html { render :edit }
+        format.html do
+          @url = school_department_course_path(school_id: @school.id, department_id: @department.id, id: @course.id)
+          render :edit
+        end
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
     end

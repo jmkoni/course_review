@@ -32,7 +32,7 @@ class Review < ApplicationRecord
     return nil if query.blank?
 
     # condition query, parse into individual keywords
-    terms = query.downcase.split(/\s+/)
+    terms = query.to_s.downcase.split(/\s+/)
     # replace "*" with "%" for wildcard searches,
     # append '%', remove duplicate '%'s
     terms = terms.map do |e|
@@ -41,13 +41,14 @@ class Review < ApplicationRecord
     # configure number of OR conditions for provision
     # of interpolation arguments. Adjust this if you
     # change the number of OR conditions.
-    num_or_conditions = 3
+    num_or_conditions = 4
     joins(course: :department).where(
       terms.map do
         or_clauses = [
           'LOWER(reviews.notes) LIKE ?',
           'LOWER(departments.name) LIKE ?',
-          'LOWER(courses.name) LIKE ?'
+          'LOWER(courses.name) LIKE ?',
+          'LOWER(courses.number) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
