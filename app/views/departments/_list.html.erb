@@ -2,11 +2,7 @@
   <div class="card card-body bg-light d-block p-3 my-3">
     <div class="row">
       <div class="col-md-10">
-        <% if departments.load.empty? %>
-          No departments at this time!
-        <% else %>
-          Displaying <strong><%= pluralize(departments.size, 'department') %></strong>
-        <% end %>
+        <%= page_entries_info departments %>
       </div>
       <div class="col-md-2">
         <%= link_to "Reset filters", reset_filterrific_url, class: 'btn btn-secondary align-middle' %>
@@ -14,7 +10,7 @@
     </div>
     <%= render_filterrific_spinner %>
   </div>
-  <% unless departments.load.empty? %>
+  <% unless departments.empty? %>
     <table class="table table-hover table-sm table-responsive">
       <thead class="thead-light">
         <tr>
@@ -47,5 +43,6 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate departments %>
   <% end %>
 </div>

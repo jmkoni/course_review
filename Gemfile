@@ -31,7 +31,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Documentation
 gem 'simplecov-formatter-badge', require: false
-gem 'yard'
+gem 'yard', ">= 0.9.20"
 
 # Monitoring
 gem 'skylight'

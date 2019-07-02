@@ -16,7 +16,7 @@ class SchoolsController < ApplicationController
         sorted_by: School.options_for_sorted_by
       }
     )) || return
-    @schools = @filterrific.find
+    @schools = Kaminari.paginate_array(@filterrific.find).page(params[:page])
   end
 
   # GET /schools/1

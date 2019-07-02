@@ -46,7 +46,7 @@ class CoursesController < ApplicationController
         }
       )) || return
     end
-    @courses = @filterrific.find
+    @courses = Kaminari.paginate_array(@filterrific.find).page(params[:page])
   end
   # rubocop:enable Metrics/PerceivedComplexity
 
