@@ -2,11 +2,7 @@
   <div class="card card-body bg-light d-block p-3 my-3">
     <div class="row">
       <div class="col-md-10">
-        <% if courses.load.empty? %>
-          No courses at this time!
-        <% else %>
-          Displaying <strong><%= pluralize(courses.size, 'course') %></strong>
-        <% end %>
+        <%= page_entries_info courses %>
       </div>
       <div class="col-md-2">
         <%= link_to "Reset filters", reset_filterrific_url, class: 'btn btn-secondary align-middle' %>
@@ -14,7 +10,7 @@
     </div>
     <%= render_filterrific_spinner %>
   </div>
-  <% unless courses.load.empty? %>
+  <% unless courses.empty? %>
     <table class="table table-hover table-sm table-responsive">
       <thead class="thead-light">
         <tr>
@@ -49,5 +45,6 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate courses %>
   <% end %>
 </div>
