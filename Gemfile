@@ -31,7 +31,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Documentation
 gem 'simplecov-formatter-badge', require: false
-gem 'yard', ">= 0.9.20"
+gem 'yard', '>= 0.9.20'
 
 # Monitoring
 gem 'skylight'
@@ -65,6 +65,7 @@ end
 group :development do
   gem 'irb', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rails-erd'
   gem 'sorbet'
   gem 'sorbet-rails'
   gem 'spring'
@@ -83,6 +84,9 @@ group :development do
   # Scrapers
   gem 'httparty'
   gem 'nokogiri'
+
+  # For email - https://github.com/ryanb/letter_opener
+  # gem 'letter_opener'
 end
 
 group :test do
