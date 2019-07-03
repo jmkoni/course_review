@@ -12,7 +12,6 @@ require 'rspec/rails'
 
 require 'faker'
 require 'factory_bot'
-# require 'database_cleaner'
 require 'shoulda/matchers'
 # require 'capybara/poltergeist'
 # require 'capybara/dsl'
