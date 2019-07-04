@@ -55,7 +55,7 @@ class Department < ApplicationRecord
     when /^department_/
       order(Arel.sql("LOWER(departments.name) #{direction}"))
     when /^school_/
-      order(Arel.sql("LOWER(schools.name) #{direction}")).includes(:school).references(:school)
+      order(Arel.sql("LOWER(schools.name) #{direction}"))
     when /^avg_rating_/
       order(Arel.sql("avg_rating #{direction}"))
     when /^avg_difficulty_/
@@ -111,8 +111,8 @@ class Department < ApplicationRecord
       ['Department Name (z-a)', 'department_desc'],
       ['Short Name (a-z)', 'short_name_asc'],
       ['Short Name (z-a)', 'short_name_desc'],
-      ['School Name (a-z)', 'school_name_asc'],
-      ['School Name (z-a)', 'school_name_desc'],
+      ['School Name (a-z)', 'school_asc'],
+      ['School Name (z-a)', 'school_desc'],
       ['Average Rating (highest first)', 'avg_rating_desc'],
       ['Average Work Required (lowest first)', 'avg_work_asc'],
       ['Average Difficulty (lowest first)', 'avg_difficulty_asc'],

@@ -59,7 +59,7 @@ class Course < ApplicationRecord
     when /^number_/
       order(Arel.sql("LOWER(courses.number) #{direction}"))
     when /^school_/
-      order(Arel.sql("LOWER(schools.name) #{direction}")).includes(department: :school).references(:school)
+      order(Arel.sql("LOWER(schools.name) #{direction}"))
     when /^avg_rating_/
       order(Arel.sql("avg_rating #{direction}"))
     when /^avg_difficulty_/
@@ -125,8 +125,8 @@ class Course < ApplicationRecord
       ['Course Number (highest first)', 'number_desc'],
       ['Department Name (a-z)', 'department_asc'],
       ['Department Name (z-a)', 'department_desc'],
-      ['School Name (a-z)', 'school_name_asc'],
-      ['School Name (z-a)', 'school_name_desc'],
+      ['School Name (a-z)', 'school_asc'],
+      ['School Name (z-a)', 'school_desc'],
       ['Average Rating (highest first)', 'avg_rating_desc'],
       ['Average Work Required (lowest first)', 'avg_work_asc'],
       ['Average Difficulty (lowest first)', 'avg_difficulty_asc'],
