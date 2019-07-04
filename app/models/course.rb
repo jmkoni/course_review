@@ -8,7 +8,7 @@ class Course < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   filterrific(
-    default_filter_params: { sorted_by: 'name_desc' },
+    default_filter_params: { sorted_by: 'course_desc' },
     available_filters: %i[
       sorted_by
       search_query
@@ -55,7 +55,7 @@ class Course < ApplicationRecord
     case sort_option.to_s
     when /^department_/
       order(Arel.sql("LOWER(departments.name) #{direction}"))
-    when /^name_/
+    when /^course_/
       order(Arel.sql("LOWER(courses.name) #{direction}"))
     when /^number_/
       order(Arel.sql("LOWER(courses.number) #{direction}"))
@@ -120,14 +120,14 @@ class Course < ApplicationRecord
 
   def self.options_for_sorted_by
     [
-      ['Name (a-z)', 'name_asc'],
-      ['Name (z-a)', 'name_desc'],
-      ['Number (lowest first)', 'number_asc'],
-      ['Number (highest first)', 'number_desc'],
-      ['Department (a-z)', 'department_asc'],
-      ['Department (z-a)', 'department_desc'],
-      ['School (a-z)', 'school_name_asc'],
-      ['School (z-a)', 'school_name_desc'],
+      ['Course Name (a-z)', 'course_asc'],
+      ['Course Name (z-a)', 'course_desc'],
+      ['Course Number (lowest first)', 'number_asc'],
+      ['Course Number (highest first)', 'number_desc'],
+      ['Department Name (a-z)', 'department_asc'],
+      ['Department Name (z-a)', 'department_desc'],
+      ['School Name (a-z)', 'school_name_asc'],
+      ['School Name (z-a)', 'school_name_desc'],
       ['Average Rating (highest first)', 'avg_rating_desc'],
       ['Average Work Required (lowest first)', 'avg_work_asc'],
       ['Average Difficulty (lowest first)', 'avg_difficulty_asc'],
