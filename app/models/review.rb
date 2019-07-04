@@ -111,6 +111,7 @@ class Review < ApplicationRecord
       ['Difficulty (highest first)', 'difficulty_desc'],
       ['Work Required (lowest first)', 'work_required_asc'],
       ['Work Required (highest first)', 'work_required_desc'],
+      ['Course (a-z)', 'department_name_asc'],
       ['Course (a-z)', 'course_name_asc'],
       ['School (a-z)', 'school_name_asc']
     ]
