@@ -46,8 +46,8 @@ RSpec.describe Course, type: :model do
           expect(Course.with_averages.sorted_by('department_desc').first).to eq course1
           expect(Course.with_averages.sorted_by('school_asc').first).to eq course2
           expect(Course.with_averages.sorted_by('school_desc').first).to eq course1
-          expect(Course.with_averages.sorted_by('name_asc').first).to eq course1
-          expect(Course.with_averages.sorted_by('name_desc').first).to eq course2
+          expect(Course.with_averages.sorted_by('course_asc').first).to eq course1
+          expect(Course.with_averages.sorted_by('course_desc').first).to eq course2
           expect(Course.with_averages.sorted_by('number_asc').first).to eq course3
           expect(Course.with_averages.sorted_by('number_desc').first).to eq course1
           expect(Course.with_averages.sorted_by('avg_work_desc').first).to eq course3
@@ -172,14 +172,14 @@ RSpec.describe Course, type: :model do
 
     it 'returns options for sorted by' do
       expected_options = [
-        ['Name (a-z)', 'name_asc'],
-        ['Name (z-a)', 'name_desc'],
-        ['Number (lowest first)', 'number_asc'],
-        ['Number (highest first)', 'number_desc'],
-        ['Department (a-z)', 'department_asc'],
-        ['Department (z-a)', 'department_desc'],
-        ['School (a-z)', 'school_name_asc'],
-        ['School (z-a)', 'school_name_desc'],
+        ['Course Name (a-z)', 'course_asc'],
+        ['Course Name (z-a)', 'course_desc'],
+        ['Course Number (lowest first)', 'number_asc'],
+        ['Course Number (highest first)', 'number_desc'],
+        ['Department Name (a-z)', 'department_asc'],
+        ['Department Name (z-a)', 'department_desc'],
+        ['School Name (a-z)', 'school_name_asc'],
+        ['School Name (z-a)', 'school_name_desc'],
         ['Average Rating (highest first)', 'avg_rating_desc'],
         ['Average Work Required (lowest first)', 'avg_work_asc'],
         ['Average Difficulty (lowest first)', 'avg_difficulty_asc'],

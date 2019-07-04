@@ -7,7 +7,7 @@ class Department < ApplicationRecord
   has_many :courses, dependent: :destroy
 
   filterrific(
-    default_filter_params: { sorted_by: 'name_desc' },
+    default_filter_params: { sorted_by: 'department_desc' },
     available_filters: %i[
       sorted_by
       search_query
@@ -52,7 +52,7 @@ class Department < ApplicationRecord
     case sort_option.to_s
     when /^short_name_/
       order(Arel.sql("LOWER(departments.short_name) #{direction}"))
-    when /^name_/
+    when /^department_/
       order(Arel.sql("LOWER(departments.name) #{direction}"))
     when /^school_/
       order(Arel.sql("LOWER(schools.name) #{direction}")).includes(:school).references(:school)
@@ -107,12 +107,12 @@ class Department < ApplicationRecord
 
   def self.options_for_sorted_by
     [
-      ['Name (a-z)', 'name_asc'],
-      ['Name (z-a)', 'name_desc'],
+      ['Department Name (a-z)', 'department_asc'],
+      ['Department Name (z-a)', 'department_desc'],
       ['Short Name (a-z)', 'short_name_asc'],
       ['Short Name (z-a)', 'short_name_desc'],
-      ['School (a-z)', 'school_name_asc'],
-      ['School (z-a)', 'school_name_desc'],
+      ['School Name (a-z)', 'school_name_asc'],
+      ['School Name (z-a)', 'school_name_desc'],
       ['Average Rating (highest first)', 'avg_rating_desc'],
       ['Average Work Required (lowest first)', 'avg_work_asc'],
       ['Average Difficulty (lowest first)', 'avg_difficulty_asc'],
