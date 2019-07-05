@@ -27,9 +27,9 @@
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :difficulty) %></th>
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :rating) %></th>
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :experience_with_topic) %></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :grade) %></th>
           <th scope="col">Year</th>
           <th scope="col">Term</th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :grade) %></th>
           <th scope="col" colspan="2"></th>
         </tr>
       </thead>
@@ -46,9 +46,9 @@
             <td><%= review.difficulty %></td>
             <td><%= review.rating %></td>
             <td><%= review.experience_with_topic %></td>
+            <td><%= review.display_grade %></td>
             <td><%= review.year %></td>
             <td><%= review.term %></td>
-            <td><%= review.display_grade %></td>
             <% if can? :edit, review %>
               <td><%= link_to 'Edit', edit_school_department_course_review_path(school_id: review.course.department.school.id, department_id: review.course.department.id, course_id: review.course_id, id: review.id) %></td>
               <td><%= link_to 'Destroy', school_department_course_review_path(id: review.id, course_id: review.course.id, school_id: review.course.department.school.id, department_id: review.course.department.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>

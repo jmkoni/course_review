@@ -10,70 +10,47 @@ class ReviewsController < ApplicationController
 
   # GET /schools/1/courses/1/reviews
   # GET /schools/1/courses/1/reviews.json
-  # rubocop:disable Metrics/PerceivedComplexity
-  # rubocop:disable Metrics/CyclomaticComplexity
   def index
-    if params[:course_id].to_i.zero?
-      if params[:department_id].to_i.zero?
-        if params[:school_id].to_i.zero?
-          (@filterrific = initialize_filterrific(
-            Review.preload(:user, course: { department: :school }),
-            params[:filterrific],
-            select_options: {
-              sorted_by: Review.options_for_sorted_by,
-              with_course_id: Course.options_for_select,
-              with_department_id: Department.options_for_select,
-              with_school_id: School.options_for_select
-            }
-          )) || return
-        else
-          set_school
-          (@filterrific = initialize_filterrific(
-            Review.preload(:user, course: { department: :school })
-                  .joins(course: :department)
-                  .where('departments.school_id = (?)', @school.id),
-            params[:filterrific],
-            select_options: {
-              sorted_by: Review.options_for_sorted_by,
-              with_course_id: Course.joins(:department)
-              .where('departments.school_id = ?', @school.id)
-              .options_for_select,
-              with_department_id: Department.where(school_id: @school.id).options_for_select
-            }
-          )) || return
-        end
-      else
-        set_school
-        set_department
-        (@filterrific = initialize_filterrific(
-          Review.preload(:user, course: { department: :school })
-                .joins(course: :department)
-                .where('courses.department_id = (?) and departments.school_id = (?)',
-                       @department.id,
-                       @school.id),
-          params[:filterrific],
-          select_options: {
-            sorted_by: Review.options_for_sorted_by,
-            with_course_id: Course.where(department_id: @department.id).options_for_select
-          }
-        )) || return
-      end
-    else
-      set_school
-      set_department
-      set_course
-      (@filterrific = initialize_filterrific(
-        Review.preload(:user, course: { department: :school }).where(course_id: @course.id),
-        params[:filterrific],
-        select_options: {
-          sorted_by: Review.options_for_sorted_by
-        }
-      )) || return
+    reviews = Review.preload(:user, course: { department: :school })
+    select_options = { sorted_by: Review.options_for_sorted_by }
+    if params[:school_id].to_i.zero?
+      select_options.merge!(
+        with_course_id: Course.options_for_select,
+        with_department_id: Department.options_for_select,
+        with_school_id: School.options_for_select
+      )
     end
+
+    if school_id_exists
+      set_school
+      reviews = reviews.joins(course: :department)
+                       .where('departments.school_id = (?)', @school.id)
+      select_options[:with_course_id] = Course.joins(:department)
+          .where('departments.school_id = ?', @school.id)
+          .options_for_select
+      select_options[:with_department_id] = Department.where(school_id: @school.id).options_for_select
+    end
+
+    if department_id_exists
+      set_department
+      reviews = reviews.where('courses.department_id = (?)', @department.id)
+      select_options.delete(:with_department_id)
+      select_options[:with_course_id] = Course.where(department_id: @department.id).options_for_select
+    end
+
+    if course_id_exists
+      set_course
+      select_options.delete(:with_course_id)
+      reviews = reviews.where(course_id: @course.id)
+    end
+
+    (@filterrific = initialize_filterrific(
+      reviews,
+      params[:filterrific],
+      select_options: select_options
+    )) || return
     @reviews = @filterrific.find.page(params[:page])
   end
-  # rubocop:enable Metrics/PerceivedComplexity
-  # rubocop:enable Metrics/CyclomaticComplexity
 
   # GET /schools/1/courses/1/reviews/1
   # GET /schools/1/courses/1/reviews/1.json
@@ -147,6 +124,18 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def department_id_exists
+    !params[:department_id].to_i.zero?
+  end
+
+  def school_id_exists
+    !params[:school_id].to_i.zero?
+  end
+
+  def course_id_exists
+    !params[:course_id].to_i.zero?
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_school
