@@ -3,7 +3,7 @@
 require 'simplecov'
 require 'simplecov-formatter-badge'
 require 'codecov'
-require 'capybara'
+require 'capybara/rspec'
 
 SimpleCov.start 'rails'
 

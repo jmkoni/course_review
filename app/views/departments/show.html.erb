@@ -10,11 +10,6 @@
 </p>
 
 <p>
-  <strong>School:</strong>
-  <%= link_to @school.name, school_path(id: @school.id) %>
-</p>
-
-<p>
   <h4>Courses</h4>
   <% if can? :create, Course %>
     <%= link_to 'New Course', new_school_department_course_path(school_id: @school.id, department_id: @department.id) %>

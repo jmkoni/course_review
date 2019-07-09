@@ -11,7 +11,7 @@
     <%= render_filterrific_spinner %>
   </div>
   <% unless departments.empty? %>
-    <table class="table table-hover table-sm table-responsive">
+    <table class="departments table table-hover table-sm table-responsive">
       <thead class="thead-light">
         <tr>
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :department) %></th>
@@ -27,7 +27,7 @@
 
       <tbody>
         <% departments.each do |department| %>
-          <tr>
+          <tr id=<%= "department_row_#{department.id}" %>>
             <td><%= link_to department.name, school_department_path(id: department.id, school_id: department.school.id) %></td>
             <td><%= department.short_name %></td>
             <td><%= link_to department.school.name, school_path(id: department.school.id) %>
@@ -37,7 +37,7 @@
             <td><%= department.avg_grade ? department.avg_grade.round(1) : "" %></td>
             <% if can? :edit, department %>
               <td><%= link_to 'Edit', edit_school_department_path(id: department.id, school_id: department.school.id) %></td>
-              <td><%= link_to 'Destroy', school_department_path(id: department.id, school_id: department.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Delete', school_department_path(id: department.id, school_id: department.school.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           </tr>
         <% end %>
