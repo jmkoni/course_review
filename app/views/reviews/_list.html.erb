@@ -15,7 +15,7 @@
     <%= render_filterrific_spinner %>
   </div>
   <% unless reviews.load.empty? %>
-    <table id="reviews_index" class="table table-hover table-sm table-responsive">
+    <table id="reviews_index" class="reviews table table-hover table-sm table-responsive">
       <thead class="thead-light">
         <tr>
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :school) %></th>
@@ -36,7 +36,7 @@
 
       <tbody>
         <% reviews.each do |review| %>
-          <tr>
+          <tr id=<%= "review_row_#{review.id}" %>>
             <td scope="row"><%= link_to review.course.department.school.name, school_path(id: review.course.department.school.id) %></td>
             <td scope="row"><%= link_to review.course.department.name, school_department_path(school_id: review.course.department.school.id, id: review.course.department.id) %></td>
             <td scope="row"><%= link_to "#{review.course.name} (#{review.course.full_number})", school_department_course_path(school_id: review.course.department.school.id, department_id: review.course.department.id, id: review.course.id) %></td>
@@ -51,7 +51,7 @@
             <td><%= review.term %></td>
             <% if can? :edit, review %>
               <td><%= link_to 'Edit', edit_school_department_course_review_path(school_id: review.course.department.school.id, department_id: review.course.department.id, course_id: review.course_id, id: review.id) %></td>
-              <td><%= link_to 'Destroy', school_department_course_review_path(id: review.id, course_id: review.course.id, school_id: review.course.department.school.id, department_id: review.course.department.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Delete', school_department_course_review_path(id: review.id, course_id: review.course.id, school_id: review.course.department.school.id, department_id: review.course.department.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           </tr>
         <% end %>

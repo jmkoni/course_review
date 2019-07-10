@@ -11,7 +11,7 @@
     <%= render_filterrific_spinner %>
   </div>
   <% unless schools.empty? %>
-    <table class="table table-hover table-sm table-responsive">
+    <table class="schools table table-hover table-sm table-responsive">
       <thead class="thead-light">
         <tr>
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :name) %></th>
@@ -25,7 +25,7 @@
       </thead>
       <tbody>
         <% schools.each do |school| %>
-          <tr>
+          <tr id=<%= "school_row_#{school.id}" %>>
             <td><%= link_to school.name, school %></td>
             <td><%= school.short_name %></td>
             <td><%= school.avg_rating ? school.avg_rating.round(1) : "" %></td>

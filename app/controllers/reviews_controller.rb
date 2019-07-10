@@ -26,8 +26,8 @@ class ReviewsController < ApplicationController
       reviews = reviews.joins(course: :department)
                        .where('departments.school_id = (?)', @school.id)
       select_options[:with_course_id] = Course.joins(:department)
-          .where('departments.school_id = ?', @school.id)
-          .options_for_select
+                                              .where('departments.school_id = ?', @school.id)
+                                              .options_for_select
       select_options[:with_department_id] = Department.where(school_id: @school.id).options_for_select
     end
 
@@ -59,17 +59,20 @@ class ReviewsController < ApplicationController
   # GET /schools/1/courses/1/reviews/new
   def new
     @review = Review.new
+    @user = current_user
     @url = school_department_course_reviews_path
   end
 
   # GET /schools/1/courses/1/reviews/1/edit
   def edit
+    @user = @review.user
     @url = school_department_course_review_path
   end
 
   # POST /schools/1/courses/1/reviews
   # POST /schools/1/courses/1/reviews.json
   def create
+    @user = current_user
     @url = school_department_course_reviews_path
     @review = Review.new(review_params)
     respond_to do |format|
@@ -92,6 +95,8 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /schools/1/courses/1/reviews/1
   # PATCH/PUT /schools/1/courses/1/reviews/1.json
   def update
+    @user = @review.user
+    @url = school_department_course_review_path
     respond_to do |format|
       if @review.update(review_params)
         format.html do

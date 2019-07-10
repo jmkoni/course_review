@@ -1,4 +1,4 @@
-<%= form_with(model: review, url: @url, local: true) do |form| %>
+<%= form_with(model: review, url: @url, local: true, id: 'review_form') do |form| %>
   <% if review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(review.errors.uniq.count, "error") %> prohibited this review from being saved:</h2>
@@ -12,7 +12,7 @@
   <% end %>
 
   <%= form.hidden_field :course_id, value: params[:course_id] %>
-  <%= form.hidden_field :user_id, value: @current_user.id %>
+  <%= form.hidden_field :user_id, value: @user.id %>
 
   <div class="form-group">
     <%= form.label :notes %>
