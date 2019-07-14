@@ -12,9 +12,10 @@ gem 'rails', '~> 5.2.3'
 
 # Database and Authentication
 gem 'bcrypt', '~> 3.1.13'
-gem 'cancancan'
+# gem 'cancancan'
 gem 'devise'
 gem 'pg', '>= 0.18', '< 2.0'
+gem 'pundit'
 
 # Assets
 gem 'bootstrap'
@@ -42,6 +43,7 @@ group :development, :test do
   # Debugging Gems
   gem 'binding_of_caller'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'jazz_fingers'
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-remote'

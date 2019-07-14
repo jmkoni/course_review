@@ -5,7 +5,8 @@ class CoursesController < ApplicationController
   before_action :set_department, only: %i[show new edit create update destroy]
   before_action :set_school, only: %i[show new edit create update destroy]
   load_and_authorize_resource
-  before_action :authenticate_user!, only: %i[new edit create update destroy]
+  after_action :authorize_course, except: [:index]
+  # before_action :authenticate_user!, only: %i[new edit create update destroy]
 
   # GET /courses
   # GET /courses.json
@@ -144,5 +145,9 @@ class CoursesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def course_params
     params.require(:course).permit(:name, :number, :department_id)
+  end
+
+  def authorize_course
+    authorize @course
   end
 end

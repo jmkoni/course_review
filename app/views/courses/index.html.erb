@@ -1,5 +1,5 @@
 <h1>Courses</h1>
-<% if can? :create, Course %>
+<% if policy(@course :create, Course %>
   <% if @department %>
     <%= link_to 'New Course', new_school_department_course_path(school_id: @school.id, department_id: @department.id) %>
   <% elsif @school %>

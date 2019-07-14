@@ -1,27 +1,27 @@
 # frozen_string_literal: true
 
 class Ability
-  include CanCan::Ability
+  # include CanCan::Ability
 
-  def initialize(user)
-    can :read, School
-    can :read, Department
-    can :read, Course
-    can :read, Review
-    return if user.blank?
-    return if user.deactivated
+  # def initialize(user)
+    # can :read, School
+    # can :read, Department
+    # can :read, Course
+    # can :read, Review
+    # return if user.blank?
+    # return if user.deactivated
 
-    can :read, Course
-    can :read, Department
-    can :read, School
-    can :create, Review
-    can :read, Review
-    can [:update, :destroy], Review do |r|
-      r.user == user
-    end
-    return unless user.admin?
+    # can :read, Course
+    # can :read, Department
+    # can :read, School
+    # can :create, Review
+    # can :read, Review
+    # can [:update, :destroy], Review do |r|
+    #   r.user == user
+    # end
+    # return unless user.admin?
 
-    can :manage, :all
+    # can :manage, :all
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -48,5 +48,5 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-  end
+  # end
 end
