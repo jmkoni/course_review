@@ -42,6 +42,7 @@ group :development, :test do
   # Debugging Gems
   gem 'binding_of_caller'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'jazz_fingers'
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-remote'

@@ -89,6 +89,8 @@ GEM
       url
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
+    coolline (0.5.0)
+      unicode_utils (~> 1.4)
     crass (1.0.4)
     debug_inspector (0.0.3)
     devise (4.6.2)
@@ -122,6 +124,11 @@ GEM
       concurrent-ruby (~> 1.0)
     irb (1.0.0)
     jaro_winkler (1.5.3)
+    jazz_fingers (5.0.1)
+      awesome_print (~> 1.6)
+      pry (~> 0.10)
+      pry-byebug (~> 3.4)
+      pry-coolline (~> 0.2)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
     jquery-rails (4.3.5)
@@ -183,6 +190,8 @@ GEM
     pry-byebug (3.7.0)
       byebug (~> 11.0)
       pry (~> 0.10)
+    pry-coolline (0.2.5)
+      coolline (~> 0.5)
     pry-remote (0.1.8)
       pry (~> 0.9)
       slop (~> 3.0)
@@ -332,6 +341,7 @@ GEM
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.6.0)
+    unicode_utils (1.4.0)
     uniform_notifier (1.12.1)
     url (0.3.2)
     warden (1.2.8)
@@ -373,6 +383,7 @@ DEPENDENCIES
   foreman
   httparty
   irb
+  jazz_fingers
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
