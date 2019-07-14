@@ -28,6 +28,9 @@ gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
+# Email
+gem 'sendgrid-ruby'
+
 # Documentation
 gem 'simplecov-formatter-badge', require: false
 gem 'yard', '>= 0.9.20'
@@ -42,6 +45,7 @@ group :development, :test do
   # Debugging Gems
   gem 'binding_of_caller'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'jazz_fingers'
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-remote'
