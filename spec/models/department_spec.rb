@@ -158,6 +158,13 @@ RSpec.describe Department, type: :model do
   end
 
   context 'methods' do
+    describe '#options_for_select' do
+      it 'returns options for select' do
+        department = create(:department, name: 'Ponies')
+        expect(Department.options_for_select).to eq [['Ponies', department.id]]
+      end
+    end
+
     it 'returns options for sorted by' do
       expected_options = [
         ['Department Name (a-z)', 'department_asc'],

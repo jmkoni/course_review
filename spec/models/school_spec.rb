@@ -154,6 +154,13 @@ RSpec.describe School, type: :model do
     end
   end
   context 'methods' do
+    describe '#options_for_select' do
+      it 'returns options for select' do
+        school = create(:school, name: 'Ponies')
+        expect(School.options_for_select).to eq [['Ponies', school.id]]
+      end
+    end
+
     it 'returns options for sorted by' do
       expected_options = [
         ['Name (a-z)', 'name_asc'],

@@ -76,6 +76,16 @@ RSpec.describe User, type: :model do
         expect(user.admin?).to be true
       end
     end
+
+    it 'returns options for sorted by' do
+      expected_options = [
+        ['Email (a-z)', 'email_asc'],
+        ['Email (z-a)', 'email_desc'],
+        ['Admin? (false first)', 'admin_asc'],
+        ['Admin? (true first)', 'admin_desc']
+      ]
+      expect(User.options_for_sorted_by).to eq expected_options
+    end
   end
 end
 

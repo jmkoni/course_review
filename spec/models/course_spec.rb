@@ -169,6 +169,13 @@ RSpec.describe Course, type: :model do
       expect(course.full_number).to eq 'SWENG 123'
     end
 
+    describe '#options_for_select' do
+      it 'returns options for select' do
+        course = create(:course, name: 'Ponies')
+        expect(Course.options_for_select).to eq [['Ponies', course.id]]
+      end
+    end
+
     it 'returns options for sorted by' do
       expected_options = [
         ['Course Name (a-z)', 'course_asc'],
