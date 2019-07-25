@@ -16,9 +16,18 @@
         <tr>
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :name) %></th>
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :short_name) %></th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_rating) %></th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_difficulty) %></th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_work) %></th>
+          <th scope="col">
+            <%= filterrific_sorting_link(@filterrific, :avg_rating) %>
+            <i title="1 - bad, 10 - great, relevant to each individual students' experience" class="fal fa-question-circle"></i>
+          </th>
+          <th scope="col">
+            <%= filterrific_sorting_link(@filterrific, :avg_difficulty) %>
+            <i title="1 - easy, 10 - difficult, based on individual students' perceptions" class="fal fa-question-circle"></i>
+          </th>
+          <th scope="col">
+            <%= filterrific_sorting_link(@filterrific, :avg_work) %>
+            <i title="in hours/week" class="fal fa-question-circle"></i>
+          </th>
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_grade) %></th>
           <th scope="col" colspan="2"></th>
         </tr>
