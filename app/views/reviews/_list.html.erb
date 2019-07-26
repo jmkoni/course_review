@@ -18,27 +18,51 @@
     <table id="reviews_index" class="reviews table table-hover table-sm table-responsive">
       <thead class="thead-light">
         <tr>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :school) %></th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :department) %></th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :course) %></th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :user) %></th>
-          <th scope="col">Notes</th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :school) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :department) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :course) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :user) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button></th>
+          <th scope="col">Notes<button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button></th>
           <th scope="col">
             <%= filterrific_sorting_link(@filterrific, :rating) %>
-            <i title="1 - bad, 10 - great, relevant to each individual students' experience" class="fal fa-question-circle"></i>
+            <small><i title="1 - bad, 10 - great, based on individual students' experience" class="fal fa-question-circle"></i></small><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button>
           </th>
           <th scope="col">
             <%= filterrific_sorting_link(@filterrific, :difficulty) %>
-            <i title="1 - easy, 10 - difficult, based on individual students' perceptions" class="fal fa-question-circle"></i>
+            <small><i title="1 - easy, 10 - difficult, based on individual students' perceptions" class="fal fa-question-circle"></i></small><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button>
           </th>
           <th scope="col">
             <%= filterrific_sorting_link(@filterrific, :work_required) %>
-            <i title="in hours/week" class="fal fa-question-circle"></i>
+            <small><i title="in hours/week" class="fal fa-question-circle"></i></small><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button>
           </th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :experience_with_topic) %></th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :grade) %></th>
-          <th scope="col">Year</th>
-          <th scope="col">Term</th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :experience_with_topic) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :grade) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button></th>
+          <th scope="col">Year<button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button></th>
+          <th scope="col">Term<button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button></th>
           <th scope="col" colspan="2"></th>
         </tr>
       </thead>
@@ -65,7 +89,35 @@
           </tr>
         <% end %>
       </tbody>
+      <tfoot class="show-column-footer">
+        <tr>
+          <th colspan="4"><a class="show-column" href="#">Some columns hidden - click to show all</a></th>
+        </tr>
+      </tfoot>
     </table>
     <%= paginate reviews %>
   <% end %>
 </div>
+
+<script>
+  $('.hide-column').click(function(e){
+    var $btn = $(this);
+    var $cell = $btn.closest('th,td')
+    var $table = $btn.closest('table')
+
+    // get cell location - https://stackoverflow.com/a/4999018/1366033
+    var cellIndex = $cell[0].cellIndex + 1;
+
+    $table.find(".show-column-footer").show()
+    $table.find("tbody tr, thead tr")
+          .children(":nth-child("+cellIndex+")")
+          .hide()
+  })
+
+  $(".show-column-footer").click(function(e) {
+      var $table = $(this).closest('table')
+      $table.find(".show-column-footer").hide()
+      $table.find("th, td").show()
+
+  })
+</script>
