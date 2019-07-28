@@ -44,7 +44,8 @@ RSpec.describe Review, type: :model do
                          rating: 10,
                          work_required: 0,
                          grade: 100,
-                         experience_with_topic: false)
+                         experience_with_topic: false,
+                         teacher: 'Zwyno')
         review2 = create(:review,
                          notes: 'oh no',
                          course: course1,
@@ -52,14 +53,16 @@ RSpec.describe Review, type: :model do
                          rating: 3,
                          work_required: 20,
                          grade: 50,
-                         experience_with_topic: true)
+                         experience_with_topic: true,
+                         teacher: 'Ariel')
         review3 = create(:review,
                          notes: 'bye',
                          difficulty: 4,
                          rating: 8,
                          work_required: 25,
                          grade: 85,
-                         experience_with_topic: false)
+                         experience_with_topic: false,
+                         teacher: 'Bob')
         aggregate_failures do
           expect(Review.sorted_by('user_asc').first).to eq review1
           expect(Review.sorted_by('user_desc').first).to eq review3
@@ -78,6 +81,8 @@ RSpec.describe Review, type: :model do
           expect(Review.sorted_by('grade_asc').first).to eq review2
           expect(Review.sorted_by('grade_desc').first).to eq review1
           expect(Review.sorted_by('experience_with_topic_desc').first).to eq review2
+          expect(Review.sorted_by('teacher_asc').first).to eq review2
+          expect(Review.sorted_by('teacher_desc').first).to eq review1
           expect { Review.sorted_by('oh_no') }.to raise_error(ArgumentError, 'Invalid sort option: "oh_no"')
         end
       end
@@ -208,9 +213,10 @@ RSpec.describe Review, type: :model do
                             ['Difficulty (highest first)', 'difficulty_desc'],
                             ['Work Required (lowest first)', 'work_required_asc'],
                             ['Work Required (highest first)', 'work_required_desc'],
-                            ['Course (a-z)', 'department_name_asc'],
+                            ['Department (a-z)', 'department_name_asc'],
                             ['Course (a-z)', 'course_name_asc'],
-                            ['School (a-z)', 'school_name_asc']
+                            ['School (a-z)', 'school_name_asc'],
+                            ['Teacher (a-z)', 'teacher_name_asc']
                           ]
         expect(Review.options_for_sorted_by).to eq expected_result
       end
@@ -228,6 +234,7 @@ end
 #  grade                 :integer
 #  notes                 :string
 #  rating                :integer
+#  teacher               :string
 #  term                  :integer
 #  work_required         :integer
 #  year                  :integer

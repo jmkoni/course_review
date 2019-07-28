@@ -40,14 +40,15 @@ class Review < ApplicationRecord
     # configure number of OR conditions for provision
     # of interpolation arguments. Adjust this if you
     # change the number of OR conditions.
-    num_or_conditions = 4
+    num_or_conditions = 5
     joins(course: :department).where(
       terms.map do
         or_clauses = [
           'LOWER(reviews.notes) LIKE ?',
           'LOWER(departments.name) LIKE ?',
           'LOWER(courses.name) LIKE ?',
-          'LOWER(courses.number) LIKE ?'
+          'LOWER(courses.number) LIKE ?',
+          'LOWER(reviews.teacher) LIKE ?'
         ].join(' OR ')
         "(#{or_clauses})"
       end.join(' AND '),
@@ -67,6 +68,8 @@ class Review < ApplicationRecord
       order(Arel.sql("LOWER(departments.name) #{direction}")).includes(course: [:department]).references(:course)
     when /^school_/
       order(Arel.sql("LOWER(schools.name) #{direction}")).includes(course: { department: :school }).references(:course)
+    when /^teacher_/
+      order(Arel.sql("LOWER(reviews.teacher) #{direction}"))
     when /^difficulty_/
       order(Arel.sql("reviews.difficulty #{direction}"))
     when /^rating_/
@@ -111,9 +114,10 @@ class Review < ApplicationRecord
       ['Difficulty (highest first)', 'difficulty_desc'],
       ['Work Required (lowest first)', 'work_required_asc'],
       ['Work Required (highest first)', 'work_required_desc'],
-      ['Course (a-z)', 'department_name_asc'],
+      ['Department (a-z)', 'department_name_asc'],
       ['Course (a-z)', 'course_name_asc'],
-      ['School (a-z)', 'school_name_asc']
+      ['School (a-z)', 'school_name_asc'],
+      ['Teacher (a-z)', 'teacher_name_asc']
     ]
   end
 
@@ -149,6 +153,7 @@ end
 #  grade                 :integer
 #  notes                 :string
 #  rating                :integer
+#  teacher               :string
 #  term                  :integer
 #  work_required         :integer
 #  year                  :integer

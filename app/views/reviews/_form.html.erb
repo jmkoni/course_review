@@ -60,6 +60,12 @@
       <%= form.number_field :grade, in: 0..100, class: "form-control" %>
       <small class='form-text text-muted'>(between 0 and 100)</small>
     </div>
+
+    <div class="form-group col-md-2">
+      <%= form.label :teacher %>
+      <%= form.text_field :teacher,  class: "form-control" %>
+      <small class='form-text text-muted'>(full name of teacher for the class)</small>
+    </div>
   </div>
   <div class="actions">
     <%= form.submit 'Submit', class: 'btn btn-primary' %>

@@ -27,6 +27,10 @@
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :course) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button></th>
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :teacher) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+                <small><i class="fal fa-eye-slash"></i></small>
+              </button>
+          </th>
           <th scope="col"><%= filterrific_sorting_link(@filterrific, :user) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button></th>
@@ -73,6 +77,7 @@
             <td scope="row"><%= link_to review.course.department.school.name, school_path(id: review.course.department.school.id) %></td>
             <td scope="row"><%= link_to review.course.department.name, school_department_path(school_id: review.course.department.school.id, id: review.course.department.id) %></td>
             <td scope="row"><%= link_to "#{review.course.name} (#{review.course.full_number})", school_department_course_path(school_id: review.course.department.school.id, department_id: review.course.department.id, id: review.course.id) %></td>
+            <td><%= review.teacher %></td>
             <td class="user truncate"><div><%= review.user.uuid %></div></td>
             <td class="notes truncate"><div><%= link_to 'Full Notes', school_department_course_review_path(school_id: review.course.department.school.id, department_id: review.course.department.id, course_id: review.course_id, id: review.id) %><%= ": " + review.notes %></div></td>
             <td><%= review.rating %></td>
