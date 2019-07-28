@@ -170,6 +170,7 @@ class ReviewsController < ApplicationController
                                    :experience_with_topic,
                                    :year,
                                    :term,
-                                   :grade)
+                                   :grade,
+                                   :teacher)
   end
 end

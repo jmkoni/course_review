@@ -182,9 +182,16 @@ RSpec.describe ReviewsController, type: :controller do
           expect(response).to redirect_to school_department_course_review_url(school_id: school.id, department_id: department.id, course_id: course.id, id: last_review.id)
         end
 
-        it 'assigns the new review to review' do
+        it 'assigns the new review to review and have the correct values' do
           post :create, params: { school_id: school.id, department_id: department.id, course_id: course.id, review: valid_attributes.merge(user_id: current_user.id) }
-          expect(assigns(:review)).to be_a_kind_of(Review)
+          aggregate_failures do
+            expect(assigns(:review)).to be_a_kind_of(Review)
+            expect(assigns(:review).teacher).to eq valid_attributes[:teacher]
+            expect(assigns(:review).grade).to eq valid_attributes[:grade]
+            expect(assigns(:review).rating).to eq valid_attributes[:rating]
+            expect(assigns(:review).notes).to eq valid_attributes[:notes]
+            expect(assigns(:review).work_required).to eq valid_attributes[:work_required]
+          end
         end
       end
 
@@ -236,9 +243,19 @@ RSpec.describe ReviewsController, type: :controller do
           expect(response).to redirect_to school_department_course_review_url(school_id: school.id, department_id: department.id, id: review.id)
         end
 
-        it 'assigns the review to review' do
-          put :update, params: { id: review.id, school_id: school.id, department_id: department.id, course_id: course.id, review: valid_attributes }
-          expect(assigns(:review)).to be_a_kind_of(Review)
+        it 'assigns the review to review and updated values' do
+          aggregate_failures do
+            expect(review.teacher).not_to eq valid_attributes[:teacher]
+            put :update, params: { id: review.id, school_id: school.id, department_id: department.id, course_id: course.id, review: valid_attributes }
+            review.reload
+            expect(review.teacher).to eq valid_attributes[:teacher]
+            expect(assigns(:review)).to be_a_kind_of(Review)
+            expect(assigns(:review).teacher).to eq valid_attributes[:teacher]
+            expect(assigns(:review).grade).to eq valid_attributes[:grade]
+            expect(assigns(:review).rating).to eq valid_attributes[:rating]
+            expect(assigns(:review).notes).to eq valid_attributes[:notes]
+            expect(assigns(:review).work_required).to eq valid_attributes[:work_required]
+          end
         end
       end
 

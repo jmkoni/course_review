@@ -12,6 +12,7 @@ FactoryBot.define do
     year { rand(2000..2019) }
     term { rand(4) }
     grade { rand(100) }
+    teacher { Faker::Name.name }
   end
 end
 
@@ -25,6 +26,7 @@ end
 #  grade                 :integer
 #  notes                 :string
 #  rating                :integer
+#  teacher               :string
 #  term                  :integer
 #  work_required         :integer
 #  year                  :integer
