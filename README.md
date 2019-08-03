@@ -4,7 +4,22 @@
 
 [![View performance data on Skylight](https://badges.skylight.io/problem/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/typical/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/rpm/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/status/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)
 
-## Development environment
+## Currently Deployed Versions
+
+### Production
+https://course-review-app.herokuapp.com
+
+### Staging
+https://boxing-loonie-42390.herokuapp.com
+
+## Clone the Repository
+Wherever you are planning to do local development, you want to fork the repository and then clone your fork then change directories:
+```
+git clone https://github.com/{{your github user name}}/course_review
+cd course_review
+```
+
+## Installing Tools Needed For Local Development
 
 ### Installing Postgres tools locally
 
@@ -14,68 +29,73 @@ installed and its utilities on your `PATH`.
 This is the recommended way to install on macOS:
 
 Install Postgres.app:
-
-        brew install postgres
-
+```
+brew install postgres
+```
 Put this line at the bottom of your `.profile`, `.bashrc`, or `.zhshrc` file:
-
-        export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
-
+```
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+```
 If you aren't sure which one, add it to all of them!
 
 ### Install Ruby
 
 The recommended way to install ruby is to do it via rvm:
-
-        \curl -sSL https://get.rvm.io | bash -s stable --ruby=2.6.3
-
+```
+\curl -sSL https://get.rvm.io | bash -s stable --ruby=2.6.3
+```
 ### Install Dependencies
 
 You'll also need to install the Rubygems that are necessary.
-
-    rvm use 2.6.3@course-review --create
-    gem install bundler
-    bundle install
-
+```
+rvm use 2.6.3@course-review --create
+gem install bundler
+bundle install
+```
 NOTE: if you installed ruby using something other than RVM, you want to create a gemset some way so that you don't get conflicts later on.
+
+## Setting Up Database and Application
 
 ### Preparing Postgres
 
 Start PostgreSQL using (or your preferred method):
-
-    brew services start postgresql
-
+```
+brew services start postgresql
+```
 You'll need to create a user `root` with password `root` and give that user
 privileges on two databases: `course-review_development` and `course-review_test`.
 
 Add users:
-
-    createuser course_review --createdb
-
+```
+createuser course_review --createdb
+```
 ### Setup the Rails app
 
 Next, setup the database automatically using Rails:
-
-    rails db:setup
-
+```
+rails db:setup
+```
 Once that completes, you're ready to go!
 
 Note: this will only create a single user. If you want the full set of seeds, run this:
-
-    rails db:seed
+```
+rails db:seed
+```
+## Running the Application Locally
 
 To start the server, run:
-
-    rails s
-
+```
+rails s
+```
 You can leave this server running while you develop. You need only restart the
 server when you make changes to anything in the `config` or `db` directories. To view the application, go to `localhost:3000`.
 
 ## Developing
 
 This application uses Rspec for tests and Rubocop to enforce style. Prior to pushing up any branch, ensure both are passing by running the following:
-
-    bundle exec rspec # runs specs, should get all green with a few pending
-    rubocop -a # should get all green, but if it corrects, it will return a W
-    # if rubocop corrects, then make sure to commit the updates!
-
+```
+bundle exec rspec # runs specs, should get all green with a few pending
+rubocop -a # should get all green, but if it corrects, it will return a W
+# if rubocop corrects, then make sure to commit the updates!
+```
+Once you are ready, [open up a PR!](https://github.com/jmkoni/course_review/pulls)
