@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :course do
     name { Faker::Educator.course_name }
-    sequence(:number) { |i| rand(100).to_s + "#{i}" }
+    sequence(:number) { |i| rand(100).to_s + i.to_s }
     department
   end
 end

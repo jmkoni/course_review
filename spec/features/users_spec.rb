@@ -1,15 +1,16 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe "users", type: :feature do
+require 'rails_helper'
 
+RSpec.describe 'users', type: :feature do
   describe 'index' do
     let!(:user1) { create(:user) }
     let!(:user2) { create(:user) }
 
-    it "does not display users link" do
-      visit "/"
-      expect(page).to have_content("Welcome to Course Review")
-      expect(page).not_to have_content("Users")
+    it 'does not display users link' do
+      visit '/'
+      expect(page).to have_content('Welcome to Course Review')
+      expect(page).not_to have_content('Users')
     end
   end
 
@@ -19,9 +20,9 @@ RSpec.describe "users", type: :feature do
 
     it 'allows the user to create, edit, and destroy a user' do
       user = create(:admin)
-      visit "/"
+      visit '/'
       click_link('Sign in')
-      within("#new_user") do
+      within('#new_user') do
         fill_in 'Email', with: user.email
         fill_in 'Password', with: '867-J3nny-5309!'
       end

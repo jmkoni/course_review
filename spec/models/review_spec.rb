@@ -206,18 +206,18 @@ RSpec.describe Review, type: :model do
     describe '#options_for_sorted_by' do
       it 'returns all fields that can be sorted' do
         expected_result = [
-                            ['User ID (lowest first)', 'user_id_asc'],
-                            ['Rating (lowest first)', 'rating_asc'],
-                            ['Rating (highest first)', 'rating_desc'],
-                            ['Difficulty (lowest first)', 'difficulty_asc'],
-                            ['Difficulty (highest first)', 'difficulty_desc'],
-                            ['Work Required (lowest first)', 'work_required_asc'],
-                            ['Work Required (highest first)', 'work_required_desc'],
-                            ['Department (a-z)', 'department_name_asc'],
-                            ['Course (a-z)', 'course_name_asc'],
-                            ['School (a-z)', 'school_name_asc'],
-                            ['Teacher (a-z)', 'teacher_name_asc']
-                          ]
+          ['User ID (lowest first)', 'user_id_asc'],
+          ['Rating (lowest first)', 'rating_asc'],
+          ['Rating (highest first)', 'rating_desc'],
+          ['Difficulty (lowest first)', 'difficulty_asc'],
+          ['Difficulty (highest first)', 'difficulty_desc'],
+          ['Work Required (lowest first)', 'work_required_asc'],
+          ['Work Required (highest first)', 'work_required_desc'],
+          ['Department (a-z)', 'department_name_asc'],
+          ['Course (a-z)', 'course_name_asc'],
+          ['School (a-z)', 'school_name_asc'],
+          ['Teacher (a-z)', 'teacher_name_asc']
+        ]
         expect(Review.options_for_sorted_by).to eq expected_result
       end
     end

@@ -51,9 +51,10 @@ group :development, :test do
   gem 'pry-remote'
 
   # Auditing Gems
-  gem 'rubocop'
-  gem 'rubocop-performance'
-  gem 'rubocop-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 
   # Development Gems
   gem 'annotate'

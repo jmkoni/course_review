@@ -1,15 +1,16 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe "courses", type: :feature do
+require 'rails_helper'
 
+RSpec.describe 'courses', type: :feature do
   describe 'index' do
     let!(:course1) { create(:course) }
     let!(:course2) { create(:course) }
 
-    it "displays a list of all courses" do
-      visit "/"
-      expect(page).to have_content("Welcome to Course Review")
-      expect(page).to have_content("Courses")
+    it 'displays a list of all courses' do
+      visit '/'
+      expect(page).to have_content('Welcome to Course Review')
+      expect(page).to have_content('Courses')
       click_link('Courses')
       within('table.courses') do
         expect(page).to have_content(course1.name)
@@ -25,9 +26,9 @@ RSpec.describe "courses", type: :feature do
 
     it 'allows the user to create, edit, and destroy a Course' do
       user = create(:admin)
-      visit "/"
+      visit '/'
       click_link('Sign in')
-      within("#new_user") do
+      within('#new_user') do
         fill_in 'Email', with: user.email
         fill_in 'Password', with: '867-J3nny-5309!'
       end
@@ -42,7 +43,7 @@ RSpec.describe "courses", type: :feature do
       expect(page).to have_content('New Course')
 
       click_link('New Course')
-      within("#course_form") do
+      within('#course_form') do
         fill_in 'Name', with: 'Unicornology'
         fill_in 'Number', with: '1001'
       end
@@ -59,7 +60,7 @@ RSpec.describe "courses", type: :feature do
         click_link('Edit')
       end
       expect(page).to have_content('Editing Course')
-      within("#course_form") do
+      within('#course_form') do
         fill_in 'Name', with: 'Unicornology'
         fill_in 'Number', with: '101'
       end

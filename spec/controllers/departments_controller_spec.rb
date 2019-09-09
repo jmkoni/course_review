@@ -118,7 +118,6 @@ RSpec.describe DepartmentsController, type: :controller do
     end
 
     describe 'POST #create' do
-
       context 'with valid attributes' do
         it 'saves the new add on in the database' do
           expect_any_instance_of(Department).to receive(:save)
@@ -173,7 +172,6 @@ RSpec.describe DepartmentsController, type: :controller do
     end
 
     describe 'PUT #update' do
-
       context 'with valid attributes' do
         before do
           allow_any_instance_of(Department).to receive(:update).and_return(true)

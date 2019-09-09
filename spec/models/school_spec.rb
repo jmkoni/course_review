@@ -40,9 +40,9 @@ RSpec.describe School, type: :model do
         course1 = create(:course, department: department1)
         course2 = create(:course, department: department2)
         course3 = create(:course, department: department3)
-        review1 = create(:review, course: course1, work_required: 1, difficulty: 5, rating: 10, grade: 100)
-        review2 = create(:review, course: course2, work_required: 5, difficulty: 10, rating: 1, grade: 50)
-        review3 = create(:review, course: course3, work_required: 10, difficulty: 1, rating: 5, grade: 70)
+        create(:review, course: course1, work_required: 1, difficulty: 5, rating: 10, grade: 100)
+        create(:review, course: course2, work_required: 5, difficulty: 10, rating: 1, grade: 50)
+        create(:review, course: course3, work_required: 10, difficulty: 1, rating: 5, grade: 70)
         aggregate_failures do
           expect(School.sorted_by('name_asc').first).to eq school1
           expect(School.sorted_by('name_desc').first).to eq school2
@@ -72,9 +72,9 @@ RSpec.describe School, type: :model do
         course1 = create(:course, department: department1)
         course2 = create(:course, department: department2)
         course3 = create(:course, department: department3)
-        review1 = create(:review, rating: 10, course: course1)
-        review2 = create(:review, rating: 2, course: course2)
-        review3 = create(:review, rating: 5, course: course3)
+        create(:review, rating: 10, course: course1)
+        create(:review, rating: 2, course: course2)
+        create(:review, rating: 5, course: course3)
         aggregate_failures do
           expect(School.with_averages.with_avg_rating_gte(3).length).to eq 2
           expect(School.with_averages.with_avg_rating_gte(3)).not_to include school2
@@ -95,9 +95,9 @@ RSpec.describe School, type: :model do
         course1 = create(:course, department: department1)
         course2 = create(:course, department: department2)
         course3 = create(:course, department: department3)
-        review1 = create(:review, grade: 100, course: course1)
-        review2 = create(:review, grade: 20, course: course2)
-        review3 = create(:review, grade: 60, course: course3)
+        create(:review, grade: 100, course: course1)
+        create(:review, grade: 20, course: course2)
+        create(:review, grade: 60, course: course3)
         aggregate_failures do
           expect(School.with_averages.with_avg_grade_gte(30).length).to eq 2
           expect(School.with_averages.with_avg_grade_gte(30)).not_to include school2
@@ -118,9 +118,9 @@ RSpec.describe School, type: :model do
         course1 = create(:course, department: department1)
         course2 = create(:course, department: department2)
         course3 = create(:course, department: department3)
-        review1 = create(:review, difficulty: 4, course: course1)
-        review2 = create(:review, difficulty: 10, course: course2)
-        review3 = create(:review, difficulty: 2, course: course3)
+        create(:review, difficulty: 4, course: course1)
+        create(:review, difficulty: 10, course: course2)
+        create(:review, difficulty: 2, course: course3)
         aggregate_failures do
           expect(School.with_averages.with_avg_difficulty_lte(5).length).to eq 2
           expect(School.with_averages.with_avg_difficulty_lte(5)).not_to include school2
@@ -141,9 +141,9 @@ RSpec.describe School, type: :model do
         course1 = create(:course, department: department1)
         course2 = create(:course, department: department2)
         course3 = create(:course, department: department3)
-        review1 = create(:review, work_required: 10, course: course1)
-        review2 = create(:review, work_required: 5, course: course2)
-        review3 = create(:review, work_required: 15, course: course3)
+        create(:review, work_required: 10, course: course1)
+        create(:review, work_required: 5, course: course2)
+        create(:review, work_required: 15, course: course3)
         aggregate_failures do
           expect(School.with_averages.with_avg_work_lte(10).length).to eq 2
           expect(School.with_averages.with_avg_work_lte(10)).to include school1

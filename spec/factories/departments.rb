@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :department do
     sequence(:name) { |i| Faker::Educator.subject + " test#{i}" }
-    short_name { Faker::Alphanumeric.alpha(4).upcase }
+    short_name { Faker::Alphanumeric.alpha(number: 4).upcase }
     school
   end
 end
