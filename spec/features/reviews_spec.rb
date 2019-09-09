@@ -1,15 +1,16 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe "reviews", type: :feature do
+require 'rails_helper'
 
+RSpec.describe 'reviews', type: :feature do
   describe 'index' do
     let!(:review1) { create(:review) }
     let!(:review2) { create(:review) }
 
-    it "displays a list of all reviews" do
-      visit "/"
-      expect(page).to have_content("Welcome to Course Review")
-      expect(page).to have_content("Reviews")
+    it 'displays a list of all reviews' do
+      visit '/'
+      expect(page).to have_content('Welcome to Course Review')
+      expect(page).to have_content('Reviews')
       click_link('Reviews')
       within('table.reviews') do
         expect(page).to have_content(review1.course.name)
@@ -26,9 +27,9 @@ RSpec.describe "reviews", type: :feature do
 
     it 'allows the user to create, edit, and destroy a Review' do
       user = create(:user)
-      visit "/"
+      visit '/'
       click_link('Sign in')
-      within("#new_user") do
+      within('#new_user') do
         fill_in 'Email', with: user.email
         fill_in 'Password', with: '867-J3nny-5309!'
       end
@@ -43,14 +44,14 @@ RSpec.describe "reviews", type: :feature do
       expect(page).to have_content('New Review')
 
       click_link('New Review')
-      within("#review_form") do
+      within('#review_form') do
         fill_in 'Notes', with: 'This was hard'
         fill_in 'Rating', with: 7
         fill_in 'Work required', with: 7
         fill_in 'Difficulty', with: 7
         fill_in 'Grade', with: 87
         fill_in 'Term', with: 2
-        fill_in 'Year', with: Time.now.year
+        fill_in 'Year', with: Time.zone.now.year
       end
       click_button 'Submit'
       expect(page).to have_content('Review was successfully created.')
@@ -73,7 +74,7 @@ RSpec.describe "reviews", type: :feature do
       end
 
       expect(page).to have_content('Editing Review')
-      within("#review_form") do
+      within('#review_form') do
         fill_in 'Notes', with: 'Easy peasy'
       end
       click_button 'Submit'
@@ -97,9 +98,9 @@ RSpec.describe "reviews", type: :feature do
 
     it 'allows the user to create, edit, and destroy a Review' do
       user = create(:admin)
-      visit "/"
+      visit '/'
       click_link('Sign in')
-      within("#new_user") do
+      within('#new_user') do
         fill_in 'Email', with: user.email
         fill_in 'Password', with: '867-J3nny-5309!'
       end
@@ -114,14 +115,14 @@ RSpec.describe "reviews", type: :feature do
       expect(page).to have_content('New Review')
 
       click_link('New Review')
-      within("#review_form") do
+      within('#review_form') do
         fill_in 'Notes', with: 'This was hard'
         fill_in 'Rating', with: 7
         fill_in 'Work required', with: 7
         fill_in 'Difficulty', with: 7
         fill_in 'Grade', with: 87
         fill_in 'Term', with: 2
-        fill_in 'Year', with: Time.now.year
+        fill_in 'Year', with: Time.zone.now.year
       end
       click_button 'Submit'
       expect(page).to have_content('Review was successfully created.')
@@ -141,7 +142,7 @@ RSpec.describe "reviews", type: :feature do
       end
 
       expect(page).to have_content('Editing Review')
-      within("#review_form") do
+      within('#review_form') do
         fill_in 'Notes', with: 'Easy Peasy'
         fill_in 'Rating', with: nil
       end
@@ -150,7 +151,7 @@ RSpec.describe "reviews", type: :feature do
       expect(page).to have_content('2 errors prohibited this review from being saved:')
       expect(page).to have_content('Rating is not a number')
 
-      within("#review_form") do
+      within('#review_form') do
         fill_in 'Notes', with: 'Easy peasy'
         fill_in 'Rating', with: 8
       end

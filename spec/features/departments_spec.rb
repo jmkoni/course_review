@@ -1,15 +1,16 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe "departments", type: :feature do
+require 'rails_helper'
 
+RSpec.describe 'departments', type: :feature do
   describe 'index' do
     let!(:department1) { create(:department) }
     let!(:department2) { create(:department) }
 
-    it "displays a list of all departments" do
-      visit "/"
-      expect(page).to have_content("Welcome to Course Review")
-      expect(page).to have_content("Departments")
+    it 'displays a list of all departments' do
+      visit '/'
+      expect(page).to have_content('Welcome to Course Review')
+      expect(page).to have_content('Departments')
       click_link('Departments')
       within('table.departments') do
         expect(page).to have_content(department1.name)
@@ -25,9 +26,9 @@ RSpec.describe "departments", type: :feature do
 
     it 'allows the user to create, edit, and destroy a Department' do
       user = create(:admin)
-      visit "/"
+      visit '/'
       click_link('Sign in')
-      within("#new_user") do
+      within('#new_user') do
         fill_in 'Email', with: user.email
         fill_in 'Password', with: '867-J3nny-5309!'
       end
@@ -42,7 +43,7 @@ RSpec.describe "departments", type: :feature do
       expect(page).to have_content('New Department')
 
       click_link('New Department')
-      within("#department_form") do
+      within('#department_form') do
         fill_in 'Name', with: 'Unicornology'
         fill_in 'Short name', with: 'UNI'
       end
@@ -59,7 +60,7 @@ RSpec.describe "departments", type: :feature do
         click_link('Edit')
       end
       expect(page).to have_content('Editing Department')
-      within("#department_form") do
+      within('#department_form') do
         fill_in 'Name', with: 'Unicornology'
         fill_in 'Short name', with: 'UNIC'
       end

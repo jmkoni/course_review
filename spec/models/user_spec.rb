@@ -14,7 +14,9 @@ RSpec.describe User, type: :model do
       aggregate_failures do
         expect(user1.valid?).to eq true
         expect(user2.valid?).to eq false
-        expect(user2.errors.full_messages).to include 'Password Complexity requirement not met. Please use: 1 uppercase, 1 lowercase, 1 digit and 1 special character'
+        expect(user2.errors.full_messages).to include 'Password Complexity requirement not met. '\
+                                                      'Please use: 1 uppercase, 1 lowercase, 1 digit'\
+                                                      ' and 1 special character'
         expect(user2.errors.full_messages).to include 'Password is too short (minimum is 10 characters)'
       end
     end

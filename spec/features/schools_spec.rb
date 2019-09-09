@@ -1,15 +1,16 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-RSpec.describe "schools", type: :feature do
+require 'rails_helper'
 
+RSpec.describe 'schools', type: :feature do
   describe 'index' do
     let!(:school1) { create(:school) }
     let!(:school2) { create(:school) }
 
-    it "displays a list of all schools" do
-      visit "/"
-      expect(page).to have_content("Welcome to Course Review")
-      expect(page).to have_content("Schools")
+    it 'displays a list of all schools' do
+      visit '/'
+      expect(page).to have_content('Welcome to Course Review')
+      expect(page).to have_content('Schools')
       click_link('Schools')
       within('table.schools') do
         expect(page).to have_content(school1.name)
@@ -25,9 +26,9 @@ RSpec.describe "schools", type: :feature do
 
     it 'allows the user to create, edit, and destroy a school' do
       user = create(:admin)
-      visit "/"
+      visit '/'
       click_link('Sign in')
-      within("#new_user") do
+      within('#new_user') do
         fill_in 'Email', with: user.email
         fill_in 'Password', with: '867-J3nny-5309!'
       end
@@ -41,7 +42,7 @@ RSpec.describe "schools", type: :feature do
       expect(page).to have_content('New School')
 
       click_link('New School')
-      within("#school_form") do
+      within('#school_form') do
         fill_in 'Name', with: 'Unicorn University'
         fill_in 'Short name', with: 'UNIU'
       end
@@ -56,7 +57,7 @@ RSpec.describe "schools", type: :feature do
         click_link('Edit')
       end
       expect(page).to have_content('Editing School')
-      within("#school_form") do
+      within('#school_form') do
         fill_in 'Name', with: 'Unicorn University'
         fill_in 'Short name', with: 'UU'
       end

@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
   def index
     reviews = Review.preload(:user, course: { department: :school })
     select_options = { sorted_by: Review.options_for_sorted_by }
-    if params[:school_id].to_i.zero?
+    unless school_id_exists
       select_options.merge!(
         with_course_id: Course.options_for_select,
         with_department_id: Department.options_for_select,

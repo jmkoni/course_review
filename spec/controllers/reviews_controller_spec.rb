@@ -29,7 +29,11 @@ RSpec.describe ReviewsController, type: :controller do
 
     describe 'GET #new' do
       it 'returns a success response' do
-        expect { get :new, params: { school_id: school.id, department_id: department.id, course_id: course.id } }.to raise_error(CanCan::AccessDenied)
+        expect do
+          get :new, params: { school_id: school.id,
+                              department_id: department.id,
+                              course_id: course.id }
+        end .to raise_error(CanCan::AccessDenied)
       end
     end
   end
@@ -60,7 +64,12 @@ RSpec.describe ReviewsController, type: :controller do
 
     describe 'GET #edit' do
       it 'returns an access denied message' do
-        expect { get :edit, params: { school_id: school.id, department_id: department.id, course_id: course.id, id: review.id } }.to raise_error(CanCan::AccessDenied)
+        expect do
+          get :edit, params: { school_id: school.id,
+                               department_id: department.id,
+                               course_id: course.id,
+                               id: review.id }
+        end .to raise_error(CanCan::AccessDenied)
       end
     end
   end
@@ -173,17 +182,29 @@ RSpec.describe ReviewsController, type: :controller do
       context 'with valid attributes' do
         it 'saves the new add on in the database' do
           expect_any_instance_of(Review).to receive(:save)
-          post :create, params: { school_id: school.id, department_id: department.id, course_id: course.id, review: valid_attributes.merge(user_id: current_user.id) }
+          post :create, params: { school_id: school.id,
+                                  department_id: department.id,
+                                  course_id: course.id,
+                                  review: valid_attributes.merge(user_id: current_user.id) }
         end
 
         it 'renders the show template' do
-          post :create, params: { school_id: school.id, department_id: department.id, course_id: course.id, review: valid_attributes.merge(user_id: current_user.id) }
+          post :create, params: { school_id: school.id,
+                                  department_id: department.id,
+                                  course_id: course.id,
+                                  review: valid_attributes.merge(user_id: current_user.id) }
           last_review = Review.last
-          expect(response).to redirect_to school_department_course_review_url(school_id: school.id, department_id: department.id, course_id: course.id, id: last_review.id)
+          expect(response).to redirect_to school_department_course_review_url(school_id: school.id,
+                                                                              department_id: department.id,
+                                                                              course_id: course.id,
+                                                                              id: last_review.id)
         end
 
         it 'assigns the new review to review and have the correct values' do
-          post :create, params: { school_id: school.id, department_id: department.id, course_id: course.id, review: valid_attributes.merge(user_id: current_user.id) }
+          post :create, params: { school_id: school.id,
+                                  department_id: department.id,
+                                  course_id: course.id,
+                                  review: valid_attributes.merge(user_id: current_user.id) }
           aggregate_failures do
             expect(assigns(:review)).to be_a_kind_of(Review)
             expect(assigns(:review).teacher).to eq valid_attributes[:teacher]
@@ -198,12 +219,18 @@ RSpec.describe ReviewsController, type: :controller do
       context 'with invalid attributes' do
         it "doesn't save the new review in the database" do
           expect do
-            post :create, params: { school_id: school.id, department_id: department.id, course_id: course.id, review: invalid_attributes }
+            post :create, params: { school_id: school.id,
+                                    department_id: department.id,
+                                    course_id: course.id,
+                                    review: invalid_attributes }
           end.to_not change(Review, :count)
         end
 
         it 'renders the new template' do
-          post :create, params: { school_id: school.id, department_id: department.id, course_id: course.id, review: invalid_attributes }
+          post :create, params: { school_id: school.id,
+                                  department_id: department.id,
+                                  course_id: course.id,
+                                  review: invalid_attributes }
           expect(response).to render_template :new
         end
       end
@@ -235,18 +262,29 @@ RSpec.describe ReviewsController, type: :controller do
       context 'with valid attributes' do
         it 'updates review in the database' do
           expect_any_instance_of(Review).to receive(:update)
-          put :update, params: { id: review.id, school_id: school.id, department_id: department.id, course_id: course.id, review: valid_attributes }
+          put :update, params: { id: review.id, school_id: school.id,
+                                 department_id: department.id,
+                                 course_id: course.id,
+                                 review: valid_attributes }
         end
 
         it 'renders the update template' do
-          put :update, params: { id: review.id, school_id: school.id, department_id: department.id, course_id: course.id, review: valid_attributes }
-          expect(response).to redirect_to school_department_course_review_url(school_id: school.id, department_id: department.id, id: review.id)
+          put :update, params: { id: review.id, school_id: school.id,
+                                 department_id: department.id,
+                                 course_id: course.id,
+                                 review: valid_attributes }
+          expect(response).to redirect_to school_department_course_review_url(school_id: school.id,
+                                                                              department_id: department.id,
+                                                                              id: review.id)
         end
 
         it 'assigns the review to review and updated values' do
           aggregate_failures do
             expect(review.teacher).not_to eq valid_attributes[:teacher]
-            put :update, params: { id: review.id, school_id: school.id, department_id: department.id, course_id: course.id, review: valid_attributes }
+            put :update, params: { id: review.id, school_id: school.id,
+                                   department_id: department.id,
+                                   course_id: course.id,
+                                   review: valid_attributes }
             review.reload
             expect(review.teacher).to eq valid_attributes[:teacher]
             expect(assigns(:review)).to be_a_kind_of(Review)
@@ -265,7 +303,10 @@ RSpec.describe ReviewsController, type: :controller do
         end
 
         it 'renders the update template' do
-          put :update, params: { id: review.id, school_id: school.id, department_id: department.id, course_id: course.id, review: invalid_attributes }
+          put :update, params: { id: review.id, school_id: school.id,
+                                 department_id: department.id,
+                                 course_id: course.id,
+                                 review: invalid_attributes }
           expect(response).to render_template :edit
         end
       end

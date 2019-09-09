@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :school do
     name { Faker::University.name }
-    short_name { Faker::Alphanumeric.alpha(4).upcase }
+    short_name { Faker::Alphanumeric.alpha(number: 4).upcase }
   end
 end
 

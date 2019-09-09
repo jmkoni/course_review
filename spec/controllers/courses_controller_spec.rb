@@ -128,7 +128,6 @@ RSpec.describe CoursesController, type: :controller do
     end
 
     describe 'POST #create' do
-
       context 'with valid attributes' do
         it 'saves the new add on in the database' do
           expect_any_instance_of(Course).to receive(:save)
@@ -137,7 +136,9 @@ RSpec.describe CoursesController, type: :controller do
 
         it 'renders the create template' do
           post :create, params: { school_id: school.id, department_id: department.id, course: valid_attributes }
-          expect(response).to redirect_to school_department_course_url(school_id: school.id, department_id: department.id, id: Course.last.id)
+          expect(response).to redirect_to school_department_course_url(school_id: school.id,
+                                                                       department_id: department.id,
+                                                                       id: Course.last.id)
         end
 
         it 'assigns the new course to course' do
@@ -183,7 +184,6 @@ RSpec.describe CoursesController, type: :controller do
     end
 
     describe 'PUT #update' do
-
       context 'with valid attributes' do
         before do
           allow_any_instance_of(Course).to receive(:update).and_return(true)
@@ -195,7 +195,9 @@ RSpec.describe CoursesController, type: :controller do
 
         it 'renders the update template' do
           put :update, params: { id: course.id, school_id: school.id, department_id: department.id, course: valid_attributes }
-          expect(response).to redirect_to school_department_course_url(school_id: school.id, department_id: department.id, id: course.id)
+          expect(response).to redirect_to school_department_course_url(school_id: school.id,
+                                                                       department_id: department.id,
+                                                                       id: course.id)
         end
 
         it 'assigns the course to course' do
