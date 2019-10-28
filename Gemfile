@@ -8,7 +8,7 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'puma', '~> 4.2'
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 6.0.0'
 
 # Database and Authentication
 gem 'bcrypt', '~> 3.1.13'
@@ -96,7 +96,7 @@ group :test do
   gem 'codecov', require: false
   gem 'rails-controller-testing'
   gem 'rspec'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 4.0.0.beta3'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov'
