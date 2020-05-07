@@ -24,8 +24,8 @@ AllCops:
     - config.ru
     - app/**/*
     - spec/**/*
-  TargetRailsVersion: 5.1.5
-  TargetRubyVersion: 2.3.5
+  TargetRailsVersion: 6.0.3
+  TargetRubyVersion: 2.6.3
 
 Documentation:
   Enabled: false
