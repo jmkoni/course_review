@@ -18,47 +18,47 @@
     <table id="reviews_index" class="reviews table table-hover table-sm table-responsive">
       <thead class="thead-light">
         <tr>
-          <th scope="col"><%= filterrific_sorting_link(filterrific, :school) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :school) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button></th>
-          <th scope="col"><%= filterrific_sorting_link(filterrific, :department) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :department) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button></th>
-          <th scope="col"><%= filterrific_sorting_link(filterrific, :course) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :course) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button></th>
-          <th scope="col"><%= filterrific_sorting_link(filterrific, :teacher) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :teacher) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button>
           </th>
-          <th scope="col"><%= filterrific_sorting_link(filterrific, :user) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :user) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button></th>
           <th scope="col">Notes<button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button></th>
           <th scope="col">
-            <%= filterrific_sorting_link(filterrific, :rating) %>
+            <%= filterrific_sorting_link(@filterrific, :rating) %>
             <small><i title="1 - bad, 10 - great, based on individual students' experience" class="fal fa-question-circle"></i></small><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button>
           </th>
           <th scope="col">
-            <%= filterrific_sorting_link(filterrific, :difficulty) %>
+            <%= filterrific_sorting_link(@filterrific, :difficulty) %>
             <small><i title="1 - easy, 10 - difficult, based on individual students' perceptions" class="fal fa-question-circle"></i></small><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button>
           </th>
           <th scope="col">
-            <%= filterrific_sorting_link(filterrific, :work_required) %>
+            <%= filterrific_sorting_link(@filterrific, :work_required) %>
             <small><i title="in hours/week" class="fal fa-question-circle"></i></small><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button>
           </th>
-          <th scope="col"><%= filterrific_sorting_link(filterrific, :experience_with_topic) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :experience_with_topic) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button></th>
-          <th scope="col"><%= filterrific_sorting_link(filterrific, :grade) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
+          <th scope="col"><%= filterrific_sorting_link(@filterrific, :grade) %><button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">
                 <small><i class="fal fa-eye-slash"></i></small>
               </button></th>
           <th scope="col">Year<button class="pull-right btn btn-default btn-condensed hide-column" data-toggle="tooltip" data-placement="bottom" title="Hide Column">

@@ -29,6 +29,7 @@ class DepartmentsController < ApplicationController
         }
       )) || return
     end
+
     @departments = Kaminari.paginate_array(@filterrific.find).page(params[:page])
   end
 

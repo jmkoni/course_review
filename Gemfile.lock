@@ -303,6 +303,8 @@ GEM
       rexml
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
+    rubocop-faker (1.0.0)
+      rubocop (>= 0.74)
     rubocop-performance (1.5.2)
       rubocop (>= 0.71.0)
     rubocop-rails (2.5.2)
@@ -432,6 +434,7 @@ DEPENDENCIES
   rspec
   rspec-rails (~> 4.0.0.beta4)
   rubocop
+  rubocop-faker
   rubocop-performance
   rubocop-rails
   rubocop-rspec
