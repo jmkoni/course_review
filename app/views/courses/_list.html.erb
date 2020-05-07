@@ -14,23 +14,23 @@
     <table class="courses table table-hover table-sm table-responsive">
       <thead class="thead-light">
         <tr>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :course) %></th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :number) %></th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :department) %></th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :school) %></th>
+          <th scope="col"><%= filterrific_sorting_link(filterrific, :course) %></th>
+          <th scope="col"><%= filterrific_sorting_link(filterrific, :number) %></th>
+          <th scope="col"><%= filterrific_sorting_link(filterrific, :department) %></th>
+          <th scope="col"><%= filterrific_sorting_link(filterrific, :school) %></th>
           <th scope="col">
-            <%= filterrific_sorting_link(@filterrific, :avg_rating) %>
+            <%= filterrific_sorting_link(filterrific, :avg_rating) %>
             <small><i title="1 - bad, 10 - great, based on individual students' experience" class="fal fa-question-circle"></i></small>
           </th>
           <th scope="col">
-            <%= filterrific_sorting_link(@filterrific, :avg_difficulty) %>
+            <%= filterrific_sorting_link(filterrific, :avg_difficulty) %>
             <small><i title="1 - easy, 10 - difficult, based on individual students' perceptions" class="fal fa-question-circle"></i></small>
           </th>
           <th scope="col">
-            <%= filterrific_sorting_link(@filterrific, :avg_work) %>
+            <%= filterrific_sorting_link(filterrific, :avg_work) %>
             <small><i title="in hours/week" class="fal fa-question-circle"></i></small>
           </th>
-          <th scope="col"><%= filterrific_sorting_link(@filterrific, :avg_grade) %></th>
+          <th scope="col"><%= filterrific_sorting_link(filterrific, :avg_grade) %></th>
           <th scope="col" colspan="3"></th>
         </tr>
       </thead>

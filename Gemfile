@@ -51,6 +51,7 @@ group :development, :test do
   gem 'pry-remote'
 
   # Auditing Gems
+  gem 'rails_best_practices'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false

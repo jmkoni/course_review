@@ -1,0 +1,906 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset='UTF-8' />
+    <title>Output of rails_best_practices</title>
+    <style type="text/css">
+      body {
+        color: #333;
+        background: #eee;
+        padding: 0 20px;
+      }
+      h1 {
+        color: ##4E4E4E;
+      }
+      p {
+        margin: 5px 0;
+      }
+      table {
+        background: white;
+        border: 1px solid #666;
+        border-collapse: collapse;
+        margin: 10px 0;
+        font-size: 14px;
+      }
+      table.result th, table.result td {
+        padding: 4px;
+        border: 1px solid #D0D0D0;
+      }
+      table.result th {
+        background-color: #DFC;
+        color: #337022;
+      }
+      table.result td.filename {
+        color: #ED1556;
+      }
+      table.result tr:hover {
+        background-color: #FFFFC0;
+      }
+      ul {
+        clear: both;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+      }
+      ul li {
+       list-style: none;
+       display: none;
+       float: left;
+      }
+      .result tbody tr{
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>rails_best_practices output</h1>
+    <p>
+      Please go to
+      <a href='http://rails-bestpractices.com' target='_blank'>http://rails-bestpractices.com</a>
+      to see more useful Rails Best Practices.
+    </p>
+    <p>
+        Found 82 warnings.
+    </p>
+    <table>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="AlwaysAddDbIndexReview" value="AlwaysAddDbIndexReview"
+                />&nbsp;<label for="AlwaysAddDbIndexReview">Always Add Db Index</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="MoveModelLogicIntoModelReview" value="MoveModelLogicIntoModelReview"
+                />&nbsp;<label for="MoveModelLogicIntoModelReview">Move Model Logic Into Model</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="ReplaceInstanceVariableWithLocalVariableReview" value="ReplaceInstanceVariableWithLocalVariableReview"
+                />&nbsp;<label for="ReplaceInstanceVariableWithLocalVariableReview">Replace Instance Variable With Local Variable</label>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="LawOfDemeterReview" value="LawOfDemeterReview"
+                />&nbsp;<label for="LawOfDemeterReview">Law Of Demeter</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveEmptyHelpersReview" value="RemoveEmptyHelpersReview"
+                />&nbsp;<label for="RemoveEmptyHelpersReview">Remove Empty Helpers</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveTrailingWhitespaceCheck" value="RemoveTrailingWhitespaceCheck"
+                />&nbsp;<label for="RemoveTrailingWhitespaceCheck">Remove Trailing Whitespace</label>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="MoveCodeIntoModelReview" value="MoveCodeIntoModelReview"
+                />&nbsp;<label for="MoveCodeIntoModelReview">Move Code Into Model</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveUnusedMethodsInModelsReview" value="RemoveUnusedMethodsInModelsReview"
+                />&nbsp;<label for="RemoveUnusedMethodsInModelsReview">Remove Unused Methods In Models</label>
+              </td>
+          </tr>
+        <tr>
+          <td colspan="3">
+            <button id="show-all">Check all</button>
+            <button id="show-none">Uncheck all</button>
+          </td>
+        </tr>
+    </table>
+    <table class="result">
+      <thead>
+        <tr>
+          <th>Filename</th>
+          <th>Line Number</th>
+          <th>Warning Message</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>18</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/always-add-db-index/' target='_blank'>always add db index (courses => [department_id])</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/departments/_list.html.erb
+            </td>
+            <td class='line'>42</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/departments/show.html.erb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/courses/_list.html.erb
+            </td>
+            <td class='line'>43</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>78</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>79</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>81</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/reviews/show.html.erb
+            </td>
+            <td class='line'>13</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/the-law-of-demeter/' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="MoveCodeIntoModelReview">
+            <td class='filename'>
+                app/views/kaminari/_paginator.html.erb
+            </td>
+            <td class='line'>7</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/move-code-into-model/' target='_blank'>move code into model (page use_count > 2)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/reviews_controller.rb
+            </td>
+            <td class='line'>13</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/21/move-model-logic-into-the-model/' target='_blank'>move model logic into model (reviews use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="RemoveEmptyHelpersReview">
+            <td class='filename'>
+                app/helpers/departments_helper.rb
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2011/04/09/remove-empty-helpers/' target='_blank'>remove empty helpers</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/department.rb
+            </td>
+            <td class='line'>22</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Department#search_query)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/department.rb
+            </td>
+            <td class='line'>49</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Department#sorted_by)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/department.rb
+            </td>
+            <td class='line'>72</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Department#with_school_id)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/department.rb
+            </td>
+            <td class='line'>76</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Department#with_avg_rating_gte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/department.rb
+            </td>
+            <td class='line'>80</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Department#with_avg_difficulty_lte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/department.rb
+            </td>
+            <td class='line'>84</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Department#with_avg_work_lte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/department.rb
+            </td>
+            <td class='line'>88</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Department#with_avg_grade_gte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/review.rb
+            </td>
+            <td class='line'>30</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Review#search_query)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/review.rb
+            </td>
+            <td class='line'>59</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Review#sorted_by)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/review.rb
+            </td>
+            <td class='line'>88</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Review#with_course_id)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/review.rb
+            </td>
+            <td class='line'>92</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Review#with_school_id)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/review.rb
+            </td>
+            <td class='line'>96</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Review#with_rating_gte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/review.rb
+            </td>
+            <td class='line'>100</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Review#with_difficulty_lte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/review.rb
+            </td>
+            <td class='line'>104</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Review#with_work_required_lte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/course.rb
+            </td>
+            <td class='line'>23</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Course#search_query)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/course.rb
+            </td>
+            <td class='line'>51</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Course#sorted_by)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/course.rb
+            </td>
+            <td class='line'>76</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Course#with_department_id)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/course.rb
+            </td>
+            <td class='line'>80</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Course#with_school_id)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/course.rb
+            </td>
+            <td class='line'>84</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Course#with_avg_rating_gte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/course.rb
+            </td>
+            <td class='line'>88</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Course#with_avg_difficulty_lte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/course.rb
+            </td>
+            <td class='line'>92</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Course#with_avg_work_lte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/course.rb
+            </td>
+            <td class='line'>96</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Course#with_avg_grade_gte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/user.rb
+            </td>
+            <td class='line'>26</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (User#admins)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/user.rb
+            </td>
+            <td class='line'>30</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (User#search_query)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/user.rb
+            </td>
+            <td class='line'>55</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (User#sorted_by)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/school.rb
+            </td>
+            <td class='line'>21</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (School#search_query)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/school.rb
+            </td>
+            <td class='line'>47</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (School#sorted_by)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/school.rb
+            </td>
+            <td class='line'>68</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (School#with_avg_rating_gte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/school.rb
+            </td>
+            <td class='line'>72</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (School#with_avg_difficulty_lte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/school.rb
+            </td>
+            <td class='line'>76</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (School#with_avg_work_lte)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/school.rb
+            </td>
+            <td class='line'>80</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (School#with_avg_grade_gte)</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/departments/_list.html.erb
+            </td>
+            <td class='line'>17</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/departments/_list.html.erb
+            </td>
+            <td class='line'>18</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/departments/_list.html.erb
+            </td>
+            <td class='line'>19</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/departments/_list.html.erb
+            </td>
+            <td class='line'>21</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/departments/_list.html.erb
+            </td>
+            <td class='line'>25</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/departments/_list.html.erb
+            </td>
+            <td class='line'>29</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/departments/_list.html.erb
+            </td>
+            <td class='line'>32</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/departments/_form.html.erb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/courses/_list.html.erb
+            </td>
+            <td class='line'>17</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/courses/_list.html.erb
+            </td>
+            <td class='line'>18</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/courses/_list.html.erb
+            </td>
+            <td class='line'>19</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/courses/_list.html.erb
+            </td>
+            <td class='line'>20</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/courses/_list.html.erb
+            </td>
+            <td class='line'>22</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/courses/_list.html.erb
+            </td>
+            <td class='line'>26</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/courses/_list.html.erb
+            </td>
+            <td class='line'>30</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/courses/_list.html.erb
+            </td>
+            <td class='line'>33</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/courses/_form.html.erb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/users/_list.html.erb
+            </td>
+            <td class='line'>20</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/users/_list.html.erb
+            </td>
+            <td class='line'>21</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/users/_list.html.erb
+            </td>
+            <td class='line'>22</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/users/_list.html.erb
+            </td>
+            <td class='line'>28</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/schools/_list.html.erb
+            </td>
+            <td class='line'>17</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/schools/_list.html.erb
+            </td>
+            <td class='line'>18</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/schools/_list.html.erb
+            </td>
+            <td class='line'>20</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/schools/_list.html.erb
+            </td>
+            <td class='line'>24</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/schools/_list.html.erb
+            </td>
+            <td class='line'>28</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/schools/_list.html.erb
+            </td>
+            <td class='line'>31</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>21</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>24</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>27</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>30</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>34</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>41</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>47</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>53</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>58</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_list.html.erb
+            </td>
+            <td class='line'>61</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_form.html.erb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/reviews/_form.html.erb
+            </td>
+            <td class='line'>15</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/07/24/replace-instance-variable-with-local-variable/' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                config/environments/test.rb
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='https://rails-bestpractices.com/posts/2010/12/02/remove-trailing-whitespace/' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+
+        keys = location.hash.slice(2).split("|");
+        keys = keys.filter(function(item){
+          return item != "";
+        });
+        keys.forEach(function(item){
+          $('.'+item).show();
+          $('input.error-type#'+item+'[type=checkbox]').prop('checked', true);
+        });
+
+        $('input.error-type[type=checkbox]').click(function() {
+          if ($(this).attr('checked')) {
+            $(this).prop('checked', true);
+            $('.'+$(this).val()).show();
+
+            new_hash = location.hash.replace("|"+$(this).val().toString(), "");
+            location.hash = new_hash+"|"+$(this).val();
+          } else {
+            $(this).prop('checked', false);
+            $('.'+$(this).val()).hide();
+
+            new_hash = location.hash.replace("|"+$(this).val().toString(), "");
+            location.hash = new_hash
+          }
+        });
+
+        $('#show-all').click(function() {
+          $('input.error-type[type=checkbox]').each(function(index, item){
+            new_hash = location.hash.replace("|"+$(item).val().toString(), "");
+            location.hash = new_hash+"|"+$(item).val();
+          });
+          $('input.error-type[type=checkbox]').prop('checked', true);
+          $('table.result tbody tr').show();
+        });
+
+        $('#show-none').click(function() {
+          $('input.error-type[type=checkbox]').prop('checked', false);
+          $('table.result tbody tr').hide();
+          location.hash = "";
+        });
+      });
+    </script>
+  </body>
+</html>
