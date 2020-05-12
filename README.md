@@ -14,6 +14,7 @@ https://boxing-loonie-42390.herokuapp.com
 
 ## Clone the Repository
 Wherever you are planning to do local development, you want to fork the repository and then clone your fork then change directories:
+
 ```
 git clone https://github.com/{{your github user name}}/course_review
 cd course_review
