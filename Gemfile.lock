@@ -139,7 +139,7 @@ GEM
     io-console (0.5.6)
     irb (1.2.4)
       reline (>= 0.0.1)
-    jazz_fingers (5.0.1)
+    jazz_fingers (5.2.0)
       awesome_print (~> 1.6)
       pry (~> 0.10)
       pry-byebug (~> 3.4)
