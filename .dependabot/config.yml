@@ -4,6 +4,9 @@ version: 1
      directory: "/"
      update_schedule: "weekly"
      version_requirement_updates: "auto"
-     automerged_updates: true
+     automerged_updates:
+       - match:
+         dependency_type: "all"
+         update_type: "all"
      default_reviewers:
        - "jmkoni"
