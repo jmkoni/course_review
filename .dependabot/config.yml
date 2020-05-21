@@ -1,3 +1,4 @@
+# This is an example with only required properties:
 version: 1
 update_configs:
   - package_manager: "ruby:bundler"
@@ -6,7 +7,7 @@ update_configs:
     version_requirement_updates: "auto"
     automerged_updates:
       - match:
-        dependency_type: "all"
-        update_type: "all"
+          dependency_type: "all"
+          update_type: "all"
     default_reviewers:
       - "jmkoni"
