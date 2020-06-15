@@ -61,7 +61,7 @@ GEM
     annotate (3.1.1)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
-    ast (2.4.0)
+    ast (2.4.1)
     autoprefixer-rails (9.7.6)
       execjs
     awesome_print (1.8.0)
@@ -313,7 +313,7 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 0.82.0)
-    rubocop-rspec (1.39.0)
+    rubocop-rspec (1.40.0)
       rubocop (>= 0.68.1)
     ruby-graphviz (1.2.5)
       rexml
