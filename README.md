@@ -4,6 +4,9 @@
 
 [![View performance data on Skylight](https://badges.skylight.io/problem/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/typical/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/rpm/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)[![View performance data on Skylight](https://badges.skylight.io/status/tGkxmMrCXpOV.svg)](https://oss.skylight.io/app/applications/tGkxmMrCXpOV)
 
+## Purpose
+Course Review allows students to review courses at their university. Currently, it requires courses to be manually added by an administrator.
+
 ## Currently Deployed Versions
 
 ### Production
