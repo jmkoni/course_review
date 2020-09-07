@@ -97,7 +97,7 @@ GEM
     choice (0.2.0)
     code_analyzer (0.5.1)
       sexp_processor
-    codecov (0.2.8)
+    codecov (0.2.10)
       json
       simplecov
     coderay (1.1.3)
