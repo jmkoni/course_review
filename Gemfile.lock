@@ -165,7 +165,7 @@ GEM
     launchy (2.5.0)
       addressable (~> 2.7)
     libv8 (8.4.255.0)
-    listen (3.2.1)
+    listen (3.3.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.7.0)
@@ -420,7 +420,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
-  listen (>= 3.0.5, < 3.3)
+  listen (>= 3.0.5, < 3.4)
   memory_profiler
   mini_racer
   nokogiri
