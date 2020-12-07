@@ -7,7 +7,7 @@ ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.1'
 gem 'rails', '~> 6.0.3'
 
 # Database and Authentication
