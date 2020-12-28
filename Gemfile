@@ -98,7 +98,7 @@ group :test do
   gem 'codecov', require: false
   gem 'rails-controller-testing'
   gem 'rspec'
-  gem 'rspec-rails', '~> 4.0.1'
+  gem 'rspec-rails', '~> 4.0.2'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov'
