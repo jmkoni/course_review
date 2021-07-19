@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "10:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - jmkoni
+  ignore:
+  - dependency-name: rubocop
+    versions:
+    - ">= 0.73.a"
+    - "< 0.74"
