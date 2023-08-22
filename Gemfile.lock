@@ -132,8 +132,8 @@ GEM
     filterrific (5.2.2)
     flamegraph (0.9.5)
     foreman (0.87.2)
-    globalid (0.4.2)
-      activesupport (>= 4.2.0)
+    globalid (1.0.1)
+      activesupport (>= 5.0)
     httparty (0.18.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
@@ -187,7 +187,7 @@ GEM
     mini_portile2 (2.5.3)
     mini_racer (0.4.0)
       libv8-node (~> 15.14.0.0)
-    minitest (5.16.3)
+    minitest (5.17.0)
     msgpack (1.4.2)
     multi_xml (0.6.0)
     nio4r (2.5.8)
@@ -391,7 +391,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.26)
-    zeitwerk (2.6.0)
+    zeitwerk (2.6.6)
 
 PLATFORMS
   ruby
